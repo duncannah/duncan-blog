@@ -1,0 +1,86 @@
+@import "../shared/_variables";
+
+.page {
+	.head {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing-base / 8;
+		text-align: center;
+
+		@include respond-to("medium") {
+			text-align: left;
+		}
+
+		.titleAndImage {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: $spacing-base / 2;
+
+			@include respond-to("medium") {
+				flex-direction: row;
+			}
+
+			h2 {
+				font-size: 2rem;
+				line-height: 1.2;
+				margin: 0;
+			}
+
+			img {
+				width: 300px;
+				height: 150px;
+				object-fit: cover;
+				border-radius: $border-radius;
+			}
+		}
+
+		.info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+
+			@include respond-to("medium") {
+				flex-direction: row;
+			}
+
+			font-size: 0.9rem;
+			color: rgba($color-text, 0.5);
+
+			.time {
+				display: flex;
+				align-self: center;
+				gap: 0.5rem;
+
+				strong {
+					text-transform: uppercase;
+				}
+			}
+
+			.categories {
+				display: flex;
+				align-self: center;
+				gap: 0.5rem;
+
+				list-style: none;
+				margin: 0;
+				padding: 0;
+
+				li:not(:last-child) {
+					&::after {
+						content: ", ";
+					}
+				}
+
+				a {
+					color: inherit;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+
+	.content {
+		text-align: justify;
+	}
+}

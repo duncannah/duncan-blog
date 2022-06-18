@@ -1,0 +1,63 @@
+@import "../shared/_variables";
+
+.Header {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+
+	@include respond-to("medium") {
+		flex-direction: row;
+		align-items: flex-end;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 3rem;
+		font-weight: 900;
+		letter-spacing: -0.05em;
+
+		cursor: pointer;
+
+		&::before {
+			content: "\\";
+			color: $color-logo-left;
+		}
+
+		&::after {
+			content: "/";
+			color: $color-logo-right;
+		}
+	}
+
+	ul {
+		display: flex;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+		gap: 0.5em;
+
+		a {
+			text-decoration: none;
+			color: rgba($color-text, 0.5);
+		}
+
+		li {
+			&.active {
+				a {
+					color: $color-text;
+				}
+			}
+		}
+
+		li:not(:first-child) {
+			&::before {
+				content: "·";
+				color: rgba($color-text, 0.5);
+				margin-right: 0.5em;
+			}
+		}
+	}
+}

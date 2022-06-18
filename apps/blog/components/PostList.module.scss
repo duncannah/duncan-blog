@@ -1,0 +1,87 @@
+@import "../shared/_variables";
+
+.posts {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	flex-wrap: wrap;
+
+	justify-content: center;
+	gap: 1rem;
+
+	@include respond-to("medium") {
+		justify-content: space-between;
+	}
+
+	.post {
+		width: 350px;
+		max-width: 100%;
+		border-radius: $border-radius;
+		overflow: hidden;
+		background-color: lighten($color-background, 13%);
+		color: $color-text;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+
+			display: flex;
+			flex-direction: column;
+
+			img {
+				width: 100%;
+				height: 180px;
+				object-fit: cover;
+			}
+
+			.info {
+				display: flex;
+				flex-direction: column;
+				gap: 0.25rem;
+				margin: 0.5rem;
+
+				h2 {
+					margin: 0;
+					font-size: 0.9rem;
+
+					min-height: calc(3em * $line-height);
+				}
+
+				.meta {
+					display: flex;
+					justify-content: space-between;
+
+					font-size: 0.6rem;
+					color: rgba($color-text, 0.5);
+
+					.time {
+						font-weight: bold;
+						text-transform: uppercase;
+						white-space: nowrap;
+					}
+
+					.categories {
+						list-style: none;
+						margin: 0;
+						padding: 0;
+
+						display: flex;
+						gap: 0.25em;
+
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+
+						li:not(:last-child) {
+							&::after {
+								content: ", ";
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
