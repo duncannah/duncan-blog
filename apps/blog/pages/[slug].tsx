@@ -7,16 +7,14 @@ import styles from "./[slug].module.scss";
 
 const prisma = new PrismaClient();
 
-export const PostPage: NextPage = ({
-	post,
-}: {
+export const PostPage: NextPage<{
 	post: Jsonify<
 		Post & {
 			mainImage: Upload;
 			categories: Category[];
 		}
 	>;
-}) => {
+}> = ({ post }) => {
 	return (
 		<>
 			{post && (
@@ -27,7 +25,7 @@ export const PostPage: NextPage = ({
 								<h2>{post.title}</h2>
 								{post.mainImage && (
 									<>
-										<img src={post.mainImage.url} alt={``} />
+										<img src={post.mainImage.url || ``} alt={``} />
 									</>
 								)}
 							</div>
@@ -62,7 +60,7 @@ export const PostPage: NextPage = ({
 export const getStaticProps: GetStaticProps = async (context) => {
 	const post = await prisma.post.findFirst({
 		where: {
-			slug: context.params.slug.toString(),
+			slug: (context.params?.slug || ``).toString(),
 		},
 		include: {
 			// uploads: true,

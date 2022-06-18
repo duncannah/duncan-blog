@@ -4,10 +4,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 const prisma = new PrismaClient();
 
-export const CategoryPage: NextPage = ({
-	category,
-	count,
-}: {
+export const CategoryPage: NextPage<{
 	category: Jsonify<
 		Category & {
 			posts: (Post & {
@@ -17,7 +14,7 @@ export const CategoryPage: NextPage = ({
 		}
 	>;
 	count: number;
-}) => {
+}> = ({ category, count }) => {
 	return (
 		<>
 			<h2 style={{ margin: 0 }}>{`#${category.name} (${count} post${count !== 1 ? `s` : ``})`}</h2>
@@ -27,13 +24,13 @@ export const CategoryPage: NextPage = ({
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const count = await prisma.post.count({ where: { categories: { some: { name: context.params.name.toString() } } } });
+	const count = await prisma.post.count({ where: { categories: { some: { name: context.params?.name?.toString() } } } });
 
 	if (!count) return { notFound: true };
 
 	const category = await prisma.category.findFirst({
 		where: {
-			name: context.params.name.toString(),
+			name: context.params?.name?.toString(),
 		},
 		include: { posts: { include: { mainImage: true, categories: true } } },
 	});
