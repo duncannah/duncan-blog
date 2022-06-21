@@ -1,0 +1,45 @@
+@import "variables";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	.actions {
+		display: flex;
+		justify-content: space-around;
+		list-style-type: none;
+		gap: 2rem;
+		padding: 0;
+	}
+
+	h2 {
+		margin: 0;
+	}
+
+	.filter {
+		fieldset {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			gap: 2rem;
+		}
+
+		input,
+		button {
+			flex-grow: 1;
+		}
+	}
+
+	table {
+		font-family: $font-family-monospace;
+		font-size: 0.75rem;
+	}
+
+	.pagination {
+		display: flex;
+		gap: 0.25rem;
+		padding: 0;
+		align-self: center;
+	}
+}

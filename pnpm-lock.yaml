@@ -16,11 +16,13 @@ specifiers:
   '@nrwl/workspace': 14.3.6
   '@prisma/client': ^3.15.2
   '@testing-library/react': 13.3.0
+  '@tinymce/tinymce-react': ^4.1.0
   '@types/express': 4.17.13
   '@types/jest': 27.4.1
   '@types/node': 16.11.7
   '@types/react': 18.0.13
   '@types/react-dom': 18.0.5
+  '@types/react-table': ^7.7.12
   '@typescript-eslint/eslint-plugin': ~5.24.0
   '@typescript-eslint/parser': ~5.24.0
   babel-jest: 27.5.1
@@ -47,6 +49,7 @@ specifiers:
   react-test-renderer: 18.2.0
   regenerator-runtime: 0.13.7
   sass: 1.52.3
+  tinymce: ^6
   ts-jest: 27.1.4
   ts-node: ~10.8.0
   tslib: ^2.3.0
@@ -56,6 +59,7 @@ specifiers:
 dependencies:
   '@nrwl/next': 14.3.6_luyxddd4me57g5onyajmzpkrou
   '@prisma/client': 3.15.2_prisma@3.15.2
+  '@tinymce/tinymce-react': 4.1.0_biqbaboplfbrettd7655fr4n2y
   core-js: 3.23.1
   express: 4.17.2
   html-react-parser: 1.4.14_react@18.2.0
@@ -64,6 +68,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   regenerator-runtime: 0.13.7
+  tinymce: 6.0.3
   tslib: 2.4.0
 
 devDependencies:
@@ -85,6 +90,7 @@ devDependencies:
   '@types/node': 16.11.7
   '@types/react': 18.0.13
   '@types/react-dom': 18.0.5
+  '@types/react-table': 7.7.12
   '@typescript-eslint/eslint-plugin': 5.24.0_ynoyga2kju3ncc7rzgm66y2j6a
   '@typescript-eslint/parser': 5.24.0_4hx5bygx4rxgd7xwyndf6ymwce
   babel-jest: 27.5.1_@babel+core@7.18.5
@@ -2783,6 +2789,18 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
+  /@tinymce/tinymce-react/4.1.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-7qXheXhyY9a8mY5tXQUz3BFq+Z4TQ7zd/OIaKasbVzojkjCw3VWdwFhHOEcwmDDprepgQwECsYqe3AGOtehfFg==}
+    peerDependencies:
+      react: ^18.0.0 || ^17.0.1 || ^16.7.0
+      react-dom: ^18.0.0 || ^17.0.1 || ^16.7.0
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tinymce: 6.0.3
+    dev: false
+
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
@@ -2972,6 +2990,12 @@ packages:
 
   /@types/react-dom/18.0.5:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
+    dependencies:
+      '@types/react': 18.0.13
+    dev: true
+
+  /@types/react-table/7.7.12:
+    resolution: {integrity: sha512-bRUent+NR/WwtDGwI/BqhZ8XnHghwHw0HUKeohzB5xN3K2qKWYE5w19e7GCuOkL1CXD9Gi1HFy7TIm2AvgWUHg==}
     dependencies:
       '@types/react': 18.0.13
     dev: true
@@ -9441,6 +9465,10 @@ packages:
 
   /thunky/1.1.0:
     resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==}
+
+  /tinymce/6.0.3:
+    resolution: {integrity: sha512-4cu80kWF7nRGhviE10poZtjTkl3jNL+lycilCMfdm3KU5V7FtiQQrKbEo6GInXT05RY78Ha/NFP0gOBELcSpfg==}
+    dev: false
 
   /tmp/0.2.1:
     resolution: {integrity: sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==}

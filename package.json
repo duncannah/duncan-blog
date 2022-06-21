@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@nrwl/next": "14.3.6",
 		"@prisma/client": "^3.15.2",
+		"@tinymce/tinymce-react": "^4.1.0",
 		"core-js": "^3.6.5",
 		"express": "4.17.2",
 		"html-react-parser": "^1.4.14",
@@ -19,6 +20,7 @@
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"regenerator-runtime": "0.13.7",
+		"tinymce": "^6",
 		"tslib": "^2.3.0"
 	},
 	"devDependencies": {
@@ -40,6 +42,7 @@
 		"@types/node": "16.11.7",
 		"@types/react": "18.0.13",
 		"@types/react-dom": "18.0.5",
+		"@types/react-table": "^7.7.12",
 		"@typescript-eslint/eslint-plugin": "~5.24.0",
 		"@typescript-eslint/parser": "~5.24.0",
 		"babel-jest": "27.5.1",

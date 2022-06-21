@@ -5,8 +5,7 @@ import Head from "next/head";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import "./global.scss";
-
+import "../../../libs/shared/src/global.scss";
 function CustomApp({ Component, pageProps, links }: AppProps & { links: Jsonify<HeaderLink[]> }) {
 	return (
 		<>

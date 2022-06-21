@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+	gap: 1rem;
+	font-size: 0.75em;
+
+	.selected {
+		display: flex;
+		gap: 0.5rem;
+
+		> div {
+			display: flex;
+			gap: 0.5rem;
+			border: solid 1px;
+			border-radius: 0.5rem;
+			padding: 0.25rem 0.5rem;
+
+			.remove {
+				cursor: pointer;
+				color: #f00;
+				font-weight: bold;
+			}
+		}
+	}
+}
