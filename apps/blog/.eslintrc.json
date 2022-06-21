@@ -16,10 +16,10 @@
 			},
 			"rules": {
 				"@next/next/no-html-link-for-pages": ["error", "apps/blog/pages"],
-				"react/jsx-curly-brace-presence": ["error", "always"],
+				"react/jsx-curly-brace-presence": ["warn", "always"],
 				"@next/next/no-img-element": "off",
 				"quotes": "off",
-				"@typescript-eslint/quotes": ["error", "backtick"]
+				"@typescript-eslint/quotes": ["warn", "backtick"]
 			}
 		},
 		{
