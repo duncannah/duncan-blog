@@ -21,9 +21,15 @@ export const Header: NextPage<{ links: Jsonify<HeaderLink[]> }> = ({ links }) =>
 				{links &&
 					links.map((link) => (
 						<li key={link.name} className={router.asPath === link.url ? styles.active : ``}>
-							<Link href={link.url}>
-								<a>{link.icon ? HTMLParser(link.icon) : link.name}</a>
-							</Link>
+							{link.url.match(/^https?:\/\//) ? (
+								<a href={link.url} target={`_blank`}>
+									{link.icon ? HTMLParser(link.icon) : link.name}
+								</a>
+							) : (
+								<Link href={link.url}>
+									<a>{link.icon ? HTMLParser(link.icon) : link.name}</a>
+								</Link>
+							)}
 						</li>
 					))}
 			</ul>
