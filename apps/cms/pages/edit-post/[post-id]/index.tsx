@@ -54,7 +54,7 @@ export function PostId({ post }: PostIdProps) {
 					alert(`Success.`);
 
 					// if slug changed, redirect to new slug
-					if (post?.slug !== res.data.slug) void router.push(`/posts/${res.data.slug}`);
+					if (post?.slug !== res.data.slug) void router.push(`/edit-post/${res.data.slug}`);
 				})
 				.catch((err: Error) => {
 					console.error(err);
