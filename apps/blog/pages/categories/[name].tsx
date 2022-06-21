@@ -1,8 +1,7 @@
-import { Category, Post, PrismaClient, Upload } from "@prisma/client";
+import { Category, Post, Upload } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import { PostList } from "../../components/PostList";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-
-const prisma = new PrismaClient();
 
 export const CategoryPage: NextPage<{
 	category: Jsonify<

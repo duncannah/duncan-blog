@@ -1,9 +1,8 @@
-import { PrismaClient, Post, Category, Upload } from "@prisma/client";
+import { Post, Category, Upload } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import { PostList } from "../components/PostList";
 
 import styles from "./index.module.scss";
-
-const prisma = new PrismaClient();
 
 export function Index({
 	posts,

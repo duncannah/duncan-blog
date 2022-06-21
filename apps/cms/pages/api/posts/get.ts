@@ -1,7 +1,6 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { Prisma } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-const prisma = new PrismaClient();
 
 export const PostsGetHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const where: Prisma.PostWhereInput = {};

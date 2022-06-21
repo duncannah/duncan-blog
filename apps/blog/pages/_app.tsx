@@ -1,4 +1,5 @@
-import { HeaderLink, PrismaClient } from "@prisma/client";
+import { HeaderLink } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import App, { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 
@@ -24,11 +25,14 @@ function CustomApp({ Component, pageProps, links }: AppProps & { links: Jsonify<
 
 CustomApp.getInitialProps = async (appContext: AppContext) => {
 	const appProps = await App.getInitialProps(appContext);
-	const prisma = new PrismaClient();
 
-	const links = await prisma.headerLink.findMany();
+	if (typeof window === `undefined`) {
+		const links = await prisma.headerLink.findMany();
 
-	return { ...appProps, links: JSON.parse(JSON.stringify(links)) as Jsonify<typeof links> };
+		return { ...appProps, links };
+	}
+
+	return { ...appProps };
 };
 
 export default CustomApp;

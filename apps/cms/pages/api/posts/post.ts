@@ -1,7 +1,6 @@
-import { Category, Post, PrismaClient } from "@prisma/client";
+import { Category, Post } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import type { NextApiRequest, NextApiResponse } from "next";
-
-const prisma = new PrismaClient();
 
 export const PostsPostHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const body = req.body as Jsonify<{ values: Partial<Post & { categories: Category[] }>; oldValues: Partial<Post> }>;

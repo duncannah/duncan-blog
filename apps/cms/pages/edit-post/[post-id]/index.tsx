@@ -1,4 +1,5 @@
-import { Category, Post, PrismaClient } from "@prisma/client";
+import { Category, Post } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -167,8 +168,6 @@ export function PostId({ post }: PostIdProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const prisma = new PrismaClient();
-
 	if (context.query[`post-id`] === `new`) {
 		const post = await prisma.post.create({
 			data: {

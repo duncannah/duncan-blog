@@ -1,11 +1,10 @@
-import { PrismaClient, Post, Upload, Category } from "@prisma/client";
+import { Post, Upload, Category } from "@prisma/client";
+import { prisma } from "@duncan-blog/shared";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import HTMLParser from "html-react-parser";
 import { dateToString } from "../shared/utils";
 
 import styles from "./[slug].module.scss";
-
-const prisma = new PrismaClient();
 
 export const PostPage: NextPage<{
 	post: Jsonify<
