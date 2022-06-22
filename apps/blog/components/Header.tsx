@@ -14,7 +14,7 @@ export const Header: NextPage<{ links: Jsonify<HeaderLink[]> }> = ({ links }) =>
 		<header className={styles.Header}>
 			<Link href={`/`}>
 				<a>
-					<h1>{`ermansay.in`}</h1>
+					<h1>{process.env.NEXT_PUBLIC_BLOG_NAME}</h1>
 				</a>
 			</Link>
 			<ul>

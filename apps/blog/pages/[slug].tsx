@@ -5,6 +5,7 @@ import HTMLParser from "html-react-parser";
 import { dateToString } from "../shared/utils";
 
 import styles from "./[slug].module.scss";
+import Head from "next/head";
 
 export const PostPage: NextPage<{
 	post: Jsonify<
@@ -15,8 +16,11 @@ export const PostPage: NextPage<{
 	>;
 }> = ({ post }) => {
 	return (
-		<>
-			{post && (
+		post && (
+			<>
+				<Head>
+					<title>{`${post.title} - ${process.env.NEXT_PUBLIC_BLOG_FULLNAME || ``}`}</title>
+				</Head>
 				<section className={styles.page} lang={post.language}>
 					{!post.isPage && (
 						<div className={styles.head}>
@@ -51,8 +55,8 @@ export const PostPage: NextPage<{
 
 					<div className={styles.content}>{HTMLParser(post.content)}</div>
 				</section>
-			)}
-		</>
+			</>
+		)
 	);
 };
 

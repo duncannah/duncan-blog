@@ -11,7 +11,7 @@ function CustomApp({ Component, pageProps, links }: AppProps & { links: Jsonify<
 	return (
 		<>
 			<Head>
-				<title>{`Welcome to blog!`}</title>
+				<title>{process.env.NEXT_PUBLIC_BLOG_FULLNAME}</title>
 				<link rel={`stylesheet`} href={`https://rsms.me/inter/inter.css`} />
 			</Head>
 			<main className={`app`}>
