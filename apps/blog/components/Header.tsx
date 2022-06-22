@@ -22,12 +22,12 @@ export const Header: NextPage<{ links: Jsonify<HeaderLink[]> }> = ({ links }) =>
 					links.map((link) => (
 						<li key={link.name} className={router.asPath === link.url ? styles.active : ``}>
 							{link.url.match(/^https?:\/\//) ? (
-								<a href={link.url} target={`_blank`}>
+								<a href={link.url} target={`_blank`} title={link.name}>
 									{link.icon ? HTMLParser(link.icon) : link.name}
 								</a>
 							) : (
 								<Link href={link.url}>
-									<a>{link.icon ? HTMLParser(link.icon) : link.name}</a>
+									<a title={link.name}>{link.icon ? HTMLParser(link.icon) : link.name}</a>
 								</Link>
 							)}
 						</li>
