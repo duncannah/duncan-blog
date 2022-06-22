@@ -34,8 +34,8 @@ model Upload {
   size      Int
   mimetype  String
   url       String?
-  post      Post     @relation(fields: [postId], references: [slug])
-  postId    String
+  post      Post?    @relation(fields: [postId], references: [slug])
+  postId    String?
 
   mainImagePost Post? @relation("mainImage")
 }
