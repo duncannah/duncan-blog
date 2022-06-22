@@ -1,5 +1,6 @@
 @import "variables";
 @import "normalize.css";
+@import "code-highlight-theme";
 
 *,
 *:before,
@@ -110,6 +111,31 @@ select {
 iframe {
 	border: none;
 	max-width: 100%;
+}
+
+figure {
+	text-align: center;
+
+	figcaption {
+		font-style: italic;
+		color: rgba($color-text, 0.5);
+	}
+
+	img {
+		border-radius: $border-radius;
+	}
+}
+
+code,
+kbd,
+samp,
+pre {
+	font-family: $font-family-monospace !important;
+}
+
+pre[class^="language-"] {
+	font-size: 0.75em !important;
+	border-radius: $border-radius;
 }
 
 .hstack {

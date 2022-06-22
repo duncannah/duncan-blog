@@ -1,11 +1,40 @@
 import { Post, Upload, Category } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import HTMLParser from "html-react-parser";
+import HTMLParser, { Element, DOMNode, Text, domToReact } from "html-react-parser";
 import { dateToString } from "../shared/utils";
+import Prism from "prismjs";
 
 import styles from "./[slug].module.scss";
 import Head from "next/head";
+import Link from "next/link";
+
+const HTMLElementReplacer = (domNode: DOMNode) => {
+	if (domNode instanceof Element)
+		switch (domNode.tagName) {
+			case `pre`:
+				if (domNode.attribs.class?.startsWith(`language-`)) {
+					const code = ((domNode?.children[0] as Element)?.children[0] as Text)?.data;
+					const language = domNode.attribs.class.split(`-`)[1];
+
+					return (
+						<pre className={domNode.attribs.class}>
+							<code>{HTMLParser(Prism.highlight(code, Prism.languages[language] || `plain`, language))}</code>
+						</pre>
+					);
+				}
+				break;
+
+			case `a`:
+				return (
+					<Link href={domNode.attribs.href} target={domNode.attribs.target === `_blank` || !domNode.attribs.href.startsWith(`/`) ? `_blank` : undefined}>
+						{domToReact([domNode])}
+					</Link>
+				);
+			default:
+				break;
+		}
+};
 
 export const PostPage: NextPage<{
 	post: Jsonify<
@@ -53,7 +82,7 @@ export const PostPage: NextPage<{
 						</div>
 					)}
 
-					<div className={styles.content}>{HTMLParser(post.content)}</div>
+					<div className={styles.content}>{HTMLParser(post.content, { replace: HTMLElementReplacer })}</div>
 				</section>
 			</>
 		)
