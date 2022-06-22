@@ -57,6 +57,7 @@ a {
 	color: rgba($color-text, 0.75);
 	text-decoration: none;
 	transition: color 0.2s ease-in-out;
+	cursor: pointer;
 
 	&:hover {
 		color: $color-text;

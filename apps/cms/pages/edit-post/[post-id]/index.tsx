@@ -31,6 +31,17 @@ export function PostId({ post }: PostIdProps) {
 		setValues((values) => ({ ...values, categories: categories.map((name) => ({ name })) }));
 	}, []);
 
+	const generateSlug = useCallback(() => {
+		const date = new Date();
+		const slug = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, `0`)}-${date.getDate().toString().padStart(2, `0`)}-${
+			values.title
+				?.replace(/\s+/g, `-`)
+				.replace(/[^a-zA-Z0-9-]/g, ``)
+				.toLowerCase() || `untitled`
+		}`;
+		updateValue(`slug`, slug);
+	}, [updateValue, values.title]);
+
 	const submit = useCallback(
 		(e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
@@ -91,7 +102,7 @@ export function PostId({ post }: PostIdProps) {
 							<div className={`hstack`}>
 								<label htmlFor={`form_slug`}>{`Slug`}</label>
 								<label>
-									<a>{`Generate from title`}</a>
+									<a onClick={generateSlug}>{`Generate from title`}</a>
 								</label>
 							</div>
 
