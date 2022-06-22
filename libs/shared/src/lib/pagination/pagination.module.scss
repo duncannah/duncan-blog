@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	gap: 0.25rem;
+	padding: 0;
+	justify-content: center;
+	cursor: default !important;
+
+	button {
+		border: 0;
+		cursor: pointer;
+	}
+}

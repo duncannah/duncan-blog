@@ -1,6 +1,7 @@
 import { Post, Upload, Category } from "@prisma/client";
 import { NextPage } from "next";
 import Link from "next/link";
+
 import { dateToString } from "../shared/utils";
 
 import styles from "./PostList.module.scss";

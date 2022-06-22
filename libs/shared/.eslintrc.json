@@ -1,10 +1,17 @@
 {
-	"extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+	"extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-			"rules": {}
+			"parserOptions": {
+				"project": ["libs/shared/tsconfig(.*)?.json"]
+			},
+			"rules": {
+				"react/jsx-curly-brace-presence": ["warn", "always"],
+				"quotes": "off",
+				"@typescript-eslint/quotes": ["warn", "backtick"]
+			}
 		},
 		{
 			"files": ["*.ts", "*.tsx"],
