@@ -1,9 +1,11 @@
 import { Post, Upload, Category } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import HTMLParser, { Element, DOMNode, Text, domToReact } from "html-react-parser";
+import HTMLParser, { Element, DOMNode, domToReact } from "html-react-parser";
 import { dateToString } from "../shared/utils";
 import Prism from "prismjs";
+import loadLanguages from "prismjs/components/index";
+import { unescape } from "lodash";
 
 import styles from "./[slug].module.scss";
 import Head from "next/head";
@@ -13,16 +15,16 @@ const HTMLElementReplacer = (domNode: DOMNode) => {
 	if (domNode instanceof Element)
 		switch (domNode.tagName) {
 			case `pre`:
-				if (domNode.attribs.class?.startsWith(`language-`)) {
-					const code = ((domNode?.children[0] as Element)?.children[0] as Text)?.data;
-					const language = domNode.attribs.class.split(`-`)[1];
+				// if (domNode.attribs.class?.startsWith(`language-`)) {
+				// 	const code = ((domNode?.children[0] as Element)?.children[0] as Text)?.data;
+				// 	const language = domNode.attribs.class.split(`-`)[1];
 
-					return (
-						<pre className={domNode.attribs.class}>
-							<code>{HTMLParser(Prism.highlight(code, Prism.languages[language] || `plain`, language))}</code>
-						</pre>
-					);
-				}
+				// 	return (
+				// 		<pre className={domNode.attribs.class}>
+				// 			<code>{HTMLParser(Prism.highlight(code, Prism.languages[language] || `plain`, language))}</code>
+				// 		</pre>
+				// 	);
+				// }
 				break;
 
 			case `a`:
@@ -102,6 +104,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	});
 
 	if (!post) return { notFound: true };
+
+	// code highlight on post.content
+	loadLanguages();
+
+	post.content = post.content.replace(/<pre class="language-(\w+)"><code>(.+?)<\/code><\/pre>/gims, (match, language: string, code: string) => {
+		return `<pre class="language-${language}"><code>${Prism.highlight(unescape(code), Prism.languages[language] || `plain`, language)}</code></pre>`;
+	});
 
 	return {
 		props: JSON.parse(JSON.stringify({ post })) as Jsonify<typeof post>,

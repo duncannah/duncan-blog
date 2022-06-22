@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useCallback, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import codesampleLanguages from "../../../util/codesample-languages";
 
 import CollapsibleFieldset from "../../../components/collapsible-fieldset/collapsible-fieldset";
 import CategorySelect from "../../../components/category-select/category-select";
@@ -143,6 +144,7 @@ export function PostId({ post }: PostIdProps) {
 													.join(` `),
 									skin: `oxide-dark`,
 									visualblocks_default_state: true,
+									codesample_languages: codesampleLanguages,
 									//content_style: `body { font-family:Helvetica,Arial,sans-serif; font-size:14px }`,
 								}}
 							/>
