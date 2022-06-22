@@ -166,6 +166,17 @@ export const EditPostIndex: NextPage = () => {
 		[filters],
 	);
 
+	const deletePost = useCallback((slug: string) => {
+		if (!confirm(`Are you sure you want to delete this post?`)) return;
+
+		fetch(`/api/posts`, { method: `DELETE`, headers: { "Content-Type": `application/json` }, body: JSON.stringify({ slug }) })
+			.then((res) => {
+				if (res.status !== 200) throw new Error(res.statusText);
+			})
+			.then(() => setPosts((posts) => posts?.filter((post) => post.slug !== slug) as Jsonify<Post[]>))
+			.catch((e) => [console.error(e), alert(e)]);
+	}, []);
+
 	return (
 		<div className={styles[`container`]}>
 			<div className={`hstack`}>
@@ -195,6 +206,7 @@ export const EditPostIndex: NextPage = () => {
 									<th>{`Title`}</th>
 									<th>{`Published`}</th>
 									<th>{`IsPage`}</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -209,6 +221,9 @@ export const EditPostIndex: NextPage = () => {
 										<td>{post.title}</td>
 										<td style={{ color: post.published ? `lime` : `red` }}>{post.published.toString()}</td>
 										<td style={{ color: post.isPage ? `lime` : `red` }}>{post.isPage.toString()}</td>
+										<td>
+											<button onClick={() => deletePost(post.slug)}>{`X`}</button>
+										</td>
 									</tr>
 								))}
 							</tbody>

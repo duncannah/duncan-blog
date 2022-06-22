@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import PostsGetHandler from "./get";
 import PostsPostHandler from "./post";
+import PostsDeleteHandler from "./delete";
 
 export const PostsHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (req.method) {
@@ -9,8 +10,8 @@ export const PostsHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 			return PostsGetHandler(req, res);
 		case `POST`:
 			return PostsPostHandler(req, res);
-		// case `DELETE`:
-		// return PostsDeleteHandler(req, res);
+		case `DELETE`:
+			return PostsDeleteHandler(req, res);
 		default:
 			return res.status(405).json({
 				error: `Method ${req.method || ``} not allowed`,
