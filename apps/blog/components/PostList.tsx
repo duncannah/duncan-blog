@@ -18,7 +18,7 @@ export const PostList: NextPage<{
 		<ul className={styles.posts}>
 			{posts.map((post) => (
 				<li key={post.slug} className={styles.post}>
-					<Link href={`/${post.slug}`}>
+					<Link href={`/post/${post.slug}`}>
 						<a>
 							<img src={post.mainImage?.url || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E`} alt={``} />
 							<div className={styles.info}>

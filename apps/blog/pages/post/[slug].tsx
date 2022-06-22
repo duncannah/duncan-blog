@@ -2,7 +2,7 @@ import { Post, Upload, Category } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import HTMLParser, { Element, DOMNode, domToReact } from "html-react-parser";
-import { dateToString } from "../shared/utils";
+import { dateToString } from "../../shared/utils";
 import Prism from "prismjs";
 import loadLanguages from "prismjs/components/index";
 import { unescape } from "lodash";
