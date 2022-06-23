@@ -1,6 +1,10 @@
 @import "variables";
 
 .page {
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-base;
+
 	.head {
 		display: flex;
 		flex-direction: column;

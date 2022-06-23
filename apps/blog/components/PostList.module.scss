@@ -2,18 +2,14 @@
 
 .posts {
 	list-style: none;
-	margin: 0;
+	margin: $spacing-base 0;
 	padding: 0;
 
 	display: flex;
 	flex-wrap: wrap;
 
 	justify-content: center;
-	gap: 1rem;
-
-	@include respond-to("medium") {
-		justify-content: space-between;
-	}
+	gap: 3rem;
 
 	.post {
 		width: 350px;
