@@ -15,6 +15,7 @@ const nextConfig = {
 	sassOptions: {
 		includePaths: [path.join(__dirname, `../../libs/shared/src`)],
 	},
+	reactStrictMode: true,
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
