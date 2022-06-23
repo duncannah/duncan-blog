@@ -24,6 +24,7 @@ export const PostsPostHandler = async (req: NextApiRequest, res: NextApiResponse
 			slug: values.slug,
 			title: values.title,
 			content: values.content,
+			createdAt: oldValues.slug?.match(/^[0-9]+-new$/) ? new Date() : undefined,
 			updatedAt: new Date(),
 			published: values.published,
 			isPage: values.isPage,
