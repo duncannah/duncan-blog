@@ -1,8 +1,6 @@
 import { Post, Category, Upload } from "@prisma/client";
 import { Pagination, prisma } from "@duncan-blog/shared";
-import { useCallback } from "react";
 import { GetStaticProps } from "next";
-import { useRouter } from "next/router";
 
 import { POSTS_PER_PAGE } from "../shared/utils";
 import { PostList } from "../components/PostList";
@@ -19,14 +17,10 @@ export function Index({
 	currentPage: number;
 	totalPages: number;
 }>) {
-	const router = useRouter();
-
-	const navigateToPage = useCallback((page: number) => void (page === 1 ? router.push(`/`) : router.push(`/page/${page}`)), [router]);
-
 	return (
 		<>
 			<PostList posts={posts} />
-			<Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={navigateToPage} hideIfSinglePage={true} />
+			<Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/`} hideIfSinglePage={true} />
 		</>
 	);
 }

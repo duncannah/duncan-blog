@@ -20,18 +20,11 @@ export const CategoryPage: NextPage<
 		totalPages: number;
 	}>
 > = ({ category, count, currentPage, totalPages }) => {
-	const router = useRouter();
-
-	const navigateToPage = useCallback(
-		(page: number) => void (page === 1 ? router.push(`/categories/${category.name}`) : router.push(`/categories/${category.name}/page/${page}`)),
-		[category.name, router],
-	);
-
 	return (
 		<>
 			<h2 style={{ margin: 0 }}>{`#${category.name} (${count} post${count !== 1 ? `s` : ``})`}</h2>
 			<PostList posts={category.posts} />
-			<Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={navigateToPage} hideIfSinglePage={true} />
+			<Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/categories/${category.name}/`} hideIfSinglePage={true} />
 		</>
 	);
 };
