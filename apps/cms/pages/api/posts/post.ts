@@ -28,6 +28,7 @@ export const PostsPostHandler = async (req: NextApiRequest, res: NextApiResponse
 			updatedAt: new Date(),
 			published: values.published,
 			isPage: values.isPage,
+			mainImageId: values.mainImageId,
 			categories: {
 				set: (values.categories || []).map(({ name }) => {
 					return {

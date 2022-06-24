@@ -2,7 +2,7 @@ import { Post, Upload, Category } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import HTMLParser, { Element, DOMNode, domToReact } from "html-react-parser";
-import { dateToString } from "../../shared/utils";
+import { dateToString, getUploadURL } from "../../shared/utils";
 import Prism from "prismjs";
 import loadLanguages from "prismjs/components/index";
 import { unescape } from "lodash";
@@ -59,7 +59,7 @@ export const PostPage: NextPage<{
 								<h2>{post.title}</h2>
 								{post.mainImage && (
 									<>
-										<img src={post.mainImage.url || ``} alt={``} />
+										<img src={post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name)} alt={``} />
 									</>
 								)}
 							</div>

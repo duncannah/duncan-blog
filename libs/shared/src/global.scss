@@ -139,6 +139,20 @@ pre[class^="language-"] {
 	border-radius: $border-radius;
 }
 
+dialog {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	border: solid 1px;
+	border-radius: 16px;
+	padding: 2rem;
+
+	&::backdrop {
+		background-color: rgba($color-background, 0.75);
+	}
+}
+
 .hstack {
 	display: flex;
 	flex-direction: row;

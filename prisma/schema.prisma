@@ -27,15 +27,13 @@ model Post {
 }
 
 model Upload {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  name      String
-  size      Int
-  mimetype  String
-  url       String?
-  post      Post?    @relation(fields: [postId], references: [slug])
-  postId    String?
+  id       String  @id @default(cuid())
+  name     String
+  size     Int?
+  mimetype String
+  url      String?
+  post     Post?   @relation(fields: [postId], references: [slug])
+  postId   String?
 
   mainImagePost Post? @relation("mainImage")
 }

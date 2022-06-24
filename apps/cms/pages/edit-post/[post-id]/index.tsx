@@ -1,4 +1,4 @@
-import { Category, Post } from "@prisma/client";
+import { Category, Post, Upload } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
@@ -8,16 +8,24 @@ import { Editor } from "@tinymce/tinymce-react";
 import codesampleLanguages from "../../../util/codesample-languages";
 
 import CollapsibleFieldset from "../../../components/collapsible-fieldset/collapsible-fieldset";
+import ManageUploads from "../../../components/manage-uploads/manage-uploads";
 import CategorySelect from "../../../components/category-select/category-select";
 
 import styles from "./index.module.scss";
+
+type PostWithExtra = Post & {
+	categories: Category[];
+	uploads: (Upload & {
+		mainImagePost: Post | null;
+	})[];
+};
 
 export interface PostIdProps {
 	post: Jsonify<Post> | null;
 }
 
 export function PostId({ post }: PostIdProps) {
-	const [values, setValues] = useState<Jsonify<Partial<Post & { categories: Category[] }>>>(post || {});
+	const [values, setValues] = useState<Jsonify<Partial<PostWithExtra>>>(post || {});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const router = useRouter();
@@ -42,6 +50,26 @@ export function PostId({ post }: PostIdProps) {
 		}`;
 		updateValue(`slug`, slug);
 	}, [updateValue, values.title]);
+
+	const handleUploadsChange = useCallback(
+		(
+			uploads: Jsonify<
+				(Upload & {
+					mainImagePost: Post | null;
+				})[]
+			>,
+		) => {
+			for (const up of uploads) {
+				if (up.mainImagePost) {
+					updateValue(`mainImageId`, up.id);
+					break;
+				}
+			}
+
+			updateValue(`uploads`, uploads);
+		},
+		[updateValue],
+	);
 
 	const submit = useCallback(
 		(e: FormEvent<HTMLFormElement>) => {
@@ -151,6 +179,12 @@ export function PostId({ post }: PostIdProps) {
 						</div>
 						<div>
 							<fieldset>
+								<legend>{`Uploads`}</legend>
+								<ManageUploads uploads={values[`uploads`] || []} onChange={handleUploadsChange} post={post} />
+							</fieldset>
+						</div>
+						<div>
+							<fieldset>
 								<legend>{`Categories`}</legend>
 								<CategorySelect selected={values[`categories`]?.map(({ name }) => name) || []} onChange={categoryOnChange} />
 							</fieldset>
@@ -196,7 +230,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		};
 	}
 
-	let post = null;
+	let post: PostWithExtra | null = null;
 	const postId = context.query[`post-id`];
 
 	if (postId)
@@ -206,6 +240,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			},
 			include: {
 				categories: true,
+				uploads: {
+					include: {
+						mainImagePost: true,
+					},
+				},
 			},
 		});
 
