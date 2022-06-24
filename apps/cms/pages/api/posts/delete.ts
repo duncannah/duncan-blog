@@ -1,4 +1,5 @@
 import { prisma } from "@duncan-blog/shared";
+import triggerRebuild from "../../../util/rebuild";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export const PostsDeleteHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -10,7 +11,7 @@ export const PostsDeleteHandler = async (req: NextApiRequest, res: NextApiRespon
 		},
 	});
 
-	// TODO: trigger static page rebuild
+	void triggerRebuild();
 
 	res.status(200).json({ success: true });
 };

@@ -1,6 +1,7 @@
 import { Category, Post } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import type { NextApiRequest, NextApiResponse } from "next";
+import triggerRebuild from "../../../util/rebuild";
 
 export const PostsPostHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const body = req.body as Jsonify<{ values: Partial<Post & { categories: Category[] }>; oldValues: Partial<Post> }>;
@@ -42,7 +43,7 @@ export const PostsPostHandler = async (req: NextApiRequest, res: NextApiResponse
 		},
 	});
 
-	// TODO: trigger static page rebuild
+	void triggerRebuild();
 
 	res.status(200).json({ success: true, data: post });
 };
