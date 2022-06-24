@@ -7,12 +7,6 @@ declare global {
 }
 
 // weird but this is the only way to make it work
-export const prisma =
-	typeof window === `undefined`
-		? global.prisma ||
-		  new PrismaClient({
-				log: [`query`],
-		  })
-		: ((() => null) as unknown as PrismaClient);
+export const prisma = typeof window === `undefined` ? global.prisma || new PrismaClient({}) : ((() => null) as unknown as PrismaClient);
 
 if (process.env[`NODE_ENV`] !== `production`) global.prisma = prisma;
