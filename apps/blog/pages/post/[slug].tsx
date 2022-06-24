@@ -112,6 +112,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		return `<pre class="language-${language}"><code>${Prism.highlight(unescape(code), Prism.languages[language] || `plain`, language)}</code></pre>`;
 	});
 
+	if (process.env[`NODE_ENV`] !== `development`) post.content = post.content.replace(/(?:\.\.|)\/api\/uploads\/preview\//gm, `${process.env[`UPLOADS_URL`] || ``}/`);
+
 	return {
 		props: JSON.parse(JSON.stringify({ post })) as Jsonify<typeof post>,
 	};

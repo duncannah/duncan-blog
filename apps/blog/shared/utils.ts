@@ -5,7 +5,7 @@ export const dateToString = (date: string | Date): string => {
 };
 
 export const getUploadURL = (id: string, fileName: string): string => {
-	return process.env[`NODE_ENV`] === `production` ? `${process.env[`UPLOADS_URL`] || ``}/${id}/${fileName}` : `/api/uploads/preview/${id}`;
+	return process.env[`NODE_ENV`] === `development` ? `/api/uploads/preview/${id}` : `${process.env[`UPLOADS_URL`] || ``}/${id}/${fileName}`;
 };
 
 export const POSTS_PER_PAGE = 12;
