@@ -13,7 +13,8 @@ export const PostList: NextPage<{
 			categories: Category[];
 		})[]
 	>;
-}> = ({ posts }) => {
+	UPLOADS_URL: string;
+}> = ({ posts, UPLOADS_URL }) => {
 	return (
 		<ul className={styles.posts}>
 			{posts.map((post) => (
@@ -23,7 +24,7 @@ export const PostList: NextPage<{
 							<img
 								src={
 									post.mainImage
-										? post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name)
+										? post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name, UPLOADS_URL)
 										: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E`
 								}
 								alt={``}

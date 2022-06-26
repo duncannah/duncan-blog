@@ -45,7 +45,8 @@ export const PostPage: NextPage<{
 			categories: Category[];
 		}
 	>;
-}> = ({ post }) => {
+	UPLOADS_URL: string;
+}> = ({ post, UPLOADS_URL }) => {
 	return (
 		post && (
 			<>
@@ -59,7 +60,7 @@ export const PostPage: NextPage<{
 								<h2>{post.title}</h2>
 								{post.mainImage && (
 									<>
-										<img src={post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name)} alt={``} />
+										<img src={post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name, UPLOADS_URL)} alt={``} />
 									</>
 								)}
 							</div>
@@ -115,7 +116,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	if (process.env[`NODE_ENV`] !== `development`) post.content = post.content.replace(/(?:\.\.|)\/api\/uploads\/preview\//gm, `${process.env[`UPLOADS_URL`] || ``}/`);
 
 	return {
-		props: JSON.parse(JSON.stringify({ post })) as Jsonify<typeof post>,
+		props: JSON.parse(JSON.stringify({ post, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Record<string, unknown>,
 	};
 };
 

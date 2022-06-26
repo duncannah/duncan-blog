@@ -18,12 +18,13 @@ export const CategoryPage: NextPage<
 		count: number;
 		currentPage: number;
 		totalPages: number;
+		UPLOADS_URL: string;
 	}>
-> = ({ category, count, currentPage, totalPages }) => {
+> = ({ category, count, currentPage, totalPages, UPLOADS_URL }) => {
 	return (
 		<>
 			<h2 style={{ margin: 0 }}>{`#${category.name} (${count} post${count !== 1 ? `s` : ``})`}</h2>
-			<PostList posts={category.posts} />
+			<PostList posts={category.posts} UPLOADS_URL={UPLOADS_URL} />
 			<Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/categories/${category.name}/`} hideIfSinglePage={true} />
 		</>
 	);
@@ -53,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	});
 
 	return {
-		props: JSON.parse(JSON.stringify({ category, count, currentPage, totalPages })) as Record<string, unknown>,
+		props: JSON.parse(JSON.stringify({ category, count, currentPage, totalPages, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Record<string, unknown>,
 	};
 };
 

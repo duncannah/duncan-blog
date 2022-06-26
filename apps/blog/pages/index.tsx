@@ -9,6 +9,7 @@ export function Index({
 	posts,
 	currentPage,
 	totalPages,
+	UPLOADS_URL,
 }: Jsonify<{
 	posts: (Post & {
 		mainImage: Upload;
@@ -16,10 +17,11 @@ export function Index({
 	})[];
 	currentPage: number;
 	totalPages: number;
+	UPLOADS_URL: string;
 }>) {
 	return (
 		<>
-			<PostList posts={posts} />
+			<PostList posts={posts} UPLOADS_URL={UPLOADS_URL} />
 			<Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/`} hideIfSinglePage={true} />
 		</>
 	);
@@ -45,7 +47,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	});
 
 	return {
-		props: JSON.parse(JSON.stringify({ posts, currentPage, totalPages })) as Jsonify<typeof posts & { currentPage: number; totalPages: number }>,
+		props: JSON.parse(JSON.stringify({ posts, currentPage, totalPages, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Jsonify<
+			typeof posts & { currentPage: number; totalPages: number }
+		>,
 	};
 };
 
