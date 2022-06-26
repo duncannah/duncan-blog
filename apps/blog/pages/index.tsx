@@ -46,6 +46,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		take: POSTS_PER_PAGE,
 	});
 
+	for (const post of posts) {
+		post.content = ``;
+	}
+
 	return {
 		props: JSON.parse(JSON.stringify({ posts, currentPage, totalPages, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Jsonify<
 			typeof posts & { currentPage: number; totalPages: number }

@@ -53,6 +53,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		include: { posts: { include: { mainImage: true, categories: true }, skip: (currentPage - 1) * 12, take: POSTS_PER_PAGE } },
 	});
 
+	if (category)
+		for (const post of category.posts) {
+			post.content = ``;
+		}
+
 	return {
 		props: JSON.parse(JSON.stringify({ category, count, currentPage, totalPages, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Record<string, unknown>,
 	};
