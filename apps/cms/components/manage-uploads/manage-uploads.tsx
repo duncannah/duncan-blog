@@ -1,7 +1,7 @@
 import { Loader } from "@duncan-blog/shared";
 import { Post, Upload } from "@prisma/client";
 import { FileUploadOptions } from "../../pages/api/uploads/post";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Modal from "../modal/modal";
 
 import styles from "./manage-uploads.module.scss";
@@ -18,6 +18,23 @@ function getHostnameFromURL(url: string) {
 		return `[bad url]`;
 	}
 }
+
+const UploadProgress = ({ id }: { id: string }) => {
+	const [progress, setProgress] = useState(``);
+
+	useEffect(() => {
+		function checkProgress() {
+			void fetch(`/api/uploads/progress/${id}`)
+				.then((res) => res.json())
+				.then((res: { data: Upload["processingProgress"] }) => setProgress(res.data || ``))
+				.then(() => progress.endsWith(`%`) && setTimeout(checkProgress, 3000));
+		}
+
+		checkProgress();
+	});
+
+	return <span style={{ color: progress === `FAIL` ? `red` : progress === `DONE` ? `skyblue` : `` }}>{`${progress}`}</span>;
+};
 
 const UploadDialog = ({
 	close,
@@ -97,6 +114,7 @@ const UploadDialog = ({
 					}) => {
 						onChange(data);
 						setFiles([]);
+						if (fileSubmitRef.current) fileSubmitRef.current.value = ``;
 					},
 				)
 				.catch((e: Error) => {
@@ -314,7 +332,18 @@ export function ManageUploads({ post, uploads, onChange }: ManageUploadsProps) {
 							{upload.url ? (
 								<span style={{ color: `red` }}>{`External (${getHostnameFromURL(upload.url)})`}</span>
 							) : (
-								<span style={{ color: `lime` }}>{`Internal`}</span>
+								<span style={{ color: `lime` }}>
+									{`Internal`}
+									{upload.processingProgress !== null ? (
+										<>
+											{` (`}
+											<UploadProgress id={upload.id} />
+											{`)`}
+										</>
+									) : (
+										``
+									)}
+								</span>
 							)}
 						</div>
 					</div>

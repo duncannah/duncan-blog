@@ -117,13 +117,15 @@ iframe {
 figure {
 	text-align: center;
 
+	img,
+	video {
+		border-radius: $border-radius;
+		object-fit: cover;
+	}
+
 	figcaption {
 		font-style: italic;
 		color: rgba($color-text, 0.5);
-	}
-
-	img {
-		border-radius: $border-radius;
 	}
 }
 

@@ -14,7 +14,7 @@ export type FileUploadOptions = {
 	resizeTo?: string | null;
 };
 
-export const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse) => {
+const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse) => {
 	const files: [EnhancedFile, FileUploadOptions][] = [];
 
 	for (const [key, value] of Object.entries(req.fields)) {
@@ -34,66 +34,128 @@ export const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiRe
 			let finalPath = `${finalDir}/${file.originalFilename || `file`}`;
 			let finalMime = file.mimetype || `application/octet-stream`;
 
-			await fs.promises.mkdir(finalDir, { recursive: true });
+			let manualCleanup = false;
 
-			if (options.convertTo || options.toStripMetaData) {
-				if (file.mimetype?.startsWith(`image/`)) {
-					let image = sharp(file.filepath);
+			try {
+				await fs.promises.mkdir(finalDir, { recursive: true });
 
-					if (!options.toStripMetaData) {
-						image = image.withMetadata();
+				if (options.convertTo || options.toStripMetaData) {
+					if (file.mimetype?.startsWith(`image/`)) {
+						let image = sharp(file.filepath);
+
+						if (!options.toStripMetaData) {
+							image = image.withMetadata();
+						}
+
+						if (options.resizeTo) {
+							image = image.resize({ height: parseInt(options.resizeTo, 10) });
+						}
+
+						if (options.convertTo) {
+							finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
+							finalMime = `image/${options.convertTo}`;
+							image = image.toFormat(options.convertTo as keyof FormatEnum);
+						}
+
+						await image.toFile(finalPath);
+					} else if (file.mimetype?.startsWith(`video/`)) {
+						manualCleanup = true;
+						// cleanupFiles doesn't work so WORKAROUND
+						// TODO: remove this when fixed
+						await fs.promises.copyFile(file.filepath, file.filepath + `.tmp`);
+
+						let cmd = ffmpeg({
+							source: file.filepath + `.tmp`,
+						});
+
+						if (options.toStripMetaData) {
+							cmd = cmd.outputOptions([`-map_metadata -1`]);
+						}
+
+						if (options.resizeTo) {
+							cmd = cmd.size(`?x${parseInt(options.resizeTo, 10)}`);
+						} else cmd = cmd.videoCodec(`copy`);
+
+						if (options.convertTo) {
+							finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
+							finalMime = `video/${options.convertTo}`;
+						}
+
+						new Promise((resolve, reject) => {
+							// Record progress only if 5 seconds has elapsed
+							let lastRecorded = Date.now();
+
+							cmd.on(`progress`, function (progress: { percent: number }) {
+								if (Date.now() - lastRecorded > 5000) {
+									lastRecorded = Date.now();
+
+									prisma.upload
+										.update({
+											where: { id },
+											data: {
+												processingProgress: `${progress.percent.toFixed(2)}%`,
+											},
+										})
+										.catch(() => {
+											// this means the upload has been deleted
+											cmd.kill(`SIGKILL`);
+											reject(`Upload has been deleted`);
+										});
+								}
+							})
+								.on(`error`, reject)
+								.on(`end`, resolve)
+								.save(finalPath);
+						})
+							.then(async () =>
+								prisma.upload
+									.update({
+										where: { id },
+										data: {
+											processingProgress: `DONE`,
+											size: (await fs.promises.stat(finalPath).catch(() => ({ size: 0 }))).size,
+										},
+									})
+									.catch(() => null),
+							)
+							.catch((err) => {
+								console.error(err);
+
+								prisma.upload
+									.update({
+										where: { id },
+										data: {
+											processingProgress: `FAIL`,
+										},
+									})
+									.catch(() => null);
+							})
+							// TODO: update when cleanupFiles is fixed
+							.finally(() => void fs.promises.unlink(file.filepath + `.tmp`));
+					} else {
+						// copy file over to final path
+						await fs.promises.copyFile(file.filepath, finalPath);
 					}
-
-					if (options.resizeTo) {
-						image = image.resize({ height: parseInt(options.resizeTo, 10) });
-					}
-
-					if (options.convertTo) {
-						finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
-						finalMime = `image/${options.convertTo}`;
-						image = image.toFormat(options.convertTo as keyof FormatEnum);
-					}
-
-					await image.toFile(finalPath);
-				} else if (file.mimetype?.startsWith(`video/`)) {
-					let cmd = ffmpeg({
-						source: file.filepath,
-					});
-
-					if (options.toStripMetaData) {
-						cmd = cmd.outputOptions([`-map_metadata -1`]);
-					}
-
-					if (options.resizeTo) {
-						cmd = cmd.size(`?x${parseInt(options.resizeTo, 10)}`);
-					} else cmd = cmd.videoCodec(`copy`);
-
-					if (options.convertTo) {
-						finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
-						finalMime = `video/${options.convertTo}`;
-					}
-
-					await new Promise((resolve, reject) => {
-						cmd.on(`error`, reject).on(`end`, resolve).save(finalPath);
-					});
 				} else {
 					// copy file over to final path
 					await fs.promises.copyFile(file.filepath, finalPath);
 				}
-			} else {
-				// copy file over to final path
-				await fs.promises.copyFile(file.filepath, finalPath);
-			}
 
-			return prisma.upload.create({
-				data: {
-					id,
-					name: path.basename(finalPath),
-					mimetype: finalMime,
-					size: (await fs.promises.stat(finalPath)).size,
-					postId: req.fields.postId,
-				},
-			});
+				return prisma.upload.create({
+					data: {
+						id,
+						name: path.basename(finalPath),
+						mimetype: finalMime,
+						size: (await fs.promises.stat(finalPath).catch(() => ({ size: 0 }))).size,
+						postId: req.fields.postId,
+						processingProgress: manualCleanup ? `0%` : undefined,
+					},
+				});
+			} catch (e) {
+				console.error(e);
+			} finally {
+				if (!manualCleanup) await fs.promises.unlink(file.filepath);
+			}
 		}),
 	);
 
@@ -107,6 +169,7 @@ export const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiRe
 	});
 };
 
-export default withFileUpload(UploadsPostHandler);
+// TODO: cleanupFiles to be changed to false after it's fixed
+export default withFileUpload(UploadsPostHandler, { cleanupFiles: true });
 
 export const config = getConfig();
