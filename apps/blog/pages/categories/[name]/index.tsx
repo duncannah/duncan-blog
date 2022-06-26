@@ -1,7 +1,5 @@
 import { Category, Post, Upload } from "@prisma/client";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { useRouter } from "next/router";
-import { useCallback } from "react";
 
 import { Pagination, prisma } from "@duncan-blog/shared";
 import { PostList } from "../../../components/PostList";

@@ -6,7 +6,7 @@ import { pipeline } from "stream";
 export const UploadsPreviewHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const upload = await prisma.upload.findFirst({
 		where: {
-			id: req.query["id"][0].toString(),
+			id: req.query[`id`][0].toString(),
 		},
 	});
 
