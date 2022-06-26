@@ -11,7 +11,7 @@ export const UploadsDeleteHandler = async (req: NextApiRequest, res: NextApiResp
 		},
 	});
 
-	await fs.promises.rmdir(`${process.env[`UPLOADS_PATH`] || `AAA`}/${body.id}`, { recursive: true });
+	await fs.promises.rm(`${process.env[`UPLOADS_PATH`] || `AAA`}/${body.id}`, { recursive: true });
 
 	res.status(200).json({ success: true });
 };
