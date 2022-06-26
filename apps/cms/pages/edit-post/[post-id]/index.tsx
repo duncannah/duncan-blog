@@ -46,6 +46,7 @@ export function PostId({ post }: PostIdProps) {
 			values.title
 				?.replace(/\s+/g, `-`)
 				.replace(/[^a-zA-Z0-9-]/g, ``)
+				.replace(/-+$/, ``)
 				.toLowerCase() || `untitled`
 		}`;
 		updateValue(`slug`, slug);
