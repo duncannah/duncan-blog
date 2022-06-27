@@ -174,6 +174,7 @@ export function PostId({ post }: PostIdProps) {
 									skin: `oxide-dark`,
 									visualblocks_default_state: true,
 									codesample_languages: codesampleLanguages,
+									valid_children: `+body[style]`,
 									//content_style: `body { font-family:Helvetica,Arial,sans-serif; font-size:14px }`,
 								}}
 							/>
