@@ -1,7 +1,7 @@
 export const dateToString = (date: string | Date): string => {
 	if (typeof date === `string`) date = new Date(date);
 
-	return `${date.getDay().toString().padStart(2, `0`)} ${date.toLocaleString(`en`, { month: `short` })} ${date.getFullYear()}`;
+	return `${date.getDate().toString().padStart(2, `0`)} ${date.toLocaleString(`en`, { month: `short` })} ${date.getFullYear()}`;
 };
 
 export const getUploadURL = (id: string, fileName: string, UPLOADS_URL: string): string => {
