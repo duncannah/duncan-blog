@@ -127,6 +127,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		},
 		where: {
 			published: true,
+			isPage: false,
 		},
 	});
 
