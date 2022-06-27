@@ -48,7 +48,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		where: {
 			name: context.params?.name?.toString(),
 		},
-		include: { posts: { include: { mainImage: true, categories: true }, skip: (currentPage - 1) * 12, take: POSTS_PER_PAGE } },
+		include: {
+			posts: {
+				include: { mainImage: true, categories: true },
+				skip: (currentPage - 1) * 12,
+				take: POSTS_PER_PAGE,
+				orderBy: {
+					createdAt: `desc`,
+				},
+			},
+		},
 	});
 
 	if (category)

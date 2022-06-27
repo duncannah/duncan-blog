@@ -44,6 +44,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		},
 		skip: (currentPage - 1) * 12,
 		take: POSTS_PER_PAGE,
+		orderBy: {
+			createdAt: `desc`,
+		},
 	});
 
 	for (const post of posts) {
