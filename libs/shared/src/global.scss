@@ -172,3 +172,16 @@ dialog {
 .tox-fullscreen {
 	max-width: 100vw;
 }
+
+.align-left,
+.align-right {
+	@include respond-to("medium") {
+		&.align-left {
+			float: left;
+		}
+
+		&.align-right {
+			float: right;
+		}
+	}
+}
