@@ -42,7 +42,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: $spacing-base;
+	gap: $spacing-base * 2;
 }
 
 .bi {

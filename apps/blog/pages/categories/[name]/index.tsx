@@ -21,8 +21,10 @@ export const CategoryPage: NextPage<
 > = ({ category, count, currentPage, totalPages, UPLOADS_URL }) => {
 	return (
 		<>
-			<h2 style={{ margin: 0 }}>{`#${category.name} (${count} post${count !== 1 ? `s` : ``})`}</h2>
-			<PostList posts={category.posts} UPLOADS_URL={UPLOADS_URL} />
+			<div>
+				<h2 style={{ marginTop: 0 }}>{`#${category.name} (${count} post${count !== 1 ? `s` : ``})`}</h2>
+				<PostList posts={category.posts} UPLOADS_URL={UPLOADS_URL} />
+			</div>
 			<Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/categories/${category.name}/`} hideIfSinglePage={true} />
 		</>
 	);
