@@ -8,11 +8,11 @@ export default async function APICall<T>(endpoint: string, options: RequestInit 
 	const response = await fetch(`/api/${endpoint}`, {
 		...options,
 		headers: {
-			"Content-Type": `application/json`,
+			...(options.body instanceof FormData ? {} : { "Content-Type": `application/json` }),
 			"Cache-Control": `no-cache`,
 			...(options.headers || {}),
 		},
-		body: options.body ?? options.jsonBody ? JSON.stringify(options.jsonBody) : undefined,
+		body: options.body ?? (options.jsonBody ? JSON.stringify(options.jsonBody) : undefined),
 	});
 
 	if (!response.ok) throw new Error(`Failed to call /${endpoint}: ${response.status} ${response.statusText}`);
