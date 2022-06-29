@@ -1,8 +1,10 @@
 import { Loader } from "@duncan-blog/shared";
 import { Post, Upload } from "@prisma/client";
-import { FileUploadOptions } from "../../pages/api/uploads/post";
+import toast from "react-hot-toast";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { FileUploadOptions } from "../../pages/api/uploads/post";
 import Modal from "../modal/modal";
+import APICall from "../../util/fetch";
 
 import styles from "./manage-uploads.module.scss";
 
@@ -24,9 +26,8 @@ const UploadProgress = ({ id }: { id: string }) => {
 
 	useEffect(() => {
 		function checkProgress() {
-			void fetch(`/api/uploads/progress/${id}`)
-				.then((res) => res.json())
-				.then((res: { data: Upload["processingProgress"] }) => setProgress(res.data || ``))
+			void APICall<Upload["processingProgress"]>(`uploads/progress/${id}`)
+				.then((progress) => setProgress(progress || ``))
 				.then(() => progress.endsWith(`%`) && setTimeout(checkProgress, 3000));
 		}
 
@@ -94,33 +95,17 @@ const UploadDialog = ({
 				formData.append(`options-${i}`, JSON.stringify(file));
 			});
 
-			await fetch(`/api/uploads/post`, {
-				method: `POST`,
-				body: formData,
-			})
-				.then((res) => {
-					if (!res.ok) throw res;
-					return res.json();
+			await APICall<
+				(Upload & {
+					mainImagePost: Post | null;
+				})[]
+			>(`uploads/post`, { method: `POST`, body: formData })
+				.then((uploads) => {
+					onChange(uploads);
+					setFiles([]);
+					if (fileSubmitRef.current) fileSubmitRef.current.value = ``;
 				})
-				.then(
-					({
-						data,
-					}: {
-						data: Jsonify<
-							(Upload & {
-								mainImagePost: Post | null;
-							})[]
-						>;
-					}) => {
-						onChange(data);
-						setFiles([]);
-						if (fileSubmitRef.current) fileSubmitRef.current.value = ``;
-					},
-				)
-				.catch((e: Error) => {
-					console.error(e);
-					alert(`Upload failed: ${e.message}`);
-				})
+				.catch((e: Error) => toast.error(`Upload failed: ${e.message}`))
 				.finally(() => setUploading(false));
 		}
 	}, [files, onChange, postId, uploading]);
@@ -265,21 +250,14 @@ export function ManageUploads({ post, uploads, onChange }: ManageUploadsProps) {
 		(id: string) => {
 			if (!window.confirm(`Are you sure you want to delete this upload?`)) return;
 
-			void deleteUpload();
-
-			async function deleteUpload() {
-				const response = await fetch(`/api/uploads`, {
-					method: `DELETE`,
-					headers: {
-						"Content-Type": `application/json`,
-					},
-					body: JSON.stringify({ id }),
-				});
-
-				if (!response.ok) return alert(`Failed to delete upload`);
-
-				onChange(uploads.filter((u) => u.id !== id));
-			}
+			void toast.promise(
+				APICall(`uploads`, { method: `DELETE`, jsonBody: { id } }).then(() => onChange(uploads.filter((u) => u.id !== id))),
+				{
+					loading: `Deleting upload...`,
+					success: `Upload deleted`,
+					error: (e: Error) => `Failed to delete upload: ${e.message}`,
+				},
+			);
 		},
 		[onChange, uploads],
 	);
@@ -287,28 +265,22 @@ export function ManageUploads({ post, uploads, onChange }: ManageUploadsProps) {
 	const renameUpload = useCallback(
 		(id: string) => {
 			const upload = uploads.find((u) => u.id === id);
-
 			if (!upload) return;
 
 			const newName = prompt(`New name`, upload.name);
+			if (!newName) return;
 
-			void renameUpload();
-
-			async function renameUpload() {
-				if (!newName) return;
-
-				const response = await fetch(`/api/uploads`, {
+			void toast.promise(
+				APICall(`uploads`, {
 					method: `PUT`,
-					headers: {
-						"Content-Type": `application/json`,
-					},
-					body: JSON.stringify({ id, name: newName }),
-				});
-
-				if (!response.ok) return alert(`Failed to rename upload`);
-
-				onChange(uploads.map((u) => (u.id === id ? { ...u, name: newName } : u)));
-			}
+					jsonBody: { id, name: newName },
+				}).then(() => onChange(uploads.map((u) => (u.id === id ? { ...u, name: newName } : u)))),
+				{
+					loading: `Renaming upload...`,
+					success: `Upload renamed`,
+					error: (e: Error) => `Failed to rename upload: ${e.message}`,
+				},
+			);
 		},
 		[onChange, uploads],
 	);

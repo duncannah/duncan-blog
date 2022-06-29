@@ -1,5 +1,7 @@
 import { Category } from "@prisma/client";
 import React from "react";
+import APICall from "../../util/fetch";
+import toast from "react-hot-toast";
 
 import styles from "./category-select.module.scss";
 
@@ -16,19 +18,15 @@ export function CategorySelect({ selected, onChange }: CategorySelectProps) {
 	React.useEffect(() => {
 		async function fetchCategories() {
 			setIsLoading(true);
-			return fetch(`/api/categories`)
-				.then((res) => res.json())
-				.then(({ data }: { data: Category[] }) => setCategories(data.map((c) => c.name)))
-				.catch((e: Error) => [console.error(e), alert(e.message)])
+
+			return APICall<Category[]>(`categories`)
+				.then((categories) => setCategories(categories.map((category) => category.name)))
+				.catch((e: Error) => toast.error(`Error fetching categories: ${e.message}`))
 				.finally(() => setIsLoading(false));
 		}
 
 		void fetchCategories();
 	}, []);
-
-	// React.useEffect(() => {
-	// 	onChange(selected);
-	// }, [onChange, selected]);
 
 	const addCategory = (category: string) => {
 		onChange([...selected, category]);

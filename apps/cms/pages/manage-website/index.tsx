@@ -1,7 +1,9 @@
 import { HeaderLink } from "@prisma/client";
+import APICall from "../../util/fetch";
 import Link from "next/link";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import toast from "react-hot-toast";
 
 const NavigationLinks: FC = () => {
 	const [links, setLinks] = useState<Jsonify<HeaderLink>[] | null>(null);
@@ -10,10 +12,9 @@ const NavigationLinks: FC = () => {
 	useEffect(() => {
 		setUpdating(true);
 
-		fetch(`/api/navigation-links`)
-			.then((res) => res.json())
-			.then(({ data }: { data: Jsonify<HeaderLink[]> }) => setLinks(data))
-			.catch((e) => console.error(e))
+		APICall<HeaderLink[]>(`navigation-links`)
+			.then((links) => setLinks(links))
+			.catch((e: Error) => toast.error(`Failed to fetch navigation links: ${e.message}`))
 			.finally(() => setUpdating(false));
 	}, []);
 
@@ -28,22 +29,14 @@ const NavigationLinks: FC = () => {
 	const save = useCallback(() => {
 		setUpdating(true);
 
-		fetch(`/api/navigation-links`, {
-			method: `POST`,
-			headers: {
-				"Content-Type": `application/json`,
-			},
-			body: JSON.stringify(links),
-		})
-			.then((res) => {
-				if (res.status !== 200) throw new Error(res.statusText);
-			})
-			.then(() => alert(`Success.`))
-			.catch((err: Error) => {
-				alert(err.message);
-				console.error(err);
-			})
-			.finally(() => setUpdating(false));
+		if (links)
+			toast
+				.promise(APICall(`navigation-links`, { method: `POST`, jsonBody: links }), {
+					loading: `Saving...`,
+					success: `Saved!`,
+					error: (e: Error) => `Failed to fetch navigation links: ${e.message}`,
+				})
+				.finally(() => setUpdating(false));
 	}, [links]);
 
 	const handleChange = useCallback(

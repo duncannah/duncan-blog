@@ -5,13 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useCallback, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import codesampleLanguages from "../../../util/codesample-languages";
 
+import APICall from "../../../util/fetch";
+import codesampleLanguages from "../../../util/codesample-languages";
 import CollapsibleFieldset from "../../../components/collapsible-fieldset/collapsible-fieldset";
 import ManageUploads from "../../../components/manage-uploads/manage-uploads";
 import CategorySelect from "../../../components/category-select/category-select";
 
 import styles from "./index.module.scss";
+import toast from "react-hot-toast";
 
 type PostWithExtra = Post & {
 	categories: Category[];
@@ -80,31 +82,15 @@ export function PostId({ post }: PostIdProps) {
 
 			setIsSubmitting(true);
 
-			fetch(`/api/posts`, {
-				method: `POST`,
-				headers: {
-					"Content-Type": `application/json`,
-				},
-				body: JSON.stringify({ values, oldValues: post }),
-			})
-				.then((res) => {
-					if (res.status === 200) {
-						return res.json();
-					} else throw new Error(res.statusText);
-				})
-				.then((res: { data: Jsonify<Post> }) => {
-					alert(`Success.`);
+			APICall<Post>(`posts`, { method: `POST`, jsonBody: { values, oldValues: post } })
+				.then((newPost) => {
+					toast.success(`Post updated!`);
 
 					// if slug changed, redirect to new slug
-					if (post?.slug !== res.data.slug) void router.push(`/edit-post/${res.data.slug}`);
+					if (post?.slug !== newPost.slug) void router.push(`/edit-post/${newPost.slug}`);
 				})
-				.catch((err: Error) => {
-					console.error(err);
-					alert(`Error: ${err.message}`);
-				})
-				.finally(() => {
-					setIsSubmitting(false);
-				});
+				.catch((e: Error) => toast.error(`Error updating post: ${e.message}`))
+				.finally(() => setIsSubmitting(false));
 		},
 		[isSubmitting, post, router, values],
 	);

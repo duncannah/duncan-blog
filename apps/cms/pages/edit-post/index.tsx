@@ -1,8 +1,10 @@
 import { NextPage } from "next";
 import { FC, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { Post } from "@prisma/client";
 
+import APICall from "../../util/fetch";
 import { Pagination } from "@duncan-blog/shared";
 import CollapsibleFieldset from "../../components/collapsible-fieldset/collapsible-fieldset";
 
@@ -99,19 +101,12 @@ export const EditPostIndex: NextPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(() => {
-		async function fetchPosts() {
-			setPosts(null);
+		setPosts(null);
 
-			const body = (await fetch(`/api/posts?${new URLSearchParams(filters).toString()}`)
-				.then((res) => res.json())
-				.catch((e) => [console.error(e), alert(e)])) as { data: Jsonify<Post[]> };
-
-			if (body && body.data) setPosts(body.data);
-
-			setCurrentPage(1);
-		}
-
-		void fetchPosts();
+		APICall<Post[]>(`posts?${new URLSearchParams(filters).toString()}`)
+			.then((posts) => setPosts(posts))
+			.catch((e: Error) => toast.error(`Error fetching posts: ${e.message}`))
+			.finally(() => setCurrentPage(1));
 	}, [filters]);
 
 	const filter = useCallback(
@@ -125,12 +120,9 @@ export const EditPostIndex: NextPage = () => {
 	const deletePost = useCallback((slug: string) => {
 		if (!confirm(`Are you sure you want to delete this post?`)) return;
 
-		fetch(`/api/posts`, { method: `DELETE`, headers: { "Content-Type": `application/json` }, body: JSON.stringify({ slug }) })
-			.then((res) => {
-				if (res.status !== 200) throw new Error(res.statusText);
-			})
+		APICall(`posts`, { method: `DELETE`, jsonBody: { slug } })
 			.then(() => setPosts((posts) => posts?.filter((post) => post.slug !== slug) as Jsonify<Post[]>))
-			.catch((e) => [console.error(e), alert(e)]);
+			.catch((e: Error) => toast.error(`Error deleting post: ${e.message}`));
 	}, []);
 
 	return (
