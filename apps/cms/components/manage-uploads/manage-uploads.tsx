@@ -284,6 +284,35 @@ export function ManageUploads({ post, uploads, onChange }: ManageUploadsProps) {
 		[onChange, uploads],
 	);
 
+	const renameUpload = useCallback(
+		(id: string) => {
+			const upload = uploads.find((u) => u.id === id);
+
+			if (!upload) return;
+
+			const newName = prompt(`New name`, upload.name);
+
+			void renameUpload();
+
+			async function renameUpload() {
+				if (!newName) return;
+
+				const response = await fetch(`/api/uploads`, {
+					method: `PUT`,
+					headers: {
+						"Content-Type": `application/json`,
+					},
+					body: JSON.stringify({ id, name: newName }),
+				});
+
+				if (!response.ok) return alert(`Failed to rename upload`);
+
+				onChange(uploads.map((u) => (u.id === id ? { ...u, name: newName } : u)));
+			}
+		},
+		[onChange, uploads],
+	);
+
 	return (
 		<div className={styles[`container`]}>
 			{uploads.map((upload) => (
@@ -352,7 +381,7 @@ export function ManageUploads({ post, uploads, onChange }: ManageUploadsProps) {
 							type={`button`}
 							className={`active`}
 							onClick={() => copyToClipboard(upload.url || `/api/uploads/preview/${upload.id}/${upload.name}`)}>{`Copy address`}</button>
-						{/* <button type={`button`}>{`Edit`}</button> */}
+						<button type={`button`} onClick={() => renameUpload(upload.id)}>{`Rename`}</button>
 						<button type={`button`} onClick={() => deleteUpload(upload.id)}>{`Delete`}</button>
 						<button
 							type={`button`}
