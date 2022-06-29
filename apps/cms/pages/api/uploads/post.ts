@@ -72,13 +72,17 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 							cmd = cmd.outputOptions([`-map_metadata -1`]);
 						}
 
-						if (options.resizeTo) {
-							cmd = cmd.size(`?x${parseInt(options.resizeTo, 10)}`);
-						} else cmd = cmd.videoCodec(`copy`);
+						if (!options.resizeTo && !options.convertTo) {
+							cmd = cmd.videoCodec(`copy`);
+						} else {
+							if (options.resizeTo) {
+								cmd = cmd.size(`?x${parseInt(options.resizeTo, 10)}`);
+							}
 
-						if (options.convertTo) {
-							finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
-							finalMime = `video/${options.convertTo}`;
+							if (options.convertTo) {
+								finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
+								finalMime = MIMETYPE[options.convertTo] || `video/${options.convertTo}`;
+							}
 						}
 
 						new Promise((resolve, reject) => {
