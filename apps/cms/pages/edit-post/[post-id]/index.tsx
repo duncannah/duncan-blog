@@ -62,12 +62,16 @@ export function PostId({ post }: PostIdProps) {
 				})[]
 			>,
 		) => {
+			let mainFound = false;
 			for (const up of uploads) {
 				if (up.mainImagePost) {
 					updateValue(`mainImageId`, up.id);
+					mainFound = true;
 					break;
 				}
 			}
+
+			if (!mainFound) updateValue(`mainImageId`, null);
 
 			updateValue(`uploads`, uploads);
 		},
