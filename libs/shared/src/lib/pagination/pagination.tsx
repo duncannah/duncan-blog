@@ -56,7 +56,7 @@ export function Pagination({ currentPage, totalPages, setCurrentPage, basePath, 
 				);
 			})}
 			<div>&nbsp;</div>
-			<Link href={basePath ? (currentPage === 2 ? `${basePath}page/${currentPage - 1}` : basePath) : ``}>
+			<Link href={basePath ? (currentPage !== 2 ? `${basePath}page/${currentPage - 1}` : basePath) : ``}>
 				<a>
 					<button disabled={currentPage === 1} onClick={() => setCurrentPage && setCurrentPage(currentPage - 1)}>{`▶`}</button>
 				</a>
