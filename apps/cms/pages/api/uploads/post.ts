@@ -40,6 +40,11 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 			let finalPath = `${finalDir}/${file.originalFilename || `file`}`;
 			let finalMime = file.mimetype || `application/octet-stream`;
 
+			const replaceType = (ext: string) => {
+				finalPath = finalPath.replace(/(?<=[^/]+)\..*$/, `.${ext}`);
+				finalMime = MIMETYPE[ext] || `application/octet-stream`;
+			};
+
 			let manualCleanup = false;
 
 			try {
@@ -58,8 +63,7 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 						}
 
 						if (options.convertTo) {
-							finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
-							finalMime = `image/${options.convertTo}`;
+							replaceType(options.convertTo);
 							image = image.toFormat(options.convertTo as keyof FormatEnum);
 						}
 
@@ -86,8 +90,7 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 							}
 
 							if (options.convertTo) {
-								finalPath = `${finalDir}/${file.originalFilename || `file`}.${options.convertTo}`;
-								finalMime = MIMETYPE[options.convertTo] || `video/${options.convertTo}`;
+								replaceType(options.convertTo);
 							}
 						}
 
