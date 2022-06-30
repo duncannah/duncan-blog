@@ -26,13 +26,15 @@ const UploadProgress = ({ id }: { id: string }) => {
 
 	useEffect(() => {
 		function checkProgress() {
-			void APICall<Upload["processingProgress"]>(`uploads/progress/${id}`)
-				.then((progress) => setProgress(progress || ``))
-				.then(() => progress.endsWith(`%`) && setTimeout(checkProgress, 3000));
+			void APICall<Upload["processingProgress"]>(`uploads/progress/${id}`).then((progress) => {
+				setProgress(progress || ``);
+
+				if (progress && progress.endsWith(`%`)) setTimeout(checkProgress, 3000);
+			});
 		}
 
 		checkProgress();
-	});
+	}, [id]);
 
 	return <span style={{ color: progress === `FAIL` ? `red` : progress === `DONE` ? `skyblue` : `` }}>{`${progress}`}</span>;
 };
