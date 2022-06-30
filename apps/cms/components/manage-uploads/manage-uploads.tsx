@@ -171,6 +171,7 @@ const UploadDialog = ({
 												) : (
 													<>
 														<option value={`webm`}>{`webm`}</option>
+														<option value={`webp`}>{`webp`}</option>
 														<option value={`mp4`}>{`mp4`}</option>
 													</>
 												)}

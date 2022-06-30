@@ -14,6 +14,15 @@ export type FileUploadOptions = {
 	resizeTo?: string | null;
 };
 
+const MIMETYPE: Record<string, string> = {
+	webm: `video/webm`,
+	mp4: `video/mp4`,
+	jpg: `image/jpeg`,
+	png: `image/png`,
+	webp: `image/webp`,
+	gif: `image/gif`,
+};
+
 const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse) => {
 	const files: [EnhancedFile, FileUploadOptions][] = [];
 
@@ -23,9 +32,6 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 			files[i] = [req.files[i], JSON.parse(value) as FileUploadOptions];
 		}
 	}
-
-	// notes:
-	// for ffmpeg: -map_metadata -1 -map_chapters -1 -map_attachments -1
 
 	await Promise.all(
 		files.map(async ([file, options]) => {
@@ -41,7 +47,7 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 
 				if (options.convertTo || options.toStripMetaData) {
 					if (file.mimetype?.startsWith(`image/`)) {
-						let image = sharp(file.filepath);
+						let image = sharp(file.filepath, { animated: true });
 
 						if (!options.toStripMetaData) {
 							image = image.withMetadata();
@@ -66,7 +72,7 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 
 						let cmd = ffmpeg({
 							source: file.filepath + `.tmp`,
-						});
+						}).outputOptions([`-loop 0`]);
 
 						if (options.toStripMetaData) {
 							cmd = cmd.outputOptions([`-map_metadata -1`]);
