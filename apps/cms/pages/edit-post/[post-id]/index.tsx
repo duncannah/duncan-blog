@@ -157,10 +157,18 @@ export function PostId({ post }: PostIdProps) {
 									content_style:
 										typeof document === `undefined`
 											? ``
-											: Array.prototype.slice
-													.call(document.getElementsByTagName(`style`))
-													.map((e: HTMLElement) => e.innerHTML)
-													.join(` `),
+											: Array.from(document.styleSheets)
+													.map((styleSheet) => {
+														try {
+															return Array.from(styleSheet.cssRules)
+																.map((rule) => rule.cssText)
+																.join(``);
+														} catch (e) {
+															/* */
+														}
+													})
+													.filter(Boolean)
+													.join(`\n`),
 									skin: `oxide-dark`,
 									visualblocks_default_state: true,
 									codesample_languages: codesampleLanguages,
