@@ -1,10 +1,22 @@
-import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { lastRebuild } from "../util/rebuild";
+import { useEffect, useState } from "react";
+import APICall from "../util/fetch";
 
 import styles from "./index.module.scss";
 
-export function Index({ lastRebuild }: { lastRebuild: string | null }) {
+export function Index() {
+	const [lastRebuild, setLastRebuild] = useState<string | null>(`Loading...`);
+
+	function getStatus() {
+		setLastRebuild(`Loading...`);
+
+		APICall<string>(`status`)
+			.then((res) => setLastRebuild(res))
+			.catch((err) => console.error(err));
+	}
+
+	useEffect(getStatus, []);
+
 	return (
 		<div className={styles.page}>
 			<h2>{`Navigation`}</h2>
@@ -16,7 +28,10 @@ export function Index({ lastRebuild }: { lastRebuild: string | null }) {
 					<Link href={`/manage-website`}>{`Manage website`}</Link>
 				</li>
 			</ul>
-			<h2>{`Status`}</h2>
+			<p className={`hstack`}>
+				<h2>{`Status`}</h2>
+				<a onClick={getStatus}>{`Refresh`}</a>
+			</p>
 			<p>
 				<pre className={`language-txt`}>
 					<code>
@@ -28,14 +43,5 @@ export function Index({ lastRebuild }: { lastRebuild: string | null }) {
 		</div>
 	);
 }
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getServerSideProps: GetServerSideProps = async () => {
-	return {
-		props: {
-			lastRebuild: lastRebuild,
-		},
-	};
-};
 
 export default Index;
