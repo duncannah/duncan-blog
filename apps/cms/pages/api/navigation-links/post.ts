@@ -1,6 +1,7 @@
 import { prisma } from "@duncan-blog/shared";
 import { HeaderLink } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import triggerRebuild from "../../../util/rebuild";
 
 export const NavigationLinksPostHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 	const body = req.body as Jsonify<HeaderLink[]>;
@@ -12,6 +13,8 @@ export const NavigationLinksPostHandler = async (req: NextApiRequest, res: NextA
 			data: link,
 		});
 	}
+
+	void triggerRebuild();
 
 	res.status(200).json({ success: true });
 };
