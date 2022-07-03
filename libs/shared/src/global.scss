@@ -161,6 +161,10 @@ dialog {
 	justify-content: space-between;
 	align-items: center;
 	gap: $spacing-base;
+
+	> * {
+		margin: 0;
+	}
 }
 
 .disabled {
