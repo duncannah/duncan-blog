@@ -9,10 +9,9 @@ export const triggerRebuild = (): void => {
 
 	if (process.env[`NODE_ENV`] === `development`) return;
 
-	if (queue > 0) {
-		queue++;
-		return;
-	}
+	queue++;
+
+	if (queue > 1) return;
 
 	void rebuild();
 
@@ -38,10 +37,9 @@ export const triggerRebuild = (): void => {
 
 		lastRebuild = `DONE: ${new Date().toISOString()}`;
 
-		if (queue > 0) {
-			queue--;
-			await rebuild();
-		}
+		queue--;
+
+		if (queue > 0) await rebuild();
 	}
 };
 
