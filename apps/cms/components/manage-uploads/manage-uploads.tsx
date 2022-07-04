@@ -57,6 +57,7 @@ const UploadDialog = ({
 	const [type, setType] = useState<"upload" | "remote">(`upload`);
 	const [files, setFiles] = useState<({ file: File } & FileUploadOptions)[]>([]);
 	const [uploading, setUploading] = useState(false);
+	const [progress, setProgress] = useState(``);
 
 	const fileSubmitRef = useRef<HTMLInputElement>(null);
 
@@ -101,14 +102,14 @@ const UploadDialog = ({
 				(Upload & {
 					mainImagePost: Post | null;
 				})[]
-			>(`uploads/post`, { data: formData })
+			>(`uploads/post`, { data: formData, onUploadProgress: (e: ProgressEvent) => setProgress(`${Math.round((e.loaded / e.total) * 100)}%`) })
 				.then((uploads) => {
 					onChange(uploads);
 					setFiles([]);
 					if (fileSubmitRef.current) fileSubmitRef.current.value = ``;
 				})
 				.catch((e: Error) => toast.error(`Upload failed: ${e.message}`))
-				.finally(() => setUploading(false));
+				.finally(() => [setUploading(false), setProgress(``)]);
 		}
 	}, [files, onChange, postId, uploading]);
 
@@ -206,15 +207,16 @@ const UploadDialog = ({
 						))}
 					</div>
 					<div className={`hstack`}>
-						<div></div>
 						<div>
 							{uploading && (
-								<>
+								<div>
 									<Loader />
 									{` `}
-								</>
+									{progress}
+								</div>
 							)}
-
+						</div>
+						<div>
 							<button type={`button`} className={`active`} onClick={upload} disabled={uploading}>{`Upload`}</button>
 						</div>
 					</div>
