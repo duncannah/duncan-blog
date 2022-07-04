@@ -1,5 +1,5 @@
 import { HeaderLink } from "@prisma/client";
-import APICall from "../../util/fetch";
+import { APICall } from "../../util/fetch";
 import Link from "next/link";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import styles from "./index.module.scss";
@@ -12,7 +12,7 @@ const NavigationLinks: FC = () => {
 	useEffect(() => {
 		setUpdating(true);
 
-		APICall<HeaderLink[]>(`navigation-links`)
+		APICall.get<HeaderLink[]>(`navigation-links`)
 			.then((links) => setLinks(links))
 			.catch((e: Error) => toast.error(`Failed to fetch navigation links: ${e.message}`))
 			.finally(() => setUpdating(false));
@@ -31,7 +31,7 @@ const NavigationLinks: FC = () => {
 
 		if (links)
 			toast
-				.promise(APICall(`navigation-links`, { method: `POST`, jsonBody: links }), {
+				.promise(APICall.post(`navigation-links`, { data: links }), {
 					loading: `Saving...`,
 					success: `Saved!`,
 					error: (e: Error) => `Failed to fetch navigation links: ${e.message}`,

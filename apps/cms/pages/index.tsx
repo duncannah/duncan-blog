@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import APICall from "../util/fetch";
+import { APICall } from "../util/fetch";
 
 import styles from "./index.module.scss";
 
@@ -10,7 +10,7 @@ export function Index() {
 	function getStatus() {
 		setLastRebuild(`Loading...`);
 
-		APICall<string>(`status`)
+		APICall.get<string>(`status`)
 			.then((res) => setLastRebuild(res))
 			.catch((err) => console.error(err));
 	}

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { FormEvent, useCallback, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
-import APICall from "../../../util/fetch";
+import { APICall } from "../../../util/fetch";
 import codesampleLanguages from "../../../util/codesample-languages";
 import CollapsibleFieldset from "../../../components/collapsible-fieldset/collapsible-fieldset";
 import ManageUploads from "../../../components/manage-uploads/manage-uploads";
@@ -86,7 +86,7 @@ export function PostId({ post }: PostIdProps) {
 
 			setIsSubmitting(true);
 
-			APICall<Post>(`posts`, { method: `POST`, jsonBody: { values, oldValues: post } })
+			APICall.post<Post>(`posts`, { data: { values, oldValues: post } })
 				.then((newPost) => {
 					toast.success(`Post updated!`);
 

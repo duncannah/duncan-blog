@@ -4,7 +4,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { Post } from "@prisma/client";
 
-import APICall from "../../util/fetch";
+import { APICall } from "../../util/fetch";
 import { Pagination } from "@duncan-blog/shared";
 import CollapsibleFieldset from "../../components/collapsible-fieldset/collapsible-fieldset";
 
@@ -103,7 +103,7 @@ export const EditPostIndex: NextPage = () => {
 	useEffect(() => {
 		setPosts(null);
 
-		APICall<Post[]>(`posts?${new URLSearchParams(filters).toString()}`)
+		APICall.get<Post[]>(`posts?${new URLSearchParams(filters).toString()}`)
 			.then((posts) => setPosts(posts))
 			.catch((e: Error) => toast.error(`Error fetching posts: ${e.message}`))
 			.finally(() => setCurrentPage(1));
@@ -120,7 +120,7 @@ export const EditPostIndex: NextPage = () => {
 	const deletePost = useCallback((slug: string) => {
 		if (!confirm(`Are you sure you want to delete this post?`)) return;
 
-		APICall(`posts`, { method: `DELETE`, jsonBody: { slug } })
+		APICall.delete(`posts`, { data: { slug } })
 			.then(() => setPosts((posts) => posts?.filter((post) => post.slug !== slug) as Jsonify<Post[]>))
 			.catch((e: Error) => toast.error(`Error deleting post: ${e.message}`));
 	}, []);
