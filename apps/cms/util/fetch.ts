@@ -12,7 +12,6 @@ const axiosInstance = axios.create({
 export class APICall {
 	private static async call<T>(endpoint: string, config?: AxiosRequestConfig): Promise<Jsonify<T>> {
 		const { data } = await axiosInstance.request<Jsonify<{ data?: T; error?: string }>>({
-			...(config?.data instanceof FormData ? {} : { "Content-Type": `application/json` }),
 			...(config || {}),
 			url: `/api/${endpoint}`,
 		});
