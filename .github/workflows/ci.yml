@@ -1,0 +1,32 @@
+name: CI
+on:
+    push:
+
+jobs:
+    main:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [17.x]
+
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - uses: pnpm/action-setup@v2.2.2
+              with:
+                  version: latest
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+            - uses: nrwl/nx-set-shas@v2
+            - run: pnpm install # not pnpm ci
+
+            - run: pnpm exec nx workspace-lint
+            - run: pnpm exec nx format:check
+            - run: pnpm exec nx affected --target=lint --parallel=3
+            - run: pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
+            - run: pnpm exec nx affected --target=build --parallel=3
