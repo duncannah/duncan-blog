@@ -6,6 +6,22 @@ jobs:
     main:
         runs-on: ubuntu-latest
 
+        services:
+            postgres:
+                image: postgres
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                options: >-
+                    --health-cmd pg_isready
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
+                ports:
+                    - 5432:5432
+        env:
+            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+
         strategy:
             matrix:
                 node-version: [17.x]
@@ -23,7 +39,10 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
             - uses: nrwl/nx-set-shas@v2
+
             - run: pnpm install # not pnpm ci
+
+            - run: pnpm prisma migrate deploy
 
             - run: pnpm exec nx workspace-lint
             - run: pnpm exec nx format:check
