@@ -20,7 +20,7 @@ specifiers:
   '@types/lodash': ^4.14.182
   '@types/node': 16.11.56
   '@types/prismjs': ^1.26.0
-  '@types/react': 18.0.13
+  '@types/react': 18.0.17
   '@types/react-dom': 18.0.5
   '@types/react-table': ^7.7.12
   '@types/sharp': ^0.30.4
@@ -99,7 +99,7 @@ devDependencies:
   '@types/lodash': 4.14.182
   '@types/node': 16.11.56
   '@types/prismjs': 1.26.0
-  '@types/react': 18.0.13
+  '@types/react': 18.0.17
   '@types/react-dom': 18.0.5
   '@types/react-table': 7.7.12
   '@types/sharp': 0.30.4
@@ -2872,17 +2872,17 @@ packages:
   /@types/react-dom/18.0.5:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
     dependencies:
-      '@types/react': 18.0.13
+      '@types/react': 18.0.17
     dev: true
 
   /@types/react-table/7.7.12:
     resolution: {integrity: sha512-bRUent+NR/WwtDGwI/BqhZ8XnHghwHw0HUKeohzB5xN3K2qKWYE5w19e7GCuOkL1CXD9Gi1HFy7TIm2AvgWUHg==}
     dependencies:
-      '@types/react': 18.0.13
+      '@types/react': 18.0.17
     dev: true
 
-  /@types/react/18.0.13:
-    resolution: {integrity: sha512-psqptIYQxGUFuGYwP3KCFVtPTkMpIcrqFmtKblWEUQhLuYLpHBwJkXhjp6eHfDM5IbyskY4x7qQpLedEsPkHlA==}
+  /@types/react/18.0.17:
+    resolution: {integrity: sha512-38ETy4tL+rn4uQQi7mB81G7V1g0u2ryquNmsVIOKUAEIDK+3CUjZ6rSRpdvS99dNBnkLFL83qfmtLacGOTIhwQ==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
