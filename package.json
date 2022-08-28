@@ -26,7 +26,7 @@
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-hot-toast": "^2.2.0",
-		"regenerator-runtime": "0.13.7",
+		"regenerator-runtime": "0.13.9",
 		"sharp": "^0.30.7",
 		"tinymce": "^6",
 		"tslib": "^2.3.0"
