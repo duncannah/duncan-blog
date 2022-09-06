@@ -52,7 +52,7 @@ specifiers:
   react-hot-toast: 2.3.0
   regenerator-runtime: 0.13.9
   sass: 1.54.8
-  sharp: 0.30.7
+  sharp: 0.31.0
   tinymce: 6.1.2
   ts-node: 10.9.1
   tslib: 2.4.0
@@ -78,7 +78,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.3.0_vt6aeitzauirmcdhimiad2yjxy
   regenerator-runtime: 0.13.9
-  sharp: 0.30.7
+  sharp: 0.31.0
   tinymce: 6.1.2
   tslib: 2.4.0
 
@@ -8064,9 +8064,9 @@ packages:
     dependencies:
       kind-of: 6.0.3
 
-  /sharp/0.30.7:
-    resolution: {integrity: sha512-G+MY2YW33jgflKPTXXptVO28HvNOo9G3j0MybYAHeEmby+QuD2U98dT6ueht9cv/XDqZspSpIhoSW+BAKJ7Hig==}
-    engines: {node: '>=12.13.0'}
+  /sharp/0.31.0:
+    resolution: {integrity: sha512-ft96f8WzGxavg0rkLpMw90MTPMUZDyf0tHjPPh8Ob59xt6KzX8EqtotcqZGUm7kwqpX2pmYiyYX2LL0IZ/FDEw==}
+    engines: {node: '>=14.15.0'}
     requiresBuild: true
     dependencies:
       color: 4.2.3
