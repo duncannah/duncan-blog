@@ -28,7 +28,7 @@
 		"react-hot-toast": "2.3.0",
 		"regenerator-runtime": "0.13.9",
 		"sharp": "0.31.0",
-		"tinymce": "6.1.2",
+		"tinymce": "6.2.0",
 		"tslib": "2.4.0"
 	},
 	"devDependencies": {
