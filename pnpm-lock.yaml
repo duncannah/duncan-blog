@@ -51,7 +51,7 @@ specifiers:
   react-dom: 18.2.0
   react-hot-toast: 2.3.0
   regenerator-runtime: 0.13.9
-  sass: 1.54.8
+  sass: 1.54.9
   sharp: 0.31.0
   tinymce: 6.1.2
   ts-node: 10.9.1
@@ -70,7 +70,7 @@ dependencies:
   fluent-ffmpeg: 2.1.2
   html-react-parser: 3.0.4_react@18.2.0
   lodash: 4.17.21
-  next: 12.1.6_badbbegk2q2gbu2cmty4coqfru
+  next: 12.1.6_psqvd2pzzkjlzpo33alcb6tbxu
   next-multipart: 0.5.1_next@12.1.6
   normalize.css: 8.0.1
   prismjs: 1.29.0
@@ -115,7 +115,7 @@ devDependencies:
   nx: 14.6.5
   prettier: 2.7.1
   prisma: 4.3.1
-  sass: 1.54.8
+  sass: 1.54.9
   ts-node: 10.9.1_peo6hx7wu7rhrmavg66olfxwea
   typescript: 4.8.2
   webpack: 5.74.0
@@ -1969,7 +1969,7 @@ packages:
       eslint-config-next: 12.1.6_spccqgx44ppjwurgy7q2zqa6tq
       fs-extra: 10.1.0
       ignore: 5.2.0
-      next: 12.1.6_badbbegk2q2gbu2cmty4coqfru
+      next: 12.1.6_psqvd2pzzkjlzpo33alcb6tbxu
       semver: 7.3.4
       ts-node: 10.9.1_peo6hx7wu7rhrmavg66olfxwea
       tsconfig-paths: 3.14.1
@@ -2243,8 +2243,8 @@ packages:
       rollup-plugin-postcss: 4.0.2_pe6iykxod2v7i2uk6okjazxzki
       rollup-plugin-typescript2: 0.31.2_2tuwkp6u3necn4nd7covsj3uci
       rxjs: 6.6.7
-      sass: 1.54.8
-      sass-loader: 12.6.0_sass@1.54.8+webpack@5.74.0
+      sass: 1.54.9
+      sass-loader: 12.6.0_sass@1.54.9+webpack@5.74.0
       semver: 7.3.4
       source-map: 0.7.3
       source-map-loader: 3.0.1_webpack@5.74.0
@@ -4577,7 +4577,7 @@ packages:
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.23.0
       eslint-plugin-react: 7.31.7_eslint@8.23.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.23.0
-      next: 12.1.6_badbbegk2q2gbu2cmty4coqfru
+      next: 12.1.6_psqvd2pzzkjlzpo33alcb6tbxu
       typescript: 4.8.2
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
@@ -6674,10 +6674,10 @@ packages:
       next: ^12.0.7
     dependencies:
       formidable: 2.0.1
-      next: 12.1.6_badbbegk2q2gbu2cmty4coqfru
+      next: 12.1.6_psqvd2pzzkjlzpo33alcb6tbxu
     dev: false
 
-  /next/12.1.6_badbbegk2q2gbu2cmty4coqfru:
+  /next/12.1.6_psqvd2pzzkjlzpo33alcb6tbxu:
     resolution: {integrity: sha512-cebwKxL3/DhNKfg9tPZDQmbRKjueqykHHbgaoG4VBRH3AHQJ2HO0dbKFiS1hPhe1/qgc2d/hFeadsbPicmLD+A==}
     engines: {node: '>=12.22.0'}
     hasBin: true
@@ -6700,7 +6700,7 @@ packages:
       postcss: 8.4.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      sass: 1.54.8
+      sass: 1.54.9
       styled-jsx: 5.0.2_obstn65pa6zrrg27pp7sudypiq
     optionalDependencies:
       '@next/swc-android-arm-eabi': 12.1.6
@@ -7897,7 +7897,7 @@ packages:
   /safer-buffer/2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sass-loader/12.6.0_sass@1.54.8+webpack@5.74.0:
+  /sass-loader/12.6.0_sass@1.54.9+webpack@5.74.0:
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -7918,11 +7918,11 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.54.8
+      sass: 1.54.9
       webpack: 5.74.0
 
-  /sass/1.54.8:
-    resolution: {integrity: sha512-ib4JhLRRgbg6QVy6bsv5uJxnJMTS2soVcCp9Y88Extyy13A8vV0G1fAwujOzmNkFQbR3LvedudAMbtuNRPbQww==}
+  /sass/1.54.9:
+    resolution: {integrity: sha512-xb1hjASzEH+0L0WI9oFjqhRi51t/gagWnxLiwUNMltA0Ab6jIDkAacgKiGYKM9Jhy109osM7woEEai6SXeJo5Q==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
