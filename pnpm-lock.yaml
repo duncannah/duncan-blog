@@ -34,7 +34,7 @@ specifiers:
   eslint-config-prettier: 8.5.0
   eslint-plugin-import: 2.26.0
   eslint-plugin-jsx-a11y: 6.6.1
-  eslint-plugin-react: 7.31.7
+  eslint-plugin-react: 7.31.8
   eslint-plugin-react-hooks: 4.6.0
   express: 4.18.1
   fluent-ffmpeg: 2.1.2
@@ -110,7 +110,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.23.0
   eslint-plugin-import: 2.26.0_iepzrjnvahcxaf6zc7cutko6om
   eslint-plugin-jsx-a11y: 6.6.1_eslint@8.23.0
-  eslint-plugin-react: 7.31.7_eslint@8.23.0
+  eslint-plugin-react: 7.31.8_eslint@8.23.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.23.0
   nx: 14.6.5
   prettier: 2.7.1
@@ -4575,7 +4575,7 @@ packages:
       eslint-import-resolver-typescript: 2.7.1_faomjyrlgqmwswvqymymzkxcqi
       eslint-plugin-import: 2.26.0_ijmu6epd3rsbb7y7umh7oqxvja
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.23.0
-      eslint-plugin-react: 7.31.7_eslint@8.23.0
+      eslint-plugin-react: 7.31.8_eslint@8.23.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.23.0
       next: 12.1.6_psqvd2pzzkjlzpo33alcb6tbxu
       typescript: 4.8.3
@@ -4779,8 +4779,8 @@ packages:
       semver: 6.3.0
       string.prototype.matchall: 4.0.7
 
-  /eslint-plugin-react/7.31.7_eslint@8.23.0:
-    resolution: {integrity: sha512-8NldBTeYp/kQoTV1uT0XF6HcmDqbgZ0lNPkN0wlRw8DJKXEnaWu+oh/6gt3xIhzvQ35wB2Y545fJhIbJSZ2NNw==}
+  /eslint-plugin-react/7.31.8_eslint@8.23.0:
+    resolution: {integrity: sha512-5lBTZmgQmARLLSYiwI71tiGVTLUuqXantZM6vlSY39OaDSV0M7+32K5DnLkmFrwTe+Ksz0ffuLUC91RUviVZfw==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
