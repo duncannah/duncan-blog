@@ -27,7 +27,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.37.0
   '@typescript-eslint/parser': 5.37.0
   axios: 0.27.2
-  core-js: 3.25.1
+  core-js: 3.25.2
   cuid: 2.1.8
   eslint: 8.23.1
   eslint-config-next: 12.1.6
@@ -64,7 +64,7 @@ dependencies:
   '@prisma/client': 4.3.1_prisma@4.3.1
   '@tinymce/tinymce-react': 4.2.0_biqbaboplfbrettd7655fr4n2y
   axios: 0.27.2
-  core-js: 3.25.1
+  core-js: 3.25.2
   cuid: 2.1.8
   express: 4.18.1
   fluent-ffmpeg: 2.1.2
@@ -2148,7 +2148,7 @@ packages:
       '@nrwl/devkit': 14.7.5_nx@14.7.5+typescript@4.8.3
       '@nrwl/linter': 14.7.5_ggcadoitm7ublryz4h7vjrxmra
       '@nrwl/workspace': 14.7.5_dn5dolt7c344mz2hj6cpsylj3u
-      core-js: 3.25.1
+      core-js: 3.25.2
       dotenv: 10.0.0
       semver: 7.3.4
       ts-loader: 9.3.1_kb3egcnme7w23lfa5xodfjfhge
@@ -2215,7 +2215,7 @@ packages:
       chalk: 4.1.0
       chokidar: 3.5.3
       copy-webpack-plugin: 10.2.4_webpack@5.74.0
-      core-js: 3.25.1
+      core-js: 3.25.2
       css-loader: 6.7.1_webpack@5.74.0
       css-minimizer-webpack-plugin: 3.4.1_webpack@5.74.0
       enhanced-resolve: 5.10.0
@@ -4022,8 +4022,8 @@ packages:
     deprecated: core-js-pure@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js-pure.
     requiresBuild: true
 
-  /core-js/3.25.1:
-    resolution: {integrity: sha512-sr0FY4lnO1hkQ4gLDr24K0DGnweGO1QwSj5BpfQjpSJPdqWalja4cTps29Y/PJVG/P7FYlPDkH3hO+Tr0CvDgQ==}
+  /core-js/3.25.2:
+    resolution: {integrity: sha512-YB4IAT1bjEfxTJ1XYy11hJAKskO+qmhuDBM8/guIfMz4JvdsAQAqvyb97zXX7JgSrfPLG5mRGFWJwJD39ruq2A==}
     requiresBuild: true
 
   /core-util-is/1.0.3:
