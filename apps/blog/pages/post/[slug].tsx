@@ -47,48 +47,53 @@ export const PostPage: NextPage<{
 	>;
 	UPLOADS_URL: string;
 }> = ({ post, UPLOADS_URL }) => {
+	if (!post) return null;
+
+	const { title, content, mainImage, categories, language, isPage } = post;
+
+	const createdAtHuman = dateToString(post.createdAt);
+	const updatedAtHuman = dateToString(post.updatedAt);
+
 	return (
-		post && (
-			<>
-				<Head>
-					<title>{`${post.title} - ${process.env.NEXT_PUBLIC_BLOG_FULLNAME || ``}`}</title>
-				</Head>
-				<section className={styles.page} lang={post.language}>
-					{!post.isPage && (
-						<div className={styles.head}>
-							<div className={styles.titleAndImage}>
-								<h2>{post.title}</h2>
-								{post.mainImage && (
-									<>
-										<img src={post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name, UPLOADS_URL)} alt={``} />
-									</>
+		<>
+			<Head>
+				<title>{`${title} - ${process.env.NEXT_PUBLIC_BLOG_FULLNAME || ``}`}</title>
+			</Head>
+			<section className={styles.page} lang={language}>
+				{!isPage && (
+					<div className={styles.head}>
+						<div className={styles.titleAndImage}>
+							<h2>{title}</h2>
+							{mainImage && (
+								<>
+									<img src={mainImage?.url || getUploadURL(mainImage.id, post.mainImage.name, UPLOADS_URL)} alt={``} />
+								</>
+							)}
+						</div>
+						<div className={styles.info}>
+							<div className={styles.time}>
+								<strong>{createdAtHuman}</strong>
+								{createdAtHuman !== updatedAtHuman && (
+									<span>
+										{`updated `}
+										<strong>{updatedAtHuman}</strong>
+									</span>
 								)}
 							</div>
-							<div className={styles.info}>
-								<div className={styles.time}>
-									<strong>{dateToString(post.createdAt)}</strong>
-									{post.createdAt !== post.updatedAt && (
-										<span>
-											{`updated `}
-											<strong>{dateToString(post.createdAt)}</strong>
-										</span>
-									)}
-								</div>
-								<ul className={styles.categories}>
-									{post.categories.map((category) => (
-										<li key={category.name}>
-											<a href={`/categories/${category.name}`}>{`${category.name}`}</a>
-										</li>
-									))}
-								</ul>
-							</div>
+							<ul className={styles.categories}>
+								{categories.map((category) => (
+									<li key={category.name}>
+										<a href={`/categories/${category.name}`}>{`${category.name}`}</a>
+									</li>
+								))}
+							</ul>
 						</div>
-					)}
+					</div>
+				)}
 
-					<div className={styles.content}>{HTMLParser(post.content, { replace: HTMLElementReplacer })}</div>
-				</section>
-			</>
-		)
+				<div className={styles.content}>{HTMLParser(content, { replace: HTMLElementReplacer })}</div>
+			</section>
+		</>
 	);
 };
 
