@@ -17,7 +17,7 @@ specifiers:
   '@types/express': 4.17.14
   '@types/fluent-ffmpeg': 2.1.20
   '@types/formidable': 2.0.5
-  '@types/lodash': 4.14.185
+  '@types/lodash': 4.14.186
   '@types/node': 16.11.62
   '@types/prismjs': 1.26.0
   '@types/react': 18.0.21
@@ -89,14 +89,14 @@ devDependencies:
   '@nrwl/express': 14.8.0_qu57ssima4tbskuuz3dy5xlzau
   '@nrwl/linter': 14.8.0_hoszi2cv73ztnagole7kwlvabe
   '@nrwl/node': 14.8.0_n6biu5o4uqqqgg44tvbaaflx2u
-  '@nrwl/nx-cloud': 14.6.2
+  '@nrwl/nx-cloud': 14.7.0
   '@nrwl/react': 14.8.0_ikagsbkannthnigwcijlgyes6y
   '@nrwl/web': 14.8.0_ikagsbkannthnigwcijlgyes6y
   '@nrwl/workspace': 14.8.0_anttt6iv3ernoboiofp65gfzdy
   '@types/express': 4.17.14
   '@types/fluent-ffmpeg': 2.1.20
   '@types/formidable': 2.0.5
-  '@types/lodash': 4.14.185
+  '@types/lodash': 4.14.186
   '@types/node': 16.11.62
   '@types/prismjs': 1.26.0
   '@types/react': 18.0.21
@@ -2064,13 +2064,14 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/nx-cloud/14.6.2:
-    resolution: {integrity: sha512-w8ujbFMOxE7lJg52O3JjnpTGlBKc+/vovxVTplIfGU9TYgEgAo/v4HS9svztzGd9Era7qmNaoYOmxm6Ebtbo5g==}
+  /@nrwl/nx-cloud/14.7.0:
+    resolution: {integrity: sha512-sEGK5Ire5DC2liIsT89qR6SzZa46uinmWEAMz8ocMuu7nIMnwV9m15qajxhmYKasYsq9vTeT+x7BlZ4fnxPrNg==}
     hasBin: true
     dependencies:
       axios: 0.21.4
       chalk: 4.1.0
       dotenv: 10.0.0
+      fs-extra: 10.1.0
       node-machine-id: 1.1.12
       strip-json-comments: 3.1.1
       tar: 6.1.11
@@ -2860,8 +2861,8 @@ packages:
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  /@types/lodash/4.14.185:
-    resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
+  /@types/lodash/4.14.186:
+    resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
     dev: true
 
   /@types/mime/1.3.2:
