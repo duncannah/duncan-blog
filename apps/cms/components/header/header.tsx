@@ -12,10 +12,6 @@ export function Header(props: HeaderProps) {
 					<h1>{`CMS 🤔`}</h1>
 				</a>
 			</Link>
-
-			<a href={`https://ermansay.in`} target={`_blank`}>
-				{`→ Website`}
-			</a>
 		</div>
 	);
 }
