@@ -130,9 +130,7 @@ export const EditPostIndex: NextPage = () => {
 			<div className={`hstack`}>
 				<h2>{`Create or edit a post`}</h2>
 
-				<Link href={`/edit-post/new`}>
-					<a>{`Create a new post 🆕`}</a>
-				</Link>
+				<Link href={`/edit-post/new`}>{`Create a new post 🆕`}</Link>
 			</div>
 
 			<div>

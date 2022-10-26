@@ -13,9 +13,7 @@ export const Header: NextPage<{ links: Jsonify<HeaderLink[]> }> = ({ links }) =>
 	return (
 		<header className={styles.Header}>
 			<Link href={`/`}>
-				<a>
-					<h1>{process.env.NEXT_PUBLIC_BLOG_NAME}</h1>
-				</a>
+				<h1>{process.env.NEXT_PUBLIC_BLOG_NAME}</h1>
 			</Link>
 			<ul>
 				{links &&
@@ -26,8 +24,8 @@ export const Header: NextPage<{ links: Jsonify<HeaderLink[]> }> = ({ links }) =>
 									{link.icon ? HTMLParser(link.icon) : link.name}
 								</a>
 							) : (
-								<Link href={link.url}>
-									<a title={link.name}>{link.icon ? HTMLParser(link.icon) : link.name}</a>
+								<Link href={link.url} title={link.name}>
+									{link.icon ? HTMLParser(link.icon) : link.name}
 								</Link>
 							)}
 						</li>

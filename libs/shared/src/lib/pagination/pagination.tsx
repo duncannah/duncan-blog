@@ -37,9 +37,7 @@ export function Pagination({ currentPage, totalPages, setCurrentPage, basePath, 
 	return (
 		<div {...props} className={`${styles[`container`]} ${props.className || ``}`} style={hideIfSinglePage && totalPages <= 1 ? { display: `none` } : {}}>
 			<Link href={basePath ? `${basePath}page/${currentPage + 1}` : ``}>
-				<a>
-					<button disabled={currentPage === totalPages} onClick={() => setCurrentPage && setCurrentPage(currentPage + 1)}>{`◀`}</button>
-				</a>
+				<button disabled={currentPage === totalPages} onClick={() => setCurrentPage && setCurrentPage(currentPage + 1)}>{`◀`}</button>
 			</Link>
 			<div>&nbsp;</div>
 			{pagination(7).map((page, index) => {
@@ -47,19 +45,15 @@ export function Pagination({ currentPage, totalPages, setCurrentPage, basePath, 
 
 				return (
 					<Link key={index} href={basePath ? (page !== 1 ? `${basePath}page/${page}` : basePath) : ``}>
-						<a>
-							<button disabled={currentPage === page} onClick={() => setCurrentPage && setCurrentPage(page)}>
-								{page}
-							</button>
-						</a>
+						<button disabled={currentPage === page} onClick={() => setCurrentPage && setCurrentPage(page)}>
+							{page}
+						</button>
 					</Link>
 				);
 			})}
 			<div>&nbsp;</div>
 			<Link href={basePath ? (currentPage !== 2 ? `${basePath}page/${currentPage - 1}` : basePath) : ``}>
-				<a>
-					<button disabled={currentPage === 1} onClick={() => setCurrentPage && setCurrentPage(currentPage - 1)}>{`▶`}</button>
-				</a>
+				<button disabled={currentPage === 1} onClick={() => setCurrentPage && setCurrentPage(currentPage - 1)}>{`▶`}</button>
 			</Link>
 		</div>
 	);

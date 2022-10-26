@@ -29,7 +29,7 @@ const HTMLElementReplacer = (domNode: DOMNode) => {
 
 			case `a`:
 				return (
-					<Link href={domNode.attribs.href} target={domNode.attribs.target === `_blank` || !domNode.attribs.href.startsWith(`/`) ? `_blank` : undefined}>
+					<Link href={domNode.attribs.href} target={domNode.attribs.target === `_blank` || !domNode.attribs.href.startsWith(`/`) ? `_blank` : undefined} legacyBehavior>
 						{domToReact([domNode])}
 					</Link>
 				);

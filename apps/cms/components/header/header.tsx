@@ -8,9 +8,7 @@ export function Header(props: HeaderProps) {
 	return (
 		<div className={styles[`container`]}>
 			<Link href={`/`}>
-				<a>
-					<h1>{`CMS 🤔`}</h1>
-				</a>
+				<h1>{`CMS 🤔`}</h1>
 			</Link>
 		</div>
 	);
