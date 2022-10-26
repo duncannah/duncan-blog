@@ -38,7 +38,7 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
-            - uses: nrwl/nx-set-shas@v2
+            - uses: nrwl/nx-set-shas@v3
 
             - run: pnpm install # not pnpm ci
 
