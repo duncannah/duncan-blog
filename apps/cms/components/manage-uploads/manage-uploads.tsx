@@ -7,6 +7,7 @@ import Modal from "../modal/modal";
 import { APICall } from "../../util/fetch";
 
 import styles from "./manage-uploads.module.scss";
+import { AxiosProgressEvent } from "axios";
 
 function humanFileSize(size: number) {
 	const i = Math.floor(Math.log(size) / Math.log(1024));
@@ -102,7 +103,7 @@ const UploadDialog = ({
 				(Upload & {
 					mainImagePost: Post | null;
 				})[]
-			>(`uploads/post`, { data: formData, onUploadProgress: (e: ProgressEvent) => setProgress(`${Math.round((e.loaded / e.total) * 100)}%`) })
+			>(`uploads/post`, { data: formData, onUploadProgress: (e: AxiosProgressEvent) => setProgress(`${Math.round((e.loaded / (e.total || e.loaded)) * 100)}%`) })
 				.then((uploads) => {
 					onChange(uploads);
 					setFiles([]);

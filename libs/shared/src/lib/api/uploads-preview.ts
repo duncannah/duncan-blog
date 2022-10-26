@@ -4,11 +4,13 @@ import { createReadStream } from "fs";
 import { pipeline } from "stream";
 
 export const UploadsPreviewHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-	const upload = await prisma.upload.findFirst({
-		where: {
-			id: req.query[`id`][0].toString(),
-		},
-	});
+	const upload =
+		req.query[`id`] &&
+		(await prisma.upload.findFirst({
+			where: {
+				id: req.query[`id`][0].toString(),
+			},
+		}));
 
 	if (!upload || (upload?.processingProgress && upload.processingProgress !== `DONE`)) {
 		res.setHeader(`Content-Type`, `image/svg+xml`);
