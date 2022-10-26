@@ -28,18 +28,18 @@ export function Index() {
 					<Link href={`/manage-website`}>{`Manage website`}</Link>
 				</li>
 			</ul>
-			<p className={`hstack`}>
+			<div className={`hstack`}>
 				<h2>{`Status`}</h2>
 				<a onClick={getStatus}>{`Refresh`}</a>
-			</p>
-			<p>
+			</div>
+			<div>
 				<pre className={`language-txt`}>
 					<code>
 						{`Last rebuild: `}
 						<strong>{lastRebuild ?? `[no rebuilds recently]`}</strong>
 					</code>
 				</pre>
-			</p>
+			</div>
 		</div>
 	);
 }
