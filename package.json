@@ -5,7 +5,8 @@
 		"start:dev": "nx run-many --target=serve --all --parallel",
 		"start": "nx serve",
 		"build": "nx run-many --target=build --all --parallel --prod",
-		"test": "nx run-many --target=test --all --parallel"
+		"test": "nx run-many --target=test --all --parallel",
+		"postinstall": "prisma generate"
 	},
 	"private": true,
 	"dependencies": {
