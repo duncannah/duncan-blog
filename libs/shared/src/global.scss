@@ -1,3 +1,4 @@
+@import "fonts";
 @import "variables";
 @import "normalize.css";
 @import "code-highlight-theme";
@@ -38,6 +39,12 @@ body {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+@supports (font-variation-settings: normal) {
+	body {
+		font-family: $font-family-sans-serif-variable;
+	}
 }
 
 .app {
