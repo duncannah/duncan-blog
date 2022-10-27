@@ -6,6 +6,8 @@ import { dateToString, getUploadURL } from "../shared/utils";
 
 import styles from "./PostList.module.scss";
 
+const EMPTY_IMG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E`;
+
 export const PostList: NextPage<{
 	posts: Jsonify<
 		(Post & {
@@ -20,14 +22,9 @@ export const PostList: NextPage<{
 			{posts.map((post) => (
 				<li key={post.slug} className={styles.post}>
 					<Link href={`/post/${post.slug}`}>
-						<img
-							src={
-								post.mainImage
-									? post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name, UPLOADS_URL)
-									: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E`
-							}
-							alt={``}
-						/>
+						<div className={styles.image}>
+							<img src={(post.mainImage && (post.mainImage?.url || getUploadURL(post.mainImage.id, post.mainImage.name, UPLOADS_URL))) ?? EMPTY_IMG} alt={``} />
+						</div>
 						<div className={styles.info}>
 							<h2>{post.title}</h2>
 							<div className={styles.meta}>
