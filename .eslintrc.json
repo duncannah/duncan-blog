@@ -1,7 +1,7 @@
 {
 	"root": true,
 	"ignorePatterns": ["**/*"],
-	"plugins": ["@nrwl/nx", "@typescript-eslint"],
+	"plugins": ["@nrwl/nx", "@typescript-eslint", "jsx-expressions"],
 	"overrides": [
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -31,6 +31,12 @@
 			"files": ["*.js", "*.jsx"],
 			"extends": ["plugin:@nrwl/nx/javascript"],
 			"rules": {}
+		},
+		{
+			"files": ["*.jsx", "*.tsx"],
+			"rules": {
+				"jsx-expressions/strict-logical-expressions": "error"
+			}
 		}
 	]
 }

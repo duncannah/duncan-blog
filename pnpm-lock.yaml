@@ -34,6 +34,7 @@ specifiers:
   eslint-config-prettier: 8.5.0
   eslint-plugin-import: 2.26.0
   eslint-plugin-jsx-a11y: 6.6.1
+  eslint-plugin-jsx-expressions: ^1.3.1
   eslint-plugin-react: 7.31.10
   eslint-plugin-react-hooks: 4.6.0
   express: 4.18.2
@@ -110,6 +111,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.26.0
   eslint-plugin-import: 2.26.0_c2flhriocdzler6lrwbyxxyoca
   eslint-plugin-jsx-a11y: 6.6.1_eslint@8.26.0
+  eslint-plugin-jsx-expressions: 1.3.1_huremdigmcnkianavgfk3x6iou
   eslint-plugin-react: 7.31.10_eslint@8.26.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.26.0
   nx: 15.0.4
@@ -3028,6 +3030,19 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/experimental-utils/5.41.0_wyqvi574yv7oiwfeinomdzmc3m:
+    resolution: {integrity: sha512-/qxT2Kd2q/A22JVIllvws4rvc00/3AT4rAo/0YgEN28y+HPhbJbk6X4+MAHEoZzpNyAOugIT7D/OLnKBW8FfhA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.41.0_wyqvi574yv7oiwfeinomdzmc3m
+      eslint: 8.26.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
   /@typescript-eslint/parser/5.41.0_wyqvi574yv7oiwfeinomdzmc3m:
     resolution: {integrity: sha512-HQVfix4+RL5YRWZboMD1pUfFN8MpRH4laziWkkAzyO1fvNOY/uinZcvo3QiFJVS/siNHupV8E5+xSwQZrl6PZA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -4791,6 +4806,26 @@ packages:
       language-tags: 1.0.5
       minimatch: 3.1.2
       semver: 6.3.0
+    dev: true
+
+  /eslint-plugin-jsx-expressions/1.3.1_huremdigmcnkianavgfk3x6iou:
+    resolution: {integrity: sha512-7PTIx62Oy4l3Igtat361C/SCrJ4yXNNJRh/pzXMbzvPzFkvOpHBkTXITkH8PMLDu1RAdilDpjaOUv1m14DbY7w==}
+    engines: {node: 12.x || 14.x || >= 16}
+    peerDependencies:
+      '@typescript-eslint/parser': ^4.0.0 || ^5.0.0
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/experimental-utils': 5.41.0_wyqvi574yv7oiwfeinomdzmc3m
+      '@typescript-eslint/parser': 5.41.0_wyqvi574yv7oiwfeinomdzmc3m
+      eslint: 8.26.0
+      tsutils: 3.21.0_typescript@4.8.4
+      typescript: 4.8.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /eslint-plugin-react-hooks/4.6.0_eslint@8.26.0:

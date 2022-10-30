@@ -26,19 +26,26 @@ const UploadProgress = ({ id }: { id: string }) => {
 	const [progress, setProgress] = useState(``);
 
 	useEffect(() => {
-		function checkProgress() {
-			void APICall.get<Upload["processingProgress"]>(`uploads/progress/${id}`).then((progress) => {
-				setProgress(progress || ``);
+		async function checkProgress() {
+			const progress = await APICall.get<Upload["processingProgress"]>(`uploads/progress/${id}`);
 
-				if (progress && progress.endsWith(`%`)) setTimeout(checkProgress, 3000);
-			});
+			setProgress(progress ?? ``);
+
+			if (progress && progress.endsWith(`%`)) setTimeout(() => void checkProgress(), 3000);
 		}
 
-		checkProgress();
+		void checkProgress();
 	}, [id]);
 
-	return <span style={{ color: progress === `FAIL` ? `red` : progress === `DONE` ? `skyblue` : `` }}>{`${progress}`}</span>;
+	const color = { FAIL: `red`, DONE: `skyblue` }[progress];
+
+	return <span style={{ color }}>{`${progress}`}</span>;
 };
+
+enum UploadType {
+	UPLOAD,
+	REMOTE,
+}
 
 const UploadDialog = ({
 	close,
@@ -55,14 +62,14 @@ const UploadDialog = ({
 		>,
 	) => void;
 }) => {
-	const [type, setType] = useState<"upload" | "remote">(`upload`);
+	const [type, setType] = useState<UploadType>(UploadType.UPLOAD);
 	const [files, setFiles] = useState<({ file: File } & FileUploadOptions)[]>([]);
 	const [uploading, setUploading] = useState(false);
 	const [progress, setProgress] = useState(``);
 
 	const fileSubmitRef = useRef<HTMLInputElement>(null);
 
-	const handleTypeChange = useCallback(
+	const changeType = useCallback(
 		(newType: typeof type) => {
 			if (uploading) return;
 
@@ -99,18 +106,24 @@ const UploadDialog = ({
 				formData.append(`options-${i}`, JSON.stringify(file));
 			});
 
-			await APICall.post<
-				(Upload & {
-					mainImagePost: Post | null;
-				})[]
-			>(`uploads/post`, { data: formData, onUploadProgress: (e: AxiosProgressEvent) => setProgress(`${Math.round((e.loaded / (e.total || e.loaded)) * 100)}%`) })
-				.then((uploads) => {
-					onChange(uploads);
-					setFiles([]);
-					if (fileSubmitRef.current) fileSubmitRef.current.value = ``;
-				})
-				.catch((e: Error) => toast.error(`Upload failed: ${e.message}`))
-				.finally(() => [setUploading(false), setProgress(``)]);
+			const onUploadProgress = (e: AxiosProgressEvent) => setProgress(`${Math.round((e.loaded / (e.total || e.loaded)) * 100)}%`);
+
+			try {
+				const uploads = await APICall.post<
+					(Upload & {
+						mainImagePost: Post | null;
+					})[]
+				>(`uploads/post`, { data: formData, onUploadProgress });
+
+				onChange(uploads);
+				setFiles([]);
+				if (fileSubmitRef.current) fileSubmitRef.current.value = ``;
+			} catch (e) {
+				toast.error(e instanceof Error ? e.message : `An error occurred`);
+			}
+
+			setUploading(false);
+			setProgress(``);
 		}
 	}, [files, onChange, postId, uploading]);
 
@@ -119,15 +132,15 @@ const UploadDialog = ({
 			<div>{`I want to:`}</div>
 			<div className={`hstack`}>
 				<label>
-					<input type={`radio`} name={`createNew`} value={`upload`} checked={type === `upload`} onChange={() => handleTypeChange(`upload`)} />
+					<input type={`radio`} name={`createNew`} value={`upload`} checked={type == UploadType.UPLOAD} onChange={() => changeType(UploadType.UPLOAD)} />
 					{` Upload files`}
 				</label>
 				<label>
-					<input type={`radio`} name={`createNew`} value={`external`} checked={type === `remote`} onChange={() => handleTypeChange(`remote`)} />
+					<input type={`radio`} name={`createNew`} value={`external`} checked={type == UploadType.REMOTE} onChange={() => changeType(UploadType.REMOTE)} />
 					{` Use an external resource`}
 				</label>
 			</div>
-			{type === `upload` ? (
+			{type == UploadType.UPLOAD ? (
 				<>
 					<div className={styles[`drop-area`]}>
 						<div>{`Drop files here to upload`}</div>
@@ -340,14 +353,12 @@ export function ManageUploads({ post, uploads, onChange }: ManageUploadsProps) {
 							) : (
 								<span style={{ color: `lime` }}>
 									{`Internal`}
-									{upload.processingProgress !== null ? (
+									{upload.processingProgress !== null && (
 										<>
 											{` (`}
 											<UploadProgress id={upload.id} />
 											{`)`}
 										</>
-									) : (
-										``
 									)}
 								</span>
 							)}
