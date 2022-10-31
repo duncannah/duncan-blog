@@ -20,10 +20,10 @@ export function Index({
 	UPLOADS_URL: string;
 }>) {
 	return (
-		<>
+		<div>
 			<PostList posts={posts} UPLOADS_URL={UPLOADS_URL} />
 			<Pagination currentPage={currentPage} totalPages={totalPages} basePath={`/`} hideIfSinglePage={true} />
-		</>
+		</div>
 	);
 }
 

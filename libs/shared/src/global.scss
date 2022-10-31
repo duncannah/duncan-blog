@@ -15,6 +15,7 @@
 
 html {
 	font-size: 100%;
+	scrollbar-gutter: stable both-edges;
 
 	@include respond-to("large") {
 		font-size: $font-size-base;
@@ -38,6 +39,11 @@ body {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	&:has(#__next) {
+		display: flex;
+		min-height: 100vh;
+	}
 }
 
 @supports (font-variation-settings: normal) {
@@ -46,11 +52,52 @@ body {
 	}
 }
 
+#__next {
+	flex: 1 1 auto;
+}
+
+.page {
+	&-content {
+		display: grid;
+		grid-template-columns: 1fr;
+
+		> * {
+			grid-row-start: 1;
+			grid-column-start: 1;
+		}
+	}
+
+	$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+
+	&-enter {
+		opacity: 0;
+		transform: translateY(10px);
+
+		&-active {
+			opacity: 1;
+			transform: translateY(0);
+			transition: opacity 300ms $easeOutExpo, transform 300ms $easeOutExpo;
+		}
+	}
+
+	&-exit {
+		opacity: 1;
+		transform: translateY(0);
+
+		&-active {
+			opacity: 0;
+			transform: translateY(10px);
+			transition: opacity 300ms $easeOutExpo, transform 300ms $easeOutExpo;
+		}
+	}
+}
+
 .app {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	gap: $spacing-base * 2;
+	height: 100%;
 }
 
 .bi {

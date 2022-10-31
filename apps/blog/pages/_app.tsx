@@ -2,12 +2,13 @@ import { HeaderLink } from "@prisma/client";
 import { prisma } from "@duncan-blog/shared";
 import App, { AppContext, AppProps } from "next/app";
 import Head from "next/head";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import "../../../libs/shared/src/global.scss";
-function CustomApp({ Component, pageProps, links }: AppProps & { links: Jsonify<HeaderLink[]> }) {
+function CustomApp({ Component, pageProps, router, links }: AppProps & { links: Jsonify<HeaderLink[]> }) {
 	return (
 		<>
 			<Head>
@@ -15,7 +16,11 @@ function CustomApp({ Component, pageProps, links }: AppProps & { links: Jsonify<
 			</Head>
 			<main className={`app`}>
 				<Header links={links} />
-				<Component {...pageProps} />
+				<TransitionGroup className={`page-content`}>
+					<CSSTransition key={router.pathname} classNames={`page`} timeout={300}>
+						<Component {...pageProps} />
+					</CSSTransition>
+				</TransitionGroup>
 				<Footer />
 			</main>
 		</>
