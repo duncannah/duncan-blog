@@ -83,7 +83,7 @@ export const PostPage: NextPage<{
 							<ul className={styles.categories}>
 								{categories.map((category) => (
 									<li key={category.name}>
-										<a href={`/categories/${category.name}`}>{`${category.name}`}</a>
+										<Link href={`/categories/${category.name}`}>{`${category.name}`}</Link>
 									</li>
 								))}
 							</ul>
