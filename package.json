@@ -31,7 +31,7 @@
 		"regenerator-runtime": "0.13.10",
 		"sharp": "0.31.1",
 		"tinymce": "6.2.0",
-		"tslib": "2.4.0"
+		"tslib": "2.4.1"
 	},
 	"devDependencies": {
 		"@babel/core": "7.19.6",
