@@ -27,7 +27,7 @@ specifiers:
   '@types/sharp': 0.31.0
   '@typescript-eslint/eslint-plugin': 5.45.1
   '@typescript-eslint/parser': 5.45.1
-  axios: 1.2.0
+  axios: 1.2.1
   core-js: 3.26.1
   cuid: 2.1.8
   eslint: 8.29.0
@@ -66,7 +66,7 @@ dependencies:
   '@nrwl/next': 15.2.4_hj5jifp65fvxeede4rwnria3xq
   '@prisma/client': 4.7.1_prisma@4.7.1
   '@tinymce/tinymce-react': 4.2.0_biqbaboplfbrettd7655fr4n2y
-  axios: 1.2.0
+  axios: 1.2.1
   core-js: 3.26.1
   cuid: 2.1.8
   express: 4.18.2
@@ -3666,8 +3666,8 @@ packages:
       - debug
     dev: true
 
-  /axios/1.2.0:
-    resolution: {integrity: sha512-zT7wZyNYu3N5Bu0wuZ6QccIf93Qk1eV8LOewxgjOZFd2DenOs98cJ7+Y6703d0wkaXGY6/nZd4EweJaHz9uzQw==}
+  /axios/1.2.1:
+    resolution: {integrity: sha512-I88cFiGu9ryt/tfVEi4kX2SITsvDddTajXTOFmt2uK1ZVA8LytjtdeyefdQWEf5PU8w+4SSJDoYnggflB5tW4A==}
     dependencies:
       follow-redirects: 1.15.1
       form-data: 4.0.0
@@ -7097,7 +7097,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.20
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.2.0
+      axios: 1.2.1
       chalk: 4.1.0
       chokidar: 3.5.3
       cli-cursor: 3.1.0

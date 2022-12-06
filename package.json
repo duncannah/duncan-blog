@@ -13,7 +13,7 @@
 		"@nrwl/next": "15.2.4",
 		"@prisma/client": "4.7.1",
 		"@tinymce/tinymce-react": "4.2.0",
-		"axios": "1.2.0",
+		"axios": "1.2.1",
 		"core-js": "3.26.1",
 		"cuid": "2.1.8",
 		"express": "4.18.2",
