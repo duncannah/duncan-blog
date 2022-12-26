@@ -8,7 +8,7 @@ import { useTransitionFix } from "../shared/useTransitionFix";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-import "../../../libs/shared/src/global.scss";
+import "../style.scss";
 function CustomApp({ Component, pageProps, router, links }: AppProps & { links: Jsonify<HeaderLink[]> }) {
 	useTransitionFix();
 

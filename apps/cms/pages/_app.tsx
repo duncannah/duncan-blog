@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
 
-import "../../../libs/shared/src/global.scss";
+import "../style.scss";
 
 function CustomApp({ Component, pageProps }: AppProps) {
 	return (

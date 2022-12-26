@@ -2,8 +2,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { APICall } from "../util/fetch";
 
-import styles from "./index.module.scss";
-
 export function Index() {
 	const [lastRebuild, setLastRebuild] = useState<string | null>(`Loading...`);
 
@@ -18,7 +16,7 @@ export function Index() {
 	useEffect(getStatus, []);
 
 	return (
-		<div className={styles.page}>
+		<div>
 			<h2>{`Navigation`}</h2>
 			<ul>
 				<li>
