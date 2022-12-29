@@ -28,7 +28,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.47.1
   '@typescript-eslint/parser': 5.47.1
   axios: 1.2.1
-  core-js: 3.27.0
+  core-js: 3.27.1
   cuid: 2.1.8
   eslint: 8.30.0
   eslint-config-next: 13.1.1
@@ -67,7 +67,7 @@ dependencies:
   '@prisma/client': 4.8.0_prisma@4.8.0
   '@tinymce/tinymce-react': 4.2.0_biqbaboplfbrettd7655fr4n2y
   axios: 1.2.1
-  core-js: 3.27.0
+  core-js: 3.27.1
   cuid: 2.1.8
   express: 4.18.2
   fluent-ffmpeg: 2.1.2
@@ -4282,8 +4282,8 @@ packages:
     requiresBuild: true
     dev: true
 
-  /core-js/3.27.0:
-    resolution: {integrity: sha512-wY6cKosevs430KRkHUIsvepDXHGjlXOZO3hYXNyqpD6JvB0X28aXyv0t1Y1vZMwE7SoKmtfa6IASHCPN52FwBQ==}
+  /core-js/3.27.1:
+    resolution: {integrity: sha512-GutwJLBChfGCpwwhbYoqfv03LAfmiz7e7D/BNxzeMxwQf10GRSzqiOjx7AmtEk+heiD/JWmBuyBPgFtx0Sg1ww==}
     requiresBuild: true
     dev: false
 
