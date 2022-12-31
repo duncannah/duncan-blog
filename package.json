@@ -54,7 +54,7 @@
 		"@types/react-dom": "18.0.10",
 		"@types/react-table": "7.7.14",
 		"@types/react-transition-group": "^4.4.5",
-		"@types/sharp": "0.31.0",
+		"@types/sharp": "0.31.1",
 		"@typescript-eslint/eslint-plugin": "5.47.1",
 		"@typescript-eslint/parser": "5.47.1",
 		"eslint": "8.31.0",
