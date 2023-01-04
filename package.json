@@ -34,7 +34,7 @@
 		"tslib": "2.4.1"
 	},
 	"devDependencies": {
-		"@babel/core": "7.20.7",
+		"@babel/core": "7.20.12",
 		"@nrwl/cli": "15.4.4",
 		"@nrwl/eslint-plugin-nx": "15.4.4",
 		"@nrwl/express": "15.4.4",
