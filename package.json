@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"start:dev": "nx run-many --target=serve --all --parallel",
-		"start": "nx serve",
+		"start": "nx run cms:serve:production",
 		"build": "nx run-many --target=build --all --parallel --prod",
 		"test": "nx run-many --target=test --all --parallel",
 		"postinstall": "prisma generate"

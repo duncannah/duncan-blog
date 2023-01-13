@@ -2,7 +2,7 @@ import { exec } from "child_process";
 
 let queue = 0;
 
-export let lastRebuild: string | null = null;
+export let lastRebuild: string | null = process.env[`NODE_ENV`] === `development` ? `DEVELOPMENT` : null;
 
 export const triggerRebuild = (): void => {
 	if (!process.env[`REBUILD_PATH`]) throw new Error(`REBUILD_PATH is not set`);
