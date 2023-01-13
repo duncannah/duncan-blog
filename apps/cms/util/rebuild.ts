@@ -20,7 +20,7 @@ export const triggerRebuild = (): void => {
 
 		try {
 			await new Promise<void>((resolve, reject) => {
-				exec(`pnpm nx export`, { cwd: process.env[`REBUILD_PATH`] }, (error, _, stderr) => {
+				exec(`npx nx export`, { cwd: process.env[`REBUILD_PATH`] }, (error, _, stderr) => {
 					if (error) {
 						console.error(stderr);
 						return reject(error);
