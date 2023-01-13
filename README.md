@@ -20,20 +20,20 @@ The Docker image doesn't have HEIF support.
 ### Basic docker-compose.yml example
 
 ```yaml
-version: '3'
+version: "3"
 services:
-  blog:
-	image: duncannah/duncan-blog
-	ports:
-	  - "4201:4201"
-	volumes:
-	  - ./uploads:/uploads
-	  - ./blog:/blog
-	environment:
-	  DATABASE_URL: "postgres://user:password@host:port/database"
-	  UPLOADS_URL: "https://uploads.example.com"
-	  NEXT_PUBLIC_BLOG_NAME: "example.com"
-	  NEXT_PUBLIC_BLOG_FULLNAME: "Duncan's Blog"
+    blog:
+        image: duncannah/duncan-blog
+        ports:
+            - "4201:4201"
+        volumes:
+            - ./uploads:/uploads
+            - ./blog:/blog
+        environment:
+            DATABASE_URL: "postgres://user:password@host:port/database"
+            UPLOADS_URL: "https://uploads.example.com"
+            NEXT_PUBLIC_BLOG_NAME: "example.com"
+            NEXT_PUBLIC_BLOG_FULLNAME: "Duncan's Blog"
 ```
 
 ## Installing libvips
