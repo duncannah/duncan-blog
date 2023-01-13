@@ -1,4 +1,8 @@
-# Same in .dockerignore
+.git
+*Dockerfile*
+*docker-compose*
+*docker-compose.yml*
+# The rest is same as .gitignore
 
 # compiled output
 /dist
