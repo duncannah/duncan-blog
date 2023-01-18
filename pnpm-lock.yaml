@@ -13,7 +13,7 @@ specifiers:
   '@nrwl/web': 15.5.2
   '@nrwl/workspace': 15.5.2
   '@prisma/client': 4.9.0
-  '@tinymce/tinymce-react': 4.2.0
+  '@tinymce/tinymce-react': 4.3.0
   '@types/express': 4.17.15
   '@types/fluent-ffmpeg': 2.1.20
   '@types/formidable': 2.0.5
@@ -65,7 +65,7 @@ specifiers:
 dependencies:
   '@nrwl/next': 15.5.2_y46lk7dbiryyyppt6dm5eoctze
   '@prisma/client': 4.9.0_prisma@4.9.0
-  '@tinymce/tinymce-react': 4.2.0_biqbaboplfbrettd7655fr4n2y
+  '@tinymce/tinymce-react': 4.3.0_biqbaboplfbrettd7655fr4n2y
   axios: 1.2.1
   core-js: 3.27.1
   cuid: 2.1.8
@@ -2584,8 +2584,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@tinymce/tinymce-react/4.2.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Oyi/hDvARR29oqUwTgYXDnMV9E/c7C8V+iK+gUj9tndVXsfSJRYVOw3MTK9CCC9f7alN/S4CYaPpIaA3f4VZzw==}
+  /@tinymce/tinymce-react/4.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-iB4cUsYfcJL4NGuKhqCGYuTmFTje3nPxyPv1HxprTsp/YMGuuiiSNWrv3zwI31QX5Cn8qeq9MrMDnbxuRugHyg==}
     peerDependencies:
       react: ^18.0.0 || ^17.0.1 || ^16.7.0
       react-dom: ^18.0.0 || ^17.0.1 || ^16.7.0
