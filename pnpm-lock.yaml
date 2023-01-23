@@ -14,7 +14,7 @@ specifiers:
   '@nrwl/workspace': 15.5.3
   '@prisma/client': 4.9.0
   '@tinymce/tinymce-react': 4.3.0
-  '@types/express': 4.17.15
+  '@types/express': 4.17.16
   '@types/fluent-ffmpeg': 2.1.20
   '@types/formidable': 2.0.5
   '@types/lodash': 4.14.191
@@ -97,7 +97,7 @@ devDependencies:
   '@nrwl/react': 15.5.3_f3wecm2whdum6rsiw52ee2h5ha
   '@nrwl/web': 15.5.3_67sspyfc3xdotam3iis5q26sdu
   '@nrwl/workspace': 15.5.3_l27ptbbgosyywejtdzamzs6pmq
-  '@types/express': 4.17.15
+  '@types/express': 4.17.16
   '@types/fluent-ffmpeg': 2.1.20
   '@types/formidable': 2.0.5
   '@types/lodash': 4.14.191
@@ -2684,8 +2684,8 @@ packages:
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
 
-  /@types/express/4.17.15:
-    resolution: {integrity: sha512-Yv0k4bXGOH+8a+7bELd2PqHQsuiANB+A8a4gnQrkRWzrkKlb6KHaVvyXhqs04sVW/OWlbPyYxRgYlIXLfrufMQ==}
+  /@types/express/4.17.16:
+    resolution: {integrity: sha512-LkKpqRZ7zqXJuvoELakaFYuETHjZkSol8EV6cNnyishutDBCCdv6+dsKPbKkCcIk57qRphOLY5sEgClw1bO3gA==}
     dependencies:
       '@types/body-parser': 1.19.2
       '@types/express-serve-static-core': 4.17.31
@@ -2827,7 +2827,7 @@ packages:
   /@types/serve-index/1.9.1:
     resolution: {integrity: sha512-d/Hs3nWDxNL2xAczmOVZNj92YZCS6RGxfBPjKzuu/XirCgXdpKEb88dYNbrYGint6IVWLNP+yonwVAuRC0T2Dg==}
     dependencies:
-      '@types/express': 4.17.15
+      '@types/express': 4.17.16
 
   /@types/serve-static/1.13.10:
     resolution: {integrity: sha512-nCkHGI4w7ZgAdNkrEu0bv+4xNV/XDqW+DydknebMOQwkpDGx8G+HTlj7R7ABI8i8nKxVw0wtKPi1D+lPOkh4YQ==}
@@ -5696,7 +5696,7 @@ packages:
   /http-parser-js/0.5.6:
     resolution: {integrity: sha512-vDlkRPDJn93swjcjqMSaGSPABbIarsr1TLAui/gLDXzV5VsJNdXNzMYDyNBLQkjWQCJ1uizu8T2oDMhmGt0PRA==}
 
-  /http-proxy-middleware/2.0.6_@types+express@4.17.15:
+  /http-proxy-middleware/2.0.6_@types+express@4.17.16:
     resolution: {integrity: sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -5705,7 +5705,7 @@ packages:
       '@types/express':
         optional: true
     dependencies:
-      '@types/express': 4.17.15
+      '@types/express': 4.17.16
       '@types/http-proxy': 1.17.9
       http-proxy: 1.18.1
       is-glob: 4.0.3
@@ -9131,7 +9131,7 @@ packages:
     dependencies:
       '@types/bonjour': 3.5.10
       '@types/connect-history-api-fallback': 1.3.5
-      '@types/express': 4.17.15
+      '@types/express': 4.17.16
       '@types/serve-index': 1.9.1
       '@types/serve-static': 1.13.10
       '@types/sockjs': 0.3.33
@@ -9146,7 +9146,7 @@ packages:
       express: 4.18.2
       graceful-fs: 4.2.10
       html-entities: 2.3.3
-      http-proxy-middleware: 2.0.6_@types+express@4.17.15
+      http-proxy-middleware: 2.0.6_@types+express@4.17.16
       ipaddr.js: 2.0.1
       open: 8.4.0
       p-retry: 4.6.2
