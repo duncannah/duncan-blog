@@ -55,7 +55,7 @@
 
 		li:not(:first-child) {
 			&::before {
-				content: "·";
+				content: "\00B7";
 				color: rgba($color-text, 0.5);
 				margin-right: 0.5em;
 			}
