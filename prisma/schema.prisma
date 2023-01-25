@@ -45,9 +45,7 @@ model Category {
   posts Post[]
 }
 
-model HeaderLink {
-  id   Int     @id @default(autoincrement())
-  name String
-  url  String
-  icon String?
+model Settings {
+  key   String @id
+  value Json   @db.Json
 }
