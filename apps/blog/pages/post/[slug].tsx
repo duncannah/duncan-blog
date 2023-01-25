@@ -1,5 +1,5 @@
 import { Post, Upload, Category } from "@prisma/client";
-import { prisma } from "@duncan-blog/shared";
+import { getSetting, prisma } from "@duncan-blog/shared";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import HTMLParser, { Element, DOMNode, domToReact } from "html-react-parser";
 import { dateToString, getUploadURL } from "../../shared/utils";
@@ -45,8 +45,9 @@ export const PostPage: NextPage<{
 			categories: Category[];
 		}
 	>;
+	blogFullName: string;
 	UPLOADS_URL: string;
-}> = ({ post, UPLOADS_URL }) => {
+}> = ({ post, blogFullName, UPLOADS_URL }) => {
 	if (!post) return null;
 
 	const { title, content, mainImage, categories, language, isPage } = post;
@@ -57,7 +58,7 @@ export const PostPage: NextPage<{
 	return (
 		<>
 			<Head>
-				<title>{`${title} - ${process.env.NEXT_PUBLIC_BLOG_FULLNAME || ``}`}</title>
+				<title>{`${title} - ${blogFullName}`}</title>
 			</Head>
 			<section className={styles.page} lang={language}>
 				{!isPage && (
@@ -120,8 +121,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 	if (process.env[`NODE_ENV`] !== `development`) post.content = post.content.replace(/(?:\.\.|)\/api\/uploads\/preview\//gm, `${process.env[`UPLOADS_URL`] || ``}/`);
 
+	const blogFullName = await getSetting(`blogFullName`);
+
 	return {
-		props: JSON.parse(JSON.stringify({ post, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Record<string, unknown>,
+		props: JSON.parse(JSON.stringify({ post, blogFullName, UPLOADS_URL: process.env[`UPLOADS_URL`] })) as Record<string, unknown>,
 	};
 };
 

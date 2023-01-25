@@ -222,6 +222,18 @@ dialog {
 	}
 }
 
+.form {
+	display: grid;
+	grid-template-columns: max-content max-content;
+	grid-gap: 1em;
+
+	input {
+		&:not([type="checkbox"]) {
+			width: 100%;
+		}
+	}
+}
+
 .disabled {
 	opacity: 0.5;
 	pointer-events: none;

@@ -19,6 +19,7 @@
 		"express": "4.18.2",
 		"fluent-ffmpeg": "2.1.2",
 		"html-react-parser": "3.0.8",
+		"immer": "^9.0.18",
 		"lodash": "4.17.21",
 		"next": "13.1.5",
 		"next-multipart": "0.5.1",
@@ -32,6 +33,7 @@
 		"sharp": "0.31.3",
 		"tinymce": "6.3.1",
 		"tslib": "2.4.1",
+		"use-immer": "^0.8.1",
 		"zod": "^3.20.2"
 	},
 	"devDependencies": {

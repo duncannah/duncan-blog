@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React, { FC, useCallback, useEffect, useState } from "react";
+import { useImmer, Updater } from "use-immer";
+
 import toast from "react-hot-toast";
 
 import { APICall } from "../../util/fetch";
@@ -7,48 +9,66 @@ import { Settings } from "@duncan-blog/shared";
 import styles from "./index.module.scss";
 
 interface SettingsSectionProps {
-	settings: Jsonify<Settings> | null;
-	setSettings: React.Dispatch<React.SetStateAction<SettingsSectionProps["settings"]>>;
+	settings: Jsonify<Settings | null>;
+	setSettings: Updater<SettingsSectionProps["settings"]>;
 }
 
+const Metadata: FC<SettingsSectionProps> = ({ settings, setSettings }) => {
+	const handleChange = useCallback(
+		(key: "blogName" | "blogFullName", value: string) =>
+			setSettings((settings) => {
+				settings && (settings[key] = value);
+			}),
+		[setSettings],
+	);
+
+	return (
+		<fieldset>
+			<legend>{`Metadata`}</legend>
+
+			<div className={`form`}>
+				<label>{`Blog name `}</label>
+				<input type={`text`} value={settings?.blogName || ``} onChange={(e) => handleChange(`blogName`, e.target.value)} />
+				<label>{`Blog full name `}</label>
+				<input type={`text`} value={settings?.blogFullName || ``} onChange={(e) => handleChange(`blogFullName`, e.target.value)} />
+			</div>
+		</fieldset>
+	);
+};
+
 const NavigationLinks: FC<SettingsSectionProps> = ({ settings, setSettings }) => {
-	const addNewLink = useCallback(() => {
-		setSettings((settings) => ({
-			...settings,
-			headerLinks: [...(settings?.headerLinks || []), { name: ``, url: ``, icon: `` }],
-		}));
-	}, [setSettings]);
+	const addNewLink = useCallback(
+		() =>
+			setSettings((settings) => {
+				settings && settings.headerLinks.push({ name: ``, url: ``, icon: `` });
+			}),
+		[setSettings],
+	);
 
 	const removeLink = useCallback(
-		(index: number) => {
-			setSettings((settings) => ({
-				...settings,
-				headerLinks: (settings?.headerLinks || []).filter((_, i) => i !== index),
-			}));
-		},
+		(index: number) =>
+			setSettings((settings) => {
+				delete settings?.headerLinks[index];
+			}),
 		[setSettings],
 	);
 
 	const handleChange = useCallback(
-		(index: number, key: string, value: unknown) => {
-			setSettings((settings) => ({
-				...settings,
-				headerLinks: (settings?.headerLinks || []).map((link, i) => (i === index ? { ...link, [key]: value } : link)),
-			}));
-		},
+		(index: number, key: keyof Settings["headerLinks"][0], value: string) =>
+			setSettings((settings) => {
+				settings && (settings.headerLinks[index][key] = value);
+			}),
 		[setSettings],
 	);
 
 	const swapLinks = useCallback(
 		(index1: number, index2: number) =>
 			setSettings((settings) => {
-				const links = settings?.headerLinks || [];
-				const link1 = links[index1];
-				const link2 = links[index2];
+				if (!settings) return;
 
-				if (!link1 || !link2) return settings;
-
-				return { ...settings, headerLinks: links.map((link, i) => (i === index1 ? link2 : i === index2 ? link1 : link)) };
+				const temp = settings.headerLinks[index1];
+				settings.headerLinks[index1] = settings.headerLinks[index2];
+				settings.headerLinks[index2] = temp;
 			}),
 		[setSettings],
 	);
@@ -88,7 +108,7 @@ const NavigationLinks: FC<SettingsSectionProps> = ({ settings, setSettings }) =>
 export interface ManageWebsiteProps {}
 
 export function ManageWebsite(props: ManageWebsiteProps) {
-	const [settings, setSettings] = useState<Jsonify<Settings> | null>(null);
+	const [settings, setSettings] = useImmer<Jsonify<Settings> | null>(null);
 	const [updating, setUpdating] = useState(false);
 
 	useEffect(() => {
@@ -98,7 +118,7 @@ export function ManageWebsite(props: ManageWebsiteProps) {
 			.then((settings) => setSettings(settings))
 			.catch((e: Error) => toast.error(`Failed to fetch settings: ${e.message}`))
 			.finally(() => setUpdating(false));
-	}, []);
+	}, [setSettings]);
 
 	const save = useCallback(() => {
 		setUpdating(true);
@@ -121,9 +141,14 @@ export function ManageWebsite(props: ManageWebsiteProps) {
 				<Link href={`/`}>{`← Go back`}</Link>
 			</div>
 
-			<div>
-				<NavigationLinks {...{ settings, setSettings }} />
-			</div>
+			{settings === null ? (
+				<div>{`Loading...`}</div>
+			) : (
+				<div>
+					<Metadata {...{ settings, setSettings }} />
+					<NavigationLinks {...{ settings, setSettings }} />
+				</div>
+			)}
 
 			<div className={`hstack`}>
 				<button onClick={save} disabled={updating}>

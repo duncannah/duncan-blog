@@ -8,16 +8,23 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import "../style.scss";
-function CustomApp({ Component, pageProps, router, links }: AppProps & { links: Jsonify<Settings["headerLinks"]> }) {
+function CustomApp({
+	Component,
+	pageProps,
+	router,
+	blogName,
+	blogFullName,
+	links,
+}: AppProps & { blogName: string; blogFullName: string; links: Jsonify<Settings["headerLinks"]> }) {
 	useTransitionFix();
 
 	return (
 		<>
 			<Head>
-				<title>{process.env.NEXT_PUBLIC_BLOG_FULLNAME}</title>
+				<title>{blogFullName}</title>
 			</Head>
 			<main className={`app`}>
-				<Header links={links} />
+				<Header {...{ blogName, links }} />
 				<TransitionGroup className={`page-content`}>
 					<CSSTransition key={router.pathname} classNames={`page`} timeout={300}>
 						<Component {...pageProps} />
@@ -33,9 +40,11 @@ CustomApp.getInitialProps = async (appContext: AppContext) => {
 	const appProps = await App.getInitialProps(appContext);
 
 	if (typeof window === `undefined`) {
+		const blogName = await getSetting(`blogName`);
+		const blogFullName = await getSetting(`blogFullName`);
 		const links = await getSetting(`headerLinks`);
 
-		return { ...appProps, links };
+		return { ...appProps, blogName, blogFullName, links };
 	}
 
 	return { ...appProps };

@@ -41,6 +41,7 @@ specifiers:
   express: 4.18.2
   fluent-ffmpeg: 2.1.2
   html-react-parser: 3.0.8
+  immer: ^9.0.18
   lodash: 4.17.21
   next: 13.1.5
   next-multipart: 0.5.1
@@ -60,6 +61,7 @@ specifiers:
   ts-node: 10.9.1
   tslib: 2.4.1
   typescript: 4.9.4
+  use-immer: ^0.8.1
   webpack: 5.75.0
   zod: ^3.20.2
 
@@ -73,6 +75,7 @@ dependencies:
   express: 4.18.2
   fluent-ffmpeg: 2.1.2
   html-react-parser: 3.0.8_react@18.2.0
+  immer: 9.0.18
   lodash: 4.17.21
   next: 13.1.5_23e7ztf2chqi3ri6onem3l5mii
   next-multipart: 0.5.1_next@13.1.5
@@ -86,6 +89,7 @@ dependencies:
   sharp: 0.31.3
   tinymce: 6.3.1
   tslib: 2.4.1
+  use-immer: 0.8.1_immer@9.0.18+react@18.2.0
   zod: 3.20.2
 
 devDependencies:
@@ -5732,6 +5736,10 @@ packages:
     requiresBuild: true
     optional: true
 
+  /immer/9.0.18:
+    resolution: {integrity: sha512-eAPNpsj7Ax1q6Y/3lm2PmlwRcFzpON7HSNQ3ru5WQH1/PSpnyed/HpNOELl2CxLKoj4r+bAHgdyKqW5gc2Se1A==}
+    dev: false
+
   /immutable/4.1.0:
     resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
 
@@ -8994,6 +9002,16 @@ packages:
       mime-types: 2.1.35
       schema-utils: 3.1.1
       webpack: 5.75.0
+    dev: false
+
+  /use-immer/0.8.1_immer@9.0.18+react@18.2.0:
+    resolution: {integrity: sha512-OfTFf1pL+ICjjcLPn9+ZnaJO/Yg4MBzYZtACEe2mZ/W2A5col28PNUnwowOAaBuOogACOK/37TU17KgsIhUpOw==}
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      immer: 9.0.18
+      react: 18.2.0
     dev: false
 
   /util-deprecate/1.0.2:

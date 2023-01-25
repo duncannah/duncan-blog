@@ -3,6 +3,8 @@ import { prisma } from "./db";
 
 // use .catch() instead of .optional() to avoid errors when parsing
 export const settingsSchema = z.object({
+	blogName: z.string().catch(process.env[`NEXT_PUBLIC_BLOG_NAME`] ?? `Blog`),
+	blogFullName: z.string().catch(process.env[`NEXT_PUBLIC_BLOG_FULLNAME`] ?? `Blog`),
 	headerLinks: z
 		.array(
 			z.object({

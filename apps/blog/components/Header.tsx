@@ -7,13 +7,13 @@ import { Settings } from "@duncan-blog/shared";
 
 import styles from "./Header.module.scss";
 
-export const Header: NextPage<{ links: Jsonify<Settings["headerLinks"]> }> = ({ links }) => {
+export const Header: NextPage<{ blogName: string; links: Jsonify<Settings["headerLinks"]> }> = ({ blogName, links }) => {
 	const router = useRouter();
 
 	return (
 		<header className={styles.Header}>
 			<Link href={`/`}>
-				<h1>{process.env.NEXT_PUBLIC_BLOG_NAME}</h1>
+				<h1>{blogName}</h1>
 			</Link>
 			<ul>
 				{links &&
