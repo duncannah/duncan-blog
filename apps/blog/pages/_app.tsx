@@ -14,14 +14,25 @@ function CustomApp({
 	router,
 	blogName,
 	blogFullName,
+	favicon,
 	links,
-}: AppProps & { blogName: string; blogFullName: string; links: Jsonify<Settings["headerLinks"]> }) {
+}: AppProps & { blogName: string; blogFullName: string; favicon: string; links: Jsonify<Settings["headerLinks"]> }) {
 	useTransitionFix();
 
 	return (
 		<>
 			<Head>
 				<title>{blogFullName}</title>
+				{favicon.length > 0 ? (
+					<link rel={`shortcut icon`} href={`data:image/svg+xml,${encodeURIComponent(favicon)}`} type={`image/svg+xml`} />
+				) : (
+					<>
+						<link rel={`apple-touch-icon`} sizes={`180x180`} href={`/apple-touch-icon.png`} />
+						<link rel={`icon`} type={`image/png`} sizes={`32x32`} href={`/favicon-32x32.png`} />
+						<link rel={`icon`} type={`image/png`} sizes={`16x16`} href={`/favicon-16x16.png`} />
+						<link rel={`manifest`} href={`/site.webmanifest`} />
+					</>
+				)}
 			</Head>
 			<main className={`app`}>
 				<Header {...{ blogName, links }} />
@@ -42,9 +53,10 @@ CustomApp.getInitialProps = async (appContext: AppContext) => {
 	if (typeof window === `undefined`) {
 		const blogName = await getSetting(`blogName`);
 		const blogFullName = await getSetting(`blogFullName`);
+		const favicon = await getSetting(`favicon`);
 		const links = await getSetting(`headerLinks`);
 
-		return { ...appProps, blogName, blogFullName, links };
+		return { ...appProps, blogName, blogFullName, favicon, links };
 	}
 
 	return { ...appProps };

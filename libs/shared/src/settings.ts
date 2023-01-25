@@ -5,6 +5,7 @@ import { prisma } from "./db";
 export const settingsSchema = z.object({
 	blogName: z.string().catch(process.env[`NEXT_PUBLIC_BLOG_NAME`] ?? `Blog`),
 	blogFullName: z.string().catch(process.env[`NEXT_PUBLIC_BLOG_FULLNAME`] ?? `Blog`),
+	favicon: z.string().catch(``),
 	headerLinks: z
 		.array(
 			z.object({

@@ -15,7 +15,7 @@ interface SettingsSectionProps {
 
 const Metadata: FC<SettingsSectionProps> = ({ settings, setSettings }) => {
 	const handleChange = useCallback(
-		(key: "blogName" | "blogFullName", value: string) =>
+		(key: "blogName" | "blogFullName" | "favicon", value: string) =>
 			setSettings((settings) => {
 				settings && (settings[key] = value);
 			}),
@@ -31,6 +31,8 @@ const Metadata: FC<SettingsSectionProps> = ({ settings, setSettings }) => {
 				<input type={`text`} value={settings?.blogName || ``} onChange={(e) => handleChange(`blogName`, e.target.value)} />
 				<label>{`Blog full name `}</label>
 				<input type={`text`} value={settings?.blogFullName || ``} onChange={(e) => handleChange(`blogFullName`, e.target.value)} />
+				<label>{`Favicon `}</label>
+				<input type={`text`} value={settings?.favicon || ``} onChange={(e) => handleChange(`favicon`, e.target.value)} />
 			</div>
 		</fieldset>
 	);
