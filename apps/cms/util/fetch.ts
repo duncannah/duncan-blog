@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosHeaders, AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
 	headers: {
@@ -11,7 +11,9 @@ const axiosInstance = axios.create({
 
 export class APICall {
 	private static async call<T>(endpoint: string, config?: AxiosRequestConfig): Promise<Jsonify<T>> {
-		if (config?.data && config.data instanceof FormData) config.headers = { ...(config.headers || {}), "Content-Type": `multipart/form-data` };
+		if (config?.data && config.data instanceof FormData)
+			if (config.headers instanceof AxiosHeaders) config.headers.set(`Content-Type`, `multipart/form-data`);
+			else config.headers = { ...(config.headers || {}), "Content-Type": `multipart/form-data` };
 
 		const { data } = await axiosInstance.request<Jsonify<{ data?: T; error?: string }>>({
 			...(config || {}),
