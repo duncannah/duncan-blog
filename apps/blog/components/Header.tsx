@@ -1,13 +1,13 @@
-import { HeaderLink } from "@prisma/client";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import HTMLParser from "html-react-parser";
 import React from "react";
+import { Settings } from "@duncan-blog/shared";
 
 import styles from "./Header.module.scss";
 
-export const Header: NextPage<{ links: Jsonify<HeaderLink[]> }> = ({ links }) => {
+export const Header: NextPage<{ links: Jsonify<Settings["headerLinks"]> }> = ({ links }) => {
 	const router = useRouter();
 
 	return (

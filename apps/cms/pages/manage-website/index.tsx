@@ -1,97 +1,85 @@
-import { HeaderLink } from "@prisma/client";
-import { APICall } from "../../util/fetch";
 import Link from "next/link";
 import React, { FC, useCallback, useEffect, useState } from "react";
-import styles from "./index.module.scss";
 import toast from "react-hot-toast";
 
-const NavigationLinks: FC = () => {
-	const [links, setLinks] = useState<Jsonify<HeaderLink>[] | null>(null);
-	const [updating, setUpdating] = useState(false);
+import { APICall } from "../../util/fetch";
+import { Settings } from "@duncan-blog/shared";
+import styles from "./index.module.scss";
 
-	useEffect(() => {
-		setUpdating(true);
+interface SettingsSectionProps {
+	settings: Jsonify<Settings> | null;
+	setSettings: React.Dispatch<React.SetStateAction<SettingsSectionProps["settings"]>>;
+}
 
-		APICall.get<HeaderLink[]>(`navigation-links`)
-			.then((links) => setLinks(links))
-			.catch((e: Error) => toast.error(`Failed to fetch navigation links: ${e.message}`))
-			.finally(() => setUpdating(false));
-	}, []);
-
+const NavigationLinks: FC<SettingsSectionProps> = ({ settings, setSettings }) => {
 	const addNewLink = useCallback(() => {
-		setLinks((links) => [...(links || []), { id: links?.length ?? 0, name: ``, url: ``, icon: `` }]);
-	}, []);
+		setSettings((settings) => ({
+			...settings,
+			headerLinks: [...(settings?.headerLinks || []), { name: ``, url: ``, icon: `` }],
+		}));
+	}, [setSettings]);
 
-	const removeLink = useCallback((id: number) => {
-		setLinks((links) => (links || []).filter((l) => l.id !== id));
-	}, []);
-
-	const save = useCallback(() => {
-		setUpdating(true);
-
-		if (links)
-			toast
-				.promise(APICall.post(`navigation-links`, { data: links }), {
-					loading: `Saving...`,
-					success: `Saved!`,
-					error: (e: Error) => `Failed to fetch navigation links: ${e.message}`,
-				})
-				.finally(() => setUpdating(false));
-	}, [links]);
+	const removeLink = useCallback(
+		(index: number) => {
+			setSettings((settings) => ({
+				...settings,
+				headerLinks: (settings?.headerLinks || []).filter((_, i) => i !== index),
+			}));
+		},
+		[setSettings],
+	);
 
 	const handleChange = useCallback(
-		(id: number, key: string, value: unknown) => {
-			setLinks((links) => links?.map((link) => (link.id === id ? { ...link, [key]: value } : link)) ?? links);
+		(index: number, key: string, value: unknown) => {
+			setSettings((settings) => ({
+				...settings,
+				headerLinks: (settings?.headerLinks || []).map((link, i) => (i === index ? { ...link, [key]: value } : link)),
+			}));
 		},
-		[setLinks],
+		[setSettings],
 	);
 
 	const swapLinks = useCallback(
-		(id1: number, id2: number) =>
-			setLinks((links) => {
-				const link1 = links?.find((l) => l.id === id1);
-				const link2 = links?.find((l) => l.id === id2);
+		(index1: number, index2: number) =>
+			setSettings((settings) => {
+				const links = settings?.headerLinks || [];
+				const link1 = links[index1];
+				const link2 = links[index2];
 
-				if (!link1 || !link2) return links;
+				if (!link1 || !link2) return settings;
 
-				return [...(links || []).filter((l) => l.id !== id1 && l.id !== id2), { ...link1, id: id2 }, { ...link2, id: id1 }];
+				return { ...settings, headerLinks: links.map((link, i) => (i === index1 ? link2 : i === index2 ? link1 : link)) };
 			}),
-		[setLinks],
+		[setSettings],
 	);
 
 	return (
-		<fieldset className={updating ? `disabled` : `` + ` table-wrapper`}>
+		<fieldset className={`table-wrapper`}>
 			<legend>{`Navigation links`}</legend>
-			{!links ? (
-				<div>{`Loading...`}</div>
-			) : (
-				<>
-					<div className={styles[`links`]}>
-						{links.map((link) => (
-							<div key={link.id} className={`hstack`}>
-								<div className={styles[`order-controls`]}>
-									<button onClick={() => swapLinks(link.id, link.id - 1)}>{`\u{1431}`}</button>
-									<button onClick={() => swapLinks(link.id, link.id + 1)}>{`\u{142F}`}</button>
-								</div>
-								{link.id}
-								<label>
-									{`Name `} <input type={`text`} value={link.name} onChange={(e) => handleChange(link.id, `name`, e.target.value)} />
-								</label>
-								<label>
-									{`URL `} <input type={`text`} value={link.url} onChange={(e) => handleChange(link.id, `url`, e.target.value)} />
-								</label>
-								<label>
-									{`Icon `} <input type={`text`} value={link.icon || ``} onChange={(e) => handleChange(link.id, `icon`, e.target.value)} />
-								</label>
-								<button onClick={() => removeLink(link.id)}>{`X`}</button>
-							</div>
-						))}
+			<div className={styles[`links`]}>
+				{settings?.headerLinks.map((link, index) => (
+					<div key={index} className={`hstack`}>
+						<div className={styles[`order-controls`]}>
+							<button onClick={() => swapLinks(index, index - 1)}>{`\u{1431}`}</button>
+							<button onClick={() => swapLinks(index, index + 1)}>{`\u{142F}`}</button>
+						</div>
+						{index}
+						<label>
+							{`Name `} <input type={`text`} value={link.name} onChange={(e) => handleChange(index, `name`, e.target.value)} />
+						</label>
+						<label>
+							{`URL `} <input type={`text`} value={link.url} onChange={(e) => handleChange(index, `url`, e.target.value)} />
+						</label>
+						<label>
+							{`Icon `} <input type={`text`} value={link.icon || ``} onChange={(e) => handleChange(index, `icon`, e.target.value)} />
+						</label>
+						<button onClick={() => removeLink(index)}>{`X`}</button>
 					</div>
-					<div className={`hstack`}>
-						<button className={`active`} onClick={save}>{`Save`}</button> <button onClick={addNewLink}>{`+`}</button>
-					</div>
-				</>
-			)}
+				))}
+			</div>
+			<div className={`hstack`}>
+				<button onClick={addNewLink}>{`+`}</button>
+			</div>
 		</fieldset>
 	);
 };
@@ -100,6 +88,31 @@ const NavigationLinks: FC = () => {
 export interface ManageWebsiteProps {}
 
 export function ManageWebsite(props: ManageWebsiteProps) {
+	const [settings, setSettings] = useState<Jsonify<Settings> | null>(null);
+	const [updating, setUpdating] = useState(false);
+
+	useEffect(() => {
+		setUpdating(true);
+
+		APICall.get<Settings>(`settings`)
+			.then((settings) => setSettings(settings))
+			.catch((e: Error) => toast.error(`Failed to fetch settings: ${e.message}`))
+			.finally(() => setUpdating(false));
+	}, []);
+
+	const save = useCallback(() => {
+		setUpdating(true);
+
+		if (settings)
+			toast
+				.promise(APICall.post(`settings`, { data: settings }), {
+					loading: `Saving...`,
+					success: `Saved!`,
+					error: (e: Error) => `Failed to save settings: ${e.message}`,
+				})
+				.finally(() => setUpdating(false));
+	}, [settings]);
+
 	return (
 		<div className={styles[`container`]}>
 			<div className={`hstack`}>
@@ -109,7 +122,13 @@ export function ManageWebsite(props: ManageWebsiteProps) {
 			</div>
 
 			<div>
-				<NavigationLinks />
+				<NavigationLinks {...{ settings, setSettings }} />
+			</div>
+
+			<div className={`hstack`}>
+				<button onClick={save} disabled={updating}>
+					{`Save`}
+				</button>
 			</div>
 		</div>
 	);
