@@ -3,8 +3,8 @@ import { prisma, md } from "@duncan-blog/shared";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
+import { FormEvent, useCallback, useRef, useState } from "react";
+import Editor from "@monaco-editor/react";
 
 import { APICall } from "../../../util/fetch";
 import CollapsibleFieldset from "../../../components/collapsible-fieldset/collapsible-fieldset";
@@ -32,20 +32,6 @@ export function PostId({ post }: PostIdProps) {
 	const router = useRouter();
 
 	const previewRef = useRef<HTMLIFrameElement>(null);
-
-	// const editorRef = useRef<HTMLDivElement>(null);
-
-	// useEffect(() => {
-	// 	if (editorRef.current) {
-	// 		monaco.editor.create(editorRef.current, {
-	// 			value: values.content || ``,
-	// 			language: `markdown`,
-	// 			theme: `vs-dark`,
-	// 			automaticLayout: true,
-	// 		});
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
 
 	const updateValue = useCallback((key: string, value: unknown) => {
 		setValues((values) => ({ ...values, [key]: value }));
