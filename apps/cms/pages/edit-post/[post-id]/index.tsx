@@ -1,13 +1,12 @@
 import { Category, Post, Upload } from "@prisma/client";
-import { prisma } from "@duncan-blog/shared";
+import { prisma, md } from "@duncan-blog/shared";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useCallback, useRef, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import Editor from "@monaco-editor/react";
 
 import { APICall } from "../../../util/fetch";
-import codesampleLanguages from "../../../util/codesample-languages";
 import CollapsibleFieldset from "../../../components/collapsible-fieldset/collapsible-fieldset";
 import ManageUploads from "../../../components/manage-uploads/manage-uploads";
 import CategorySelect from "../../../components/category-select/category-select";
@@ -32,7 +31,7 @@ export function PostId({ post }: PostIdProps) {
 
 	const router = useRouter();
 
-	const editorRef = useRef<unknown>(null);
+	const previewRef = useRef<HTMLIFrameElement>(null);
 
 	const updateValue = useCallback((key: string, value: unknown) => {
 		setValues((values) => ({ ...values, [key]: value }));
@@ -130,52 +129,47 @@ export function PostId({ post }: PostIdProps) {
 						</div>
 						<div>
 							<label>{`Content`}</label>
-							<Editor
-								tinymceScriptSrc={`/tinymce/tinymce.min.js`}
-								onInit={(evt, editor) => (editorRef.current = editor)}
-								value={values[`content`] || ``}
-								onEditorChange={(content) => {
-									updateValue(`content`, content);
-								}}
-								init={{
-									height: 500,
-									// removed: quickbars, textpattern, imagetools, print, paste, hr, toc, noneditable
-									plugins: `preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap emoticons`,
-									menubar: `file edit view insert format tools table help`,
-									toolbar: `undo redo | bold italic underline strikethrough removeformat | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | restoredraft visualchars visualblocks code`,
-									contextmenu: `link table`,
-									image_caption: true,
+							<div className={styles.editor}>
+								<Editor
+									language={`markdown`}
+									theme={`vs-dark`}
+									value={values[`content`] || ``}
+									options={{
+										minimap: { enabled: false },
+									}}
+									width={`100%`}
+									height={`400px`}
+									onMount={() => {
+										if (previewRef.current && previewRef.current?.contentWindow?.document) {
+											const doc = previewRef.current.contentWindow.document;
 
-									font_size_formats: `25% 50% 75% 100% 125% 150% 175% 200%`,
+											if (values[`content`]) doc.body.innerHTML = md.render(values[`content`]);
 
-									autosave_ask_before_unload: true,
-									autosave_interval: `30s`,
-									autosave_prefix: `{path}{query}-{id}-`,
-									autosave_restore_when_empty: false,
-									autosave_retention: `${72 * 60}m`,
+											doc.head.appendChild(doc.createElement(`style`)).innerHTML = Array.from(document.styleSheets)
+												.map((styleSheet) => {
+													try {
+														return Array.from(styleSheet.cssRules)
+															.map((rule) => rule.cssText)
+															.join(``);
+													} catch (e) {
+														/* */
+													}
+												})
+												.filter(Boolean)
+												.join(`\n`);
+										}
+									}}
+									onChange={(content) => {
+										updateValue(`content`, content);
 
-									content_style:
-										typeof document === `undefined`
-											? ``
-											: Array.from(document.styleSheets)
-													.map((styleSheet) => {
-														try {
-															return Array.from(styleSheet.cssRules)
-																.map((rule) => rule.cssText)
-																.join(``);
-														} catch (e) {
-															/* */
-														}
-													})
-													.filter(Boolean)
-													.join(`\n`),
-									skin: `oxide-dark`,
-									visualblocks_default_state: true,
-									codesample_languages: codesampleLanguages,
-									valid_children: `+body[style]`,
-									//content_style: `body { font-family:Helvetica,Arial,sans-serif; font-size:14px }`,
-								}}
-							/>
+										if (previewRef.current && previewRef.current?.contentWindow?.document && content)
+											previewRef.current.contentWindow.document.body.innerHTML = md.render(content);
+									}}
+								/>
+								<div className={styles[`editor__preview`]}>
+									<iframe ref={previewRef} srcDoc={``} />
+								</div>
+							</div>
 						</div>
 						<div>
 							<fieldset>
