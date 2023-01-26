@@ -28,7 +28,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': 5.49.0
   '@typescript-eslint/parser': 5.49.0
   '@wooorm/starry-night': ^1.5.0
-  axios: 1.2.4
+  axios: 1.2.5
   core-js: 3.27.2
   cuid: 3.0.0
   eslint: 8.32.0
@@ -71,7 +71,7 @@ dependencies:
   '@nrwl/next': 15.6.2_fobalcdqoma7fe77kiaz7vtvsu
   '@prisma/client': 4.9.0_prisma@4.9.0
   '@wooorm/starry-night': 1.5.0
-  axios: 1.2.4
+  axios: 1.2.5
   core-js: 3.27.2
   cuid: 3.0.0
   express: 4.18.2
@@ -3484,8 +3484,8 @@ packages:
       - debug
     dev: true
 
-  /axios/1.2.4:
-    resolution: {integrity: sha512-lIQuCfBJvZB/Bv7+RWUqEJqNShGOVpk9v7P0ZWx5Ip0qY6u7JBAU6dzQPMLasU9vHL2uD8av/1FDJXj7n6c39w==}
+  /axios/1.2.5:
+    resolution: {integrity: sha512-9pU/8mmjSSOb4CXVsvGIevN+MlO/t9OWtKadTaLuN85Gge3HGorUckgp8A/2FH4V4hJ7JuQ3LIeI7KAV9ITZrQ==}
     dependencies:
       follow-redirects: 1.15.1
       form-data: 4.0.0
@@ -7172,7 +7172,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.20
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.2.4
+      axios: 1.2.5
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
