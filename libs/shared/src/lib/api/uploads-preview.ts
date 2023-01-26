@@ -1,4 +1,4 @@
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createReadStream } from "fs";
 import { pipeline } from "stream";

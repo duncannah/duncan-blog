@@ -1,5 +1,5 @@
 import { POSTS_PER_PAGE } from "../../../shared/utils";
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import Index, { getStaticProps } from "../..";
 
 export { getStaticProps };

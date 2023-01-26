@@ -5,7 +5,7 @@ import { useImmer, Updater } from "use-immer";
 import toast from "react-hot-toast";
 
 import { APICall } from "../../util/fetch";
-import { Settings } from "@duncan-blog/shared";
+import { Settings } from "@duncan-blog/shared/settings";
 import styles from "./index.module.scss";
 
 interface SettingsSectionProps {

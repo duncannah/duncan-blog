@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Post } from "@prisma/client";
 
 import { APICall } from "../../util/fetch";
-import { Pagination } from "@duncan-blog/shared";
+import { Pagination } from "@duncan-blog/shared/lib/pagination/pagination";
 import CollapsibleFieldset from "../../components/collapsible-fieldset/collapsible-fieldset";
 
 import styles from "./index.module.scss";

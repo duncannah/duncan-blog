@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import HTMLParser from "html-react-parser";
 import React from "react";
-import { Settings } from "@duncan-blog/shared";
+import { Settings } from "@duncan-blog/shared/settings";
 
 import styles from "./Header.module.scss";
 

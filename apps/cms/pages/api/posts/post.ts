@@ -1,5 +1,5 @@
 import { Category, Post } from "@prisma/client";
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import triggerRebuild from "../../../util/rebuild";
 

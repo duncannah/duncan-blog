@@ -1,7 +1,7 @@
 import { GetStaticPaths } from "next";
 import { POSTS_PER_PAGE } from "../../../../../shared/utils";
 import Index, { getStaticProps } from "../..";
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 
 export { getStaticProps };
 

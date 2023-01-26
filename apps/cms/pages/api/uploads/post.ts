@@ -1,4 +1,4 @@
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import type { NextApiResponse } from "next";
 import { FormNextApiRequest, withFileUpload, getConfig } from "next-multipart";
 import { EnhancedFile } from "next-multipart/dist/lib/helpers";

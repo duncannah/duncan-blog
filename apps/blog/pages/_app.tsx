@@ -1,4 +1,4 @@
-import { Settings, getSetting } from "@duncan-blog/shared";
+import { Settings, getSetting } from "@duncan-blog/shared/settings";
 import App, { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 import { CSSTransition, TransitionGroup } from "react-transition-group";

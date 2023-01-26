@@ -1,5 +1,6 @@
 import { Category, Post, Upload } from "@prisma/client";
-import { prisma, md } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
+import { md } from "@duncan-blog/shared/markdown";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";

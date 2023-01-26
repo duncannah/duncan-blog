@@ -1,4 +1,4 @@
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import triggerRebuild from "../../../util/rebuild";
 import type { NextApiRequest, NextApiResponse } from "next";
 

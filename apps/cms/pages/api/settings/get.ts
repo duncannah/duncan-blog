@@ -1,4 +1,4 @@
-import { getSettings } from "@duncan-blog/shared";
+import { getSettings } from "@duncan-blog/shared/settings";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export const SettingsGetHandler = async (req: NextApiRequest, res: NextApiResponse) => {

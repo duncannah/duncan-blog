@@ -1,5 +1,7 @@
 import { Post, Upload, Category } from "@prisma/client";
-import { getSetting, prisma, md } from "@duncan-blog/shared";
+import { getSetting } from "@duncan-blog/shared/settings";
+import { prisma } from "@duncan-blog/shared/db";
+import { md } from "@duncan-blog/shared/markdown";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import HTMLParser, { Element, DOMNode, domToReact } from "html-react-parser";
 import { dateToString, getUploadURL } from "../../shared/utils";

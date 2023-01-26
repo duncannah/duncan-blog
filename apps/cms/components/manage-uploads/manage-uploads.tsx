@@ -1,4 +1,4 @@
-import { Loader } from "@duncan-blog/shared";
+import { Loader } from "@duncan-blog/shared/lib/loader/loader";
 import { Post, Upload } from "@prisma/client";
 import toast from "react-hot-toast";
 import { useCallback, useEffect, useRef, useState } from "react";

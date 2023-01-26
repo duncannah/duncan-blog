@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export const PostsGetHandler = async (req: NextApiRequest, res: NextApiResponse) => {

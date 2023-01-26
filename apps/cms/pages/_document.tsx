@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { fontURLs } from "@duncan-blog/shared";
+import { fontURLs } from "@duncan-blog/shared/fonts";
 
 export default function Document() {
 	return (

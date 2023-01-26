@@ -1,5 +1,6 @@
 import { Post, Category, Upload } from "@prisma/client";
-import { Pagination, prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
+import { Pagination } from "@duncan-blog/shared/lib/pagination/pagination";
 import { GetStaticProps } from "next";
 
 import { POSTS_PER_PAGE } from "../shared/utils";

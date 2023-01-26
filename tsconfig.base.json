@@ -15,7 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@duncan-blog/shared": ["libs/shared/src/index.ts"]
+			"@duncan-blog/shared/*": ["libs/shared/src/*"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

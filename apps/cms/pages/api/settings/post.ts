@@ -1,4 +1,4 @@
-import { settingsSchema, setSetting } from "@duncan-blog/shared";
+import { settingsSchema, setSetting } from "@duncan-blog/shared/settings";
 import type { NextApiRequest, NextApiResponse } from "next";
 import triggerRebuild from "../../../util/rebuild";
 

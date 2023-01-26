@@ -1,6 +1,6 @@
 // Posts that are pages handler
 import { GetStaticPaths } from "next";
-import { prisma } from "@duncan-blog/shared";
+import { prisma } from "@duncan-blog/shared/db";
 import { PostPage, getStaticProps } from "./post/[slug]";
 
 export default PostPage;
