@@ -1,6 +1,7 @@
 @import "variables";
 @import "normalize.css";
-@import "code-highlight-theme";
+// @import "code-highlight-theme";
+@import "@wooorm/starry-night/style/dark.css";
 
 :root {
 	color-scheme: dark;
@@ -189,6 +190,8 @@ kbd,
 samp,
 pre {
 	font-family: $font-family-monospace !important;
+	font-size: 0.8em;
+	tab-size: 4;
 }
 
 pre[class^="language-"] {
