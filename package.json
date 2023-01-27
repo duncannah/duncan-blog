@@ -33,7 +33,7 @@
 		"react-transition-group": "^4.4.5",
 		"regenerator-runtime": "0.13.11",
 		"sharp": "0.31.3",
-		"tslib": "2.4.1",
+		"tslib": "2.5.0",
 		"use-immer": "^0.8.1",
 		"zod": "^3.20.2"
 	},
