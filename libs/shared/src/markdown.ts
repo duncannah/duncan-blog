@@ -12,7 +12,7 @@ createStarryNight(common)
 export const md = new MarkdownIt({
 	html: true,
 	xhtmlOut: true,
-	breaks: true,
+	breaks: false,
 	typographer: true,
 	highlight(value, lang) {
 		if (!starryNight) return value;
