@@ -99,6 +99,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	if (!post) return { notFound: true };
 
 	post.content = md.render(post.content);
+	post.content = post.content.replace(/<!--.*?-->/gs, ``);
 
 	if (process.env[`NODE_ENV`] !== `development`) post.content = post.content.replace(/(?:\.\.|)\/api\/uploads\/preview\//gm, `${process.env[`UPLOADS_URL`] || ``}/`);
 
