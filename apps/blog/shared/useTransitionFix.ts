@@ -30,6 +30,8 @@ export const useTransitionFix = () => {
 	useEffect(() => {
 		const pathname = Router.router?.pathname;
 		const query = Router.router?.query;
-		void Router.router?.push({ pathname, query });
+		void Router.router?.push({ pathname, query }).catch(() => {
+			/**/
+		});
 	}, []);
 };

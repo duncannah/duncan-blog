@@ -23,7 +23,7 @@ function CustomApp({
 		<>
 			<Head>
 				<title>{blogFullName}</title>
-				{favicon.length > 0 ? (
+				{(favicon || ``).length > 0 ? (
 					<link rel={`shortcut icon`} href={`data:image/svg+xml,${encodeURIComponent(favicon)}`} type={`image/svg+xml`} />
 				) : (
 					<>
