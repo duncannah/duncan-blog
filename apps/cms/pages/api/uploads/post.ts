@@ -1,7 +1,7 @@
 import { prisma } from "@duncan-blog/shared/db";
 import type { NextApiResponse } from "next";
-import { FormNextApiRequest, withFileUpload, getConfig } from "next-multipart";
-import { EnhancedFile } from "next-multipart/dist/lib/helpers";
+import { FormNextApiRequest, withFileUpload, getConfig } from "next-multiparty";
+import { EnhancedFile } from "next-multiparty/dist/lib/helpers";
 import sharp, { FormatEnum } from "sharp";
 import ffmpeg from "fluent-ffmpeg";
 import cuid from "cuid";
@@ -70,12 +70,9 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 						await image.toFile(finalPath);
 					} else if (file.mimetype?.startsWith(`video/`)) {
 						manualCleanup = true;
-						// cleanupFiles doesn't work so WORKAROUND
-						// TODO: remove this when fixed
-						await fs.promises.copyFile(file.filepath, file.filepath + `.tmp`);
 
 						let cmd = ffmpeg({
-							source: file.filepath + `.tmp`,
+							source: file.filepath,
 						}).outputOptions([`-loop 0`]);
 
 						if (options.toStripMetaData) {
@@ -143,8 +140,7 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 									})
 									.catch(() => null);
 							})
-							// TODO: update when cleanupFiles is fixed
-							.finally(() => void fs.promises.unlink(file.filepath + `.tmp`));
+							.finally(() => void fs.promises.unlink(file.filepath));
 					} else {
 						// copy file over to final path
 						await fs.promises.copyFile(file.filepath, finalPath);
@@ -182,7 +178,7 @@ const UploadsPostHandler = async (req: FormNextApiRequest, res: NextApiResponse)
 	});
 };
 
-// TODO: cleanupFiles to be changed to false after it's fixed
-export default withFileUpload(UploadsPostHandler, { cleanupFiles: true });
+// File is cleaned up by us, so we don't want the middleware to do it
+export default withFileUpload(UploadsPostHandler, { cleanupFiles: false });
 
 export const config = getConfig();
