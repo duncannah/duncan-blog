@@ -100,8 +100,8 @@ devDependencies:
     specifier: 15.6.3
     version: 15.6.3(@babel/core@7.21.4)(@types/node@18.14.1)(eslint@8.34.0)(nx@15.6.3)(prettier@2.8.7)(ts-node@10.9.1)(typescript@4.9.5)
   '@nrwl/nx-cloud':
-    specifier: 15.1.1
-    version: 15.1.1
+    specifier: 15.3.5
+    version: 15.3.5
   '@nrwl/react':
     specifier: 15.6.3
     version: 15.6.3(eslint@8.34.0)(nx@15.6.3)(prettier@2.8.7)(typescript@4.9.5)
@@ -2136,8 +2136,8 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/nx-cloud@15.1.1:
-    resolution: {integrity: sha512-aIVb87PQpAjwdEaFksQ3rYgFq9MDaBG2KvYZcj/k+z2uWeWH84ha/opO37aCFLf5VXNiyJZGRb/+7vW7BFpNOw==}
+  /@nrwl/nx-cloud@15.3.5:
+    resolution: {integrity: sha512-JMKLY0HhdzQ/6jEvfL/EecPPdsdBIM0SyFrWAjikSJAh5MqhpFJWnr6FfTc5P57PJZ+IUNLkJ21VMuoTrA4+4w==}
     hasBin: true
     dependencies:
       axios: 0.21.4
