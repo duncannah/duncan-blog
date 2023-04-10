@@ -34,7 +34,7 @@
 		"regenerator-runtime": "0.13.11",
 		"sharp": "0.32.0",
 		"tslib": "2.5.0",
-		"use-immer": "^0.8.1",
+		"use-immer": "^0.9.0",
 		"zod": "^3.20.2"
 	},
 	"devDependencies": {
