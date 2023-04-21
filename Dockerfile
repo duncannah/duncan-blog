@@ -1,4 +1,4 @@
-FROM node:19-alpine as build
+FROM node:20-alpine as build
 
 WORKDIR /usr/src/app
 
@@ -11,7 +11,7 @@ RUN npm install -g pnpm \
 
 # Not pruning dev dependencies because we need them for the rebuilding
 
-FROM node:19-alpine as production
+FROM node:20-alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
