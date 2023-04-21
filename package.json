@@ -21,7 +21,7 @@
 		"fluent-ffmpeg": "2.1.2",
 		"hast-util-to-html": "^8.0.4",
 		"html-react-parser": "3.0.15",
-		"immer": "^10.0.0",
+		"immer": "^10.0.1",
 		"lodash": "4.17.21",
 		"markdown-it": "^13.0.1",
 		"next": "13.3.0",

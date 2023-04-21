@@ -35,8 +35,8 @@ dependencies:
     specifier: 3.0.15
     version: 3.0.15(react@18.2.0)
   immer:
-    specifier: ^10.0.0
-    version: 10.0.0
+    specifier: ^10.0.1
+    version: 10.0.1
   lodash:
     specifier: 4.17.21
     version: 4.17.21
@@ -75,7 +75,7 @@ dependencies:
     version: 2.5.0
   use-immer:
     specifier: ^0.9.0
-    version: 0.9.0(immer@10.0.0)(react@18.2.0)
+    version: 0.9.0(immer@10.0.1)(react@18.2.0)
   zod:
     specifier: ^3.20.2
     version: 3.20.2
@@ -5813,8 +5813,8 @@ packages:
     dev: true
     optional: true
 
-  /immer@10.0.0:
-    resolution: {integrity: sha512-U5wLsGKDt7+XnufwMYH7+RWcy4JTITNkWsV/H4sNhfIxcXvypDTzn9Cj0Y9Fjj0h1a/Gaba9oZYK0a+kO13uJQ==}
+  /immer@10.0.1:
+    resolution: {integrity: sha512-zg++jJLsKKTwXGeSYIw0HgChSYQGtu0UDTnbKx5aGLYgte4CwTmH9eJDYyQ6FheyUtBe+lQW9FrGxya1G+Dtmg==}
     dev: false
 
   /immutable@4.1.0:
@@ -9141,13 +9141,13 @@ packages:
       webpack: 5.80.0
     dev: false
 
-  /use-immer@0.9.0(immer@10.0.0)(react@18.2.0):
+  /use-immer@0.9.0(immer@10.0.1)(react@18.2.0):
     resolution: {integrity: sha512-/L+enLi0nvuZ6j4WlyK0US9/ECUtV5v9RUbtxnn5+WbtaXYUaOBoKHDNL9I5AETdurQ4rIFIj/s+Z5X80ATyKw==}
     peerDependencies:
       immer: '>=2.0.0'
       react: ^16.8.0 || ^17.0.1 || ^18.0.0
     dependencies:
-      immer: 10.0.0
+      immer: 10.0.1
       react: 18.2.0
     dev: false
 
