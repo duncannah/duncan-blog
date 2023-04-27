@@ -68,8 +68,8 @@ dependencies:
     specifier: 0.13.11
     version: 0.13.11
   sharp:
-    specifier: 0.32.0
-    version: 0.32.0
+    specifier: 0.32.1
+    version: 0.32.1
   tslib:
     specifier: 2.5.0
     version: 2.5.0
@@ -2976,7 +2976,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.8
+      semver: 7.5.0
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: 5.0.4
     transitivePeerDependencies:
@@ -3038,7 +3038,7 @@ packages:
       eslint: 8.39.0
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0(eslint@8.39.0)
-      semver: 7.3.8
+      semver: 7.5.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -4109,7 +4109,7 @@ packages:
       postcss-modules-scope: 3.0.0(postcss@8.4.20)
       postcss-modules-values: 4.0.0(postcss@8.4.20)
       postcss-value-parser: 4.2.0
-      semver: 7.3.8
+      semver: 7.5.0
       webpack: 5.81.0
     dev: true
 
@@ -5242,7 +5242,7 @@ packages:
       minimatch: 3.1.2
       node-abort-controller: 3.0.1
       schema-utils: 3.1.2
-      semver: 7.3.8
+      semver: 7.5.0
       tapable: 2.2.1
       typescript: 5.0.4
       webpack: 5.81.0
@@ -6453,7 +6453,7 @@ packages:
       jest-util: 28.1.3
       natural-compare: 1.4.0
       pretty-format: 28.1.3
-      semver: 7.3.8
+      semver: 7.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7033,7 +7033,7 @@ packages:
     resolution: {integrity: sha512-u4uAs/4Zzmp/jjsD9cyFYDXeISfUWaAVWshPmDZOFOv4Xl4SbzTXm53I04C2uRueYJ+0t5PEtLH/owbn2Npf/w==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.3.8
+      semver: 7.5.0
     dev: false
 
   /node-abort-controller@3.0.1:
@@ -7043,8 +7043,8 @@ packages:
   /node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
 
-  /node-addon-api@6.0.0:
-    resolution: {integrity: sha512-GyHvgPvUXBvAkXa0YvYnhilSB1A+FRYMpIVggKzPZqdaZfevZOuzfWzyvgzOwRLHBeo/MMswmJFsrNF4Nw1pmA==}
+  /node-addon-api@6.1.0:
+    resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
     dev: false
 
   /node-forge@1.3.1:
@@ -7513,7 +7513,7 @@ packages:
       cosmiconfig: 7.0.1
       klona: 2.0.5
       postcss: 8.4.20
-      semver: 7.3.8
+      semver: 7.5.0
       webpack: 5.81.0
     dev: true
 
@@ -8254,6 +8254,14 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
+
+  /semver@7.5.0:
+    resolution: {integrity: sha512-+XC0AD/R7Q2mPSRuy2Id0+CGTZ98+8f+KvwirxOKIEyid+XSx6HbC63p+O4IndTHuX5Z+JxQ0TghCkO5Cg/2HA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
 
   /send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
@@ -8320,16 +8328,16 @@ packages:
       kind-of: 6.0.3
     dev: false
 
-  /sharp@0.32.0:
-    resolution: {integrity: sha512-yLAypVcqj1toSAqRSwbs86nEzfyZVDYqjuUX8grhFpeij0DDNagKJXELS/auegDBRDg1XBtELdOGfo2X1cCpeA==}
+  /sharp@0.32.1:
+    resolution: {integrity: sha512-kQTFtj7ldpUqSe8kDxoGLZc1rnMFU0AO2pqbX6pLy3b7Oj8ivJIdoKNwxHVQG2HN6XpHPJqCSM2nsma2gOXvOg==}
     engines: {node: '>=14.15.0'}
     requiresBuild: true
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.1
-      node-addon-api: 6.0.0
+      node-addon-api: 6.1.0
       prebuild-install: 7.1.1
-      semver: 7.3.8
+      semver: 7.5.0
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
@@ -8903,7 +8911,7 @@ packages:
       chalk: 4.1.2
       enhanced-resolve: 5.13.0
       micromatch: 4.0.5
-      semver: 7.3.8
+      semver: 7.5.0
       typescript: 5.0.4
       webpack: 5.81.0
     dev: true
