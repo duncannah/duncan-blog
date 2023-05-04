@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package.json pnpm-lock.yaml .npmrc prisma ./
 
 # Install requirements for node-gyp
-RUN apk add --no-cache python make g++
+RUN apk add --update --no-cache python3 make g++
 
 RUN npm install -g pnpm \
 	# node-linker is set to hoisted to not have symlinks
