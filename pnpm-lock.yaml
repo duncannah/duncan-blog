@@ -17,8 +17,8 @@ dependencies:
     specifier: 1.4.0
     version: 1.4.0
   core-js:
-    specifier: 3.30.1
-    version: 3.30.1
+    specifier: 3.30.2
+    version: 3.30.2
   cuid:
     specifier: 3.0.0
     version: 3.0.0
@@ -3893,8 +3893,8 @@ packages:
       browserslist: 4.21.4
       semver: 7.0.0
 
-  /core-js@3.30.1:
-    resolution: {integrity: sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ==}
+  /core-js@3.30.2:
+    resolution: {integrity: sha512-uBJiDmwqsbJCWHAwjrx3cvjbMXP7xD72Dmsn5LOJpiRmE3WbBbN5rCqQ2Qh6Ek6/eOrjlWngEynBWo4VxerQhg==}
     requiresBuild: true
     dev: false
 
