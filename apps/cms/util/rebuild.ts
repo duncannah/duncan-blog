@@ -29,13 +29,13 @@ export const triggerRebuild = (): void => {
 					return resolve();
 				});
 			});
+
+			lastRebuild = `DONE: ${new Date().toISOString()}`;
 		} catch (e: unknown) {
 			lastRebuild = `ERROR: ${new Date().toISOString()} - ${e instanceof Error ? e.message : Object.prototype.toString.call(e)}`;
 			console.error(`Rebuild failed`);
 			console.error(e);
 		}
-
-		lastRebuild = `DONE: ${new Date().toISOString()}`;
 
 		queue--;
 
