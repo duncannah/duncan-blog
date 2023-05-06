@@ -1,5 +1,5 @@
 {
-	"extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
+	"extends": ["plugin:@nx/react", "../../.eslintrc.json", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
@@ -11,7 +11,7 @@
 				"react/jsx-curly-brace-presence": ["warn", "always"],
 				"quotes": "off",
 				"@typescript-eslint/quotes": ["warn", "backtick"],
-				"@nrwl/nx/enforce-module-boundaries": "off"
+				"@nx/enforce-module-boundaries": "off"
 			}
 		},
 		{
