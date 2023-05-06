@@ -28,10 +28,8 @@ COPY . .
 
 # Create the .env file
 RUN echo "UPLOADS_PATH=/uploads" >> .env \
+	&& echo "EXPORT_PATH=/blog" >> .env \
 	&& echo "REBUILD_PATH=/usr/src/app" >> .env
-
-# Link the blog app output to the root of the container
-RUN ln -s /usr/src/app/dist/apps/blog/exported /blog
 
 # Build the CMS
 RUN npx nx build cms

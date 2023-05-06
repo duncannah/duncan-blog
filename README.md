@@ -65,11 +65,19 @@ pnpm rebuild sharp
 
 ## Example .env
 
-```
+```bash
+# Postgres connection string
 DATABASE_URL="postgres://user:password@host:port/database"
 
+# URL where the uploads are served from
 UPLOADS_URL="https://uploads.example.com"
+
+# Path to the uploads directory
 UPLOADS_PATH="/mnt/volume/uploads"
 
-REBUILD_PATH="/Users/duncan/MEGA/Projects/duncan-blog"
+# Path to the blog repo
+REBUILD_PATH="/home/user/duncan-blog"
+
+# Optional, specifies where the blog static files are built
+EXPORT_PATH="/mnt/volume/blog"
 ```

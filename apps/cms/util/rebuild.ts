@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import { spawn } from "child_process";
 
 let queue = 0;
 
@@ -8,6 +8,9 @@ export const triggerRebuild = (): void => {
 	if (!process.env[`REBUILD_PATH`]) throw new Error(`REBUILD_PATH is not set`);
 
 	if (process.env[`NODE_ENV`] === `development`) return;
+
+	const options: string[] = [];
+	if (process.env[`EXPORT_PATH`]) options.push(`-o`, process.env[`EXPORT_PATH`]);
 
 	queue++;
 
@@ -20,10 +23,15 @@ export const triggerRebuild = (): void => {
 
 		try {
 			await new Promise<void>((resolve, reject) => {
-				exec(`npx nx export`, { cwd: process.env[`REBUILD_PATH`] }, (error, _, stderr) => {
-					if (error) {
+				const sub = spawn(`npx`, [`nx`, `run`, `blog:export`, ...options], { cwd: process.env[`REBUILD_PATH`] });
+
+				let stderr = ``;
+				sub.stderr.on(`data`, (data) => (stderr += data));
+
+				sub.on(`close`, (code) => {
+					if (code !== 0) {
 						console.error(stderr);
-						return reject(error);
+						return reject(`Process exited with code ${code ?? `null`}\n\n${stderr}`);
 					}
 
 					return resolve();
