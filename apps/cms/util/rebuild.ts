@@ -1,3 +1,4 @@
+import { promises as fs } from "fs";
 import { spawn } from "child_process";
 
 let queue = 0;
@@ -8,9 +9,6 @@ export const triggerRebuild = (): void => {
 	if (!process.env[`REBUILD_PATH`]) throw new Error(`REBUILD_PATH is not set`);
 
 	if (process.env[`NODE_ENV`] === `development`) return;
-
-	const options: string[] = [];
-	if (process.env[`EXPORT_PATH`]) options.push(`-o`, process.env[`EXPORT_PATH`]);
 
 	queue++;
 
@@ -23,7 +21,7 @@ export const triggerRebuild = (): void => {
 
 		try {
 			await new Promise<void>((resolve, reject) => {
-				const sub = spawn(`npx`, [`nx`, `run`, `blog:export`, ...options], { cwd: process.env[`REBUILD_PATH`] });
+				const sub = spawn(`npx`, [`nx`, `run`, `blog:export`], { cwd: process.env[`REBUILD_PATH`] });
 
 				let stderr = ``;
 				sub.stderr.on(`data`, (data) => (stderr += data));
@@ -37,6 +35,11 @@ export const triggerRebuild = (): void => {
 					return resolve();
 				});
 			});
+
+			if (process.env[`EXPORT_PATH`]) {
+				await fs.cp(`${process.env[`REBUILD_PATH`] || ``}/dist/apps/blog/exported`, process.env[`EXPORT_PATH`], { recursive: true });
+				await fs.rm(`${process.env[`REBUILD_PATH`] || ``}/dist/apps/blog`, { recursive: true });
+			}
 
 			lastRebuild = `DONE: ${new Date().toISOString()}`;
 		} catch (e: unknown) {
