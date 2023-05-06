@@ -36,4 +36,4 @@ RUN npx nx build cms
 
 EXPOSE 4201
 
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npm run deploy-db && npm run start"]
