@@ -1,0 +1,31 @@
+version: "3"
+services:
+    db:
+        image: postgres
+        volumes:
+            - blog_db:/var/lib/postgresql/data
+        expose:
+            - "5432"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=9imGraSykrgqUf7mZ
+            - POSTGRES_DB=postgres
+        restart: unless-stopped
+    duncan-blog:
+        build: .
+        ports:
+            - "4201:4201"
+        environment:
+            DATABASE_URL: "postgresql://postgres:9imGraSykrgqUf7mZ@db:5432/postgres"
+            UPLOADS_URL: "https://u.duncan.be.eu.org"
+            NEXT_PUBLIC_BLOG_NAME: "duncan's blog"
+            NEXT_PUBLIC_BLOG_DESCRIPTION: "Duncan's blog"
+        volumes:
+            - blog_uploads:/uploads
+            - blog_dist:/blog
+        restart: unless-stopped
+
+volumes:
+    blog_db:
+    blog_uploads:
+    blog_dist:

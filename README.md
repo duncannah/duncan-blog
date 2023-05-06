@@ -17,22 +17,7 @@ The CMS is exposed on port 4201. The volumes are:
 
 The Docker image doesn't have HEIF support.
 
-### Basic docker-compose.yml example
-
-```yaml
-version: "3"
-services:
-    blog:
-        image: duncannah/duncan-blog
-        ports:
-            - "4201:4201"
-        volumes:
-            - ./uploads:/uploads
-            - ./blog:/blog
-        environment:
-            DATABASE_URL: "postgres://user:password@host:port/database"
-            UPLOADS_URL: "https://uploads.example.com"
-```
+A developement Docker Compose config is available in the [docker-compose.yml](docker-compose.yml) file. If you're using in in production, change the `build:` to `image` and set the appropriate environment variables.
 
 ## Installing libvips
 
