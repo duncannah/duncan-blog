@@ -18,25 +18,24 @@ FROM node:20-alpine as production
 
 EXPOSE 4201
 
+# Node environment
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+ENV UPLOADS_PATH="/uploads"
+ENV EXPORT_PATH="/blog"
+ENV REBUILD_PATH="/home/node/app"
+
 # FFmpeg dependency
 RUN apk add --no-cache ffmpeg=~5.1.3
 
 USER node
-WORKDIR /home/node/app
-
-# Create the .env file
-RUN echo "UPLOADS_PATH=/uploads" >> .env \
-	&& echo "EXPORT_PATH=/blog" >> .env \
-	&& echo "REBUILD_PATH=/home/node/app" >> .env
+WORKDIR $REBUILD_PATH
 
 # Copy node_modules
-COPY --from=build /home/node/app /home/node/app
+COPY --from=build /home/node/app .
 # Copy source code
 COPY . .
-
-# Node environment
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
 
 # Build the CMS
 RUN npx nx build cms
