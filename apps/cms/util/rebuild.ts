@@ -21,7 +21,7 @@ export const triggerRebuild = (): void => {
 
 		try {
 			await new Promise<void>((resolve, reject) => {
-				const sub = spawn(`npx`, [`nx`, `run`, `blog:export`], { cwd: process.env[`REBUILD_PATH`] });
+				const sub = spawn(`npx`, [`nx`, `run`, `blog:export`, `--skip-nx-cache`], { cwd: process.env[`REBUILD_PATH`] });
 
 				let stderr = ``;
 				sub.stderr.on(`data`, (data) => (stderr += data));
