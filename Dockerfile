@@ -1,39 +1,36 @@
 FROM node:20-alpine as build
 
-WORKDIR /usr/src/app
-
 # Install requirements for node-gyp
 RUN apk add --update --no-cache python3 make g++
 
 USER node
+WORKDIR /home/node/app
 
 COPY package.json pnpm-lock.yaml .npmrc prisma ./
 
-RUN npm install -g pnpm@8.5.0 \
-	# node-linker is set to hoisted to not have symlinks
-	&& pnpm config set node-linker hoisted \
-	&& pnpm install --frozen-lockfile
+# node-linker is set to hoisted to not have symlinks
+RUN npx pnpm config set node-linker hoisted \
+	&& npx pnpm install --frozen-lockfile
 
 # Not pruning dev dependencies because we need them for the rebuilding
 
 FROM node:20-alpine as production
 
-WORKDIR /usr/src/app
-
 EXPOSE 4201
+
+# FFmpeg dependency
+RUN apk add --no-cache ffmpeg=~5.1.3
+
+USER node
+WORKDIR /home/node/app
 
 # Create the .env file
 RUN echo "UPLOADS_PATH=/uploads" >> .env \
 	&& echo "EXPORT_PATH=/blog" >> .env \
-	&& echo "REBUILD_PATH=/usr/src/app" >> .env
-
-# FFmpeg dependency
-RUN apk add --no-cache ffmpeg=~6.0
-
-USER node
+	&& echo "REBUILD_PATH=/home/node/app" >> .env
 
 # Copy node_modules
-COPY --from=build /usr/src/app /usr/src/app
+COPY --from=build /home/node/app /home/node/app
 # Copy source code
 COPY . .
 
