@@ -65,7 +65,7 @@
 		"sass": "1.62.1",
 		"ts-node": "10.9.1",
 		"typescript": "5.0.4",
-		"webpack": "5.84.1",
+		"webpack": "5.85.0",
 		"nx-cloud": "16.0.5",
 		"@nx/workspace": "16.3.0",
 		"@nx/linter": "16.3.0",
