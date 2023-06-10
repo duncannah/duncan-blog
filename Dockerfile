@@ -27,7 +27,7 @@ ENV EXPORT_PATH="/blog"
 ENV REBUILD_PATH="/home/node/app"
 
 # FFmpeg dependency
-RUN apk add --no-cache ffmpeg=~5.1.3
+RUN apk add --no-cache ffmpeg
 
 USER node
 WORKDIR $REBUILD_PATH
