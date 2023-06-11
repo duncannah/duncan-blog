@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -21,8 +21,8 @@ dependencies:
     specifier: 1.4.0
     version: 1.4.0
   core-js:
-    specifier: 3.30.2
-    version: 3.30.2
+    specifier: 3.31.0
+    version: 3.31.0
   cuid:
     specifier: 3.0.0
     version: 3.0.0
@@ -4152,8 +4152,8 @@ packages:
     dependencies:
       browserslist: 4.21.7
 
-  /core-js@3.30.2:
-    resolution: {integrity: sha512-uBJiDmwqsbJCWHAwjrx3cvjbMXP7xD72Dmsn5LOJpiRmE3WbBbN5rCqQ2Qh6Ek6/eOrjlWngEynBWo4VxerQhg==}
+  /core-js@3.31.0:
+    resolution: {integrity: sha512-NIp2TQSGfR6ba5aalZD+ZQ1fSxGhDo/s1w0nx3RYzf2pnJxt7YynxFlFScP6eV7+GZsKO95NSjGxyJsU3DZgeQ==}
     requiresBuild: true
     dev: false
 
