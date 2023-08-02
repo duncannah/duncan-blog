@@ -126,7 +126,7 @@ export function ManageWebsite(props: ManageWebsiteProps) {
 		setUpdating(true);
 
 		if (settings)
-			toast
+			void toast
 				.promise(APICall.post(`settings`, { data: settings }), {
 					loading: `Saving...`,
 					success: `Saved!`,
