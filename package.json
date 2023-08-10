@@ -20,7 +20,7 @@
 		"express": "4.18.2",
 		"fluent-ffmpeg": "2.1.2",
 		"hast-util-to-html": "^9.0.0",
-		"html-react-parser": "4.2.0",
+		"html-react-parser": "4.2.1",
 		"immer": "^10.0.1",
 		"lodash": "4.17.21",
 		"markdown-it": "^13.0.1",
