@@ -116,8 +116,8 @@ devDependencies:
     specifier: 2.1.21
     version: 2.1.21
   '@types/lodash':
-    specifier: 4.14.197
-    version: 4.14.197
+    specifier: 4.14.198
+    version: 4.14.198
   '@types/markdown-it':
     specifier: ^13.0.0
     version: 13.0.0
@@ -2928,8 +2928,8 @@ packages:
     resolution: {integrity: sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==}
     dev: true
 
-  /@types/lodash@4.14.197:
-    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
+  /@types/lodash@4.14.198:
+    resolution: {integrity: sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==}
     dev: true
 
   /@types/markdown-it@13.0.0:
