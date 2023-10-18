@@ -113,8 +113,8 @@ devDependencies:
     specifier: 4.17.20
     version: 4.17.20
   '@types/fluent-ffmpeg':
-    specifier: 2.1.22
-    version: 2.1.22
+    specifier: 2.1.23
+    version: 2.1.23
   '@types/lodash':
     specifier: 4.14.199
     version: 4.14.199
@@ -2861,8 +2861,8 @@ packages:
       '@types/serve-static': 1.13.10
     dev: true
 
-  /@types/fluent-ffmpeg@2.1.22:
-    resolution: {integrity: sha512-ZZPDDrDOb2Ahp5fxZzuw64f0rCcviv+SDuCyJ1PIF/UFn9wNHtb/bY8Dj/2nrbQ7SNsGI7gaO2wJVkkU2HBcMg==}
+  /@types/fluent-ffmpeg@2.1.23:
+    resolution: {integrity: sha512-ZEogBz8YpWflRox2uzGUNOYolQPUDGMNUFhf6fY/cW+6i00oeSTD0tYf4az6/162jv0YsRYi6uxigssnag7E7A==}
     dependencies:
       '@types/node': 18.18.5
     dev: true
