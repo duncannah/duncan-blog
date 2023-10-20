@@ -36,8 +36,8 @@ dependencies:
     specifier: ^9.0.0
     version: 9.0.0
   html-react-parser:
-    specifier: 4.2.6
-    version: 4.2.6(react@18.2.0)
+    specifier: 4.2.7
+    version: 4.2.7(react@18.2.0)
   immer:
     specifier: ^10.0.1
     version: 10.0.1
@@ -5575,8 +5575,8 @@ packages:
     dependencies:
       lru-cache: 10.0.1
 
-  /html-dom-parser@5.0.1:
-    resolution: {integrity: sha512-8MRxHcUjkpfkCEvf3t+r1nO7KCHgfFah23tAskZHgiOFsP5/24uxJnoS6C2Hq+p/cAzpPUiKb8vjywH6ixEgzQ==}
+  /html-dom-parser@5.0.2:
+    resolution: {integrity: sha512-TPsxRbmzLQP4umvzRnI3US/DuqoHTX3QOGTsH9pNST6z1tm/ZOP4eWRqvGrv6rvOX42QRPF6opbOBoHM2UfTFQ==}
     dependencies:
       domhandler: 5.0.3
       htmlparser2: 9.0.0
@@ -5592,16 +5592,16 @@ packages:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
 
-  /html-react-parser@4.2.6(react@18.2.0):
-    resolution: {integrity: sha512-HTV/eN4YmhQCqFKwRz3/RdDP7Q6HPcvwLaJztFPgkFjtgaN+kj4gf1cyOHFjQ8Q8I07BYsUJNhPFhwyPG4bnZg==}
+  /html-react-parser@4.2.7(react@18.2.0):
+    resolution: {integrity: sha512-2Uf9CdzqDQ/CrUiooSEB4IcHcB8bmZKhgVCzNMAb66J1L+fmxLS/tAGwjfnF6P9WNUCkbx/dGb31u0gGIKmyfA==}
     peerDependencies:
       react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
       domhandler: 5.0.3
-      html-dom-parser: 5.0.1
+      html-dom-parser: 5.0.2
       react: 18.2.0
       react-property: 2.0.0
-      style-to-js: 1.1.6
+      style-to-js: 1.1.8
     dev: false
 
   /html-void-elements@3.0.0:
@@ -7881,14 +7881,14 @@ packages:
       minimist: 1.2.6
       through: 2.3.8
 
-  /style-to-js@1.1.6:
-    resolution: {integrity: sha512-8cx8YkokAgEqGMGhoVI2pdeiVBwPUk0ZhaF/YLsvm64EIVMN4LaiJ7eqkiboD5WnAX/11z3IMMxzxsBBbdCTow==}
+  /style-to-js@1.1.8:
+    resolution: {integrity: sha512-bPSspCXkkhETLXnEgDbaoWRWyv3lF2bj32YIc8IElok2IIMHUlZtQUrxYmAkKUNxpluhH0qnKWrmuoXUyTY12g==}
     dependencies:
-      style-to-object: 1.0.1
+      style-to-object: 1.0.3
     dev: false
 
-  /style-to-object@1.0.1:
-    resolution: {integrity: sha512-Mp9eBDx0knTrUGKyImO1enNWkOEYMAr/ut8SUYtPpOFOu5+HOR0yMF4pnExOklQvdSlxh+Mi0+6hUZVBb1zdRw==}
+  /style-to-object@1.0.3:
+    resolution: {integrity: sha512-xOpx7S53E0V3DpVsvt7ySvoiumRpfXiC99PUXLqGB3wiAnN9ybEIpuzlZ8LAZg+h1sl9JkEUwtSQXxcCgFqbbg==}
     dependencies:
       inline-style-parser: 0.2.2
     dev: false
