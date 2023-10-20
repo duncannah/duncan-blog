@@ -1,4 +1,4 @@
-FROM node:20-alpine as build
+FROM node:21-alpine as build
 
 # Install requirements for node-gyp
 RUN apk add --update --no-cache python3 make g++
@@ -14,7 +14,7 @@ RUN npx pnpm config set node-linker hoisted \
 
 # Not pruning dev dependencies because we need them for the rebuilding
 
-FROM node:20-alpine as production
+FROM node:21-alpine as production
 
 EXPOSE 4201
 
