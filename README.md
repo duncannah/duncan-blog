@@ -1,5 +1,10 @@
 # duncan-blog
 
+A simple blog, with a simple CMS to go with it.
+
+![Main page](docs/1.png)
+![CMS](docs/2.png)
+
 ## Requirements
 
 1. Postgres server
