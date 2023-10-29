@@ -36,8 +36,8 @@ dependencies:
     specifier: ^9.0.0
     version: 9.0.0
   html-react-parser:
-    specifier: 4.2.10
-    version: 4.2.10(react@18.2.0)
+    specifier: 5.0.0
+    version: 5.0.0(react@18.2.0)
   immer:
     specifier: ^10.0.1
     version: 10.0.1
@@ -5626,8 +5626,8 @@ packages:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
 
-  /html-react-parser@4.2.10(react@18.2.0):
-    resolution: {integrity: sha512-JyKZVQ+kQ8PdycISwkuLbEEvV/k4hWhU6cb6TT7yGaYwdqA7cPt4VRYXkCZcix2vlQtgDBSMJUmPI2jpNjPGvg==}
+  /html-react-parser@5.0.0(react@18.2.0):
+    resolution: {integrity: sha512-ISmjOIMGAnaL7beK6+ZQZpoNoZgOlsegsd1mN39OyTeF2Z87QmIoYYn11EVoT3WOtfvLJxGxedY7Yy6lTS6yww==}
     peerDependencies:
       react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
