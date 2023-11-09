@@ -39,7 +39,7 @@
 		"@nx/next": "17.0.3"
 	},
 	"devDependencies": {
-		"@babel/core": "7.23.2",
+		"@babel/core": "7.23.3",
 		"@types/express": "4.17.21",
 		"@types/fluent-ffmpeg": "2.1.24",
 		"@types/lodash": "4.14.201",
