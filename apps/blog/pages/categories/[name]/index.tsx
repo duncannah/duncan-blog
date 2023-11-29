@@ -56,6 +56,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 				include: { mainImage: true, categories: true },
 				skip: (currentPage - 1) * 12,
 				take: POSTS_PER_PAGE,
+				where: {
+					published: true,
+					isPage: false,
+				},
 				orderBy: {
 					createdAt: `desc`,
 				},
