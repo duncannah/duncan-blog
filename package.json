@@ -31,7 +31,7 @@
 		"react-dom": "18.2.0",
 		"react-hot-toast": "2.4.1",
 		"react-transition-group": "^4.4.5",
-		"regenerator-runtime": "0.14.0",
+		"regenerator-runtime": "0.14.1",
 		"sharp": "0.33.0",
 		"tslib": "2.6.2",
 		"use-immer": "^0.9.0",
