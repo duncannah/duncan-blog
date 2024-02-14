@@ -36,8 +36,8 @@ dependencies:
     specifier: ^9.0.0
     version: 9.0.0
   html-react-parser:
-    specifier: 5.1.4
-    version: 5.1.4(react@18.2.0)
+    specifier: 5.1.5
+    version: 5.1.5(react@18.2.0)
   immer:
     specifier: ^10.0.1
     version: 10.0.1
@@ -3212,7 +3212,6 @@ packages:
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: true
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -3238,7 +3237,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
-    dev: true
 
   /@types/retry@0.12.0:
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
@@ -3246,7 +3244,6 @@ packages:
 
   /@types/scheduler@0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: true
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
@@ -6361,11 +6358,12 @@ packages:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
 
-  /html-react-parser@5.1.4(react@18.2.0):
-    resolution: {integrity: sha512-8vxkoXXMmXTNuwCcDiZPQQihLoEfj92ksc/V4qaAKlLrgp8pfzrRhJp/ndBl2cwQNbICmvuJCnys4DdurInwhw==}
+  /html-react-parser@5.1.5(react@18.2.0):
+    resolution: {integrity: sha512-lnRbY79VuhtTttVMTFPAO+q6mEgSE/A7FHO70rkbQRcNtwd/Vi5EqwD2WJ8VsyD//XcDAHVsvZ8HC8BAamTLRg==}
     peerDependencies:
       react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
+      '@types/react': 18.2.55
       domhandler: 5.0.3
       html-dom-parser: 5.0.8
       react: 18.2.0
