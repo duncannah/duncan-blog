@@ -49,7 +49,7 @@ dependencies:
     version: 14.0.0
   next:
     specifier: 13.5.6
-    version: 13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
+    version: 13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.0)
   next-multiparty:
     specifier: ^0.7.0
     version: 0.7.0(next@13.5.6)
@@ -179,8 +179,8 @@ devDependencies:
     specifier: 5.9.1
     version: 5.9.1
   sass:
-    specifier: 1.70.0
-    version: 1.70.0
+    specifier: 1.71.0
+    version: 1.71.0
   ts-node:
     specifier: 10.9.2
     version: 10.9.2(@types/node@20.11.19)(typescript@5.3.3)
@@ -2510,7 +2510,7 @@ packages:
       copy-webpack-plugin: 10.2.4(webpack@5.90.2)
       fs-extra: 11.1.0
       ignore: 5.2.4
-      next: 13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
+      next: 13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.0)
       semver: 7.5.4
       tslib: 2.6.2
       url-loader: 4.1.1(webpack@5.90.2)
@@ -2727,8 +2727,8 @@ packages:
       postcss-import: 14.1.0(postcss@8.4.35)
       postcss-loader: 6.2.1(postcss@8.4.35)(webpack@5.90.2)
       rxjs: 7.8.1
-      sass: 1.70.0
-      sass-loader: 12.6.0(sass@1.70.0)(webpack@5.90.2)
+      sass: 1.71.0
+      sass-loader: 12.6.0(sass@1.71.0)(webpack@5.90.2)
       source-map-loader: 3.0.2(webpack@5.90.2)
       style-loader: 3.3.4(webpack@5.90.2)
       stylus: 0.59.0
@@ -7756,10 +7756,10 @@ packages:
     dependencies:
       '@types/formidable': 2.0.5
       formidable: 2.1.1
-      next: 13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
+      next: 13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.0)
     dev: false
 
-  /next@13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0):
+  /next@13.5.6(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)(sass@1.71.0):
     resolution: {integrity: sha512-Y2wTcTbO4WwEsVb4A8VSnOsG1I9ok+h74q0ZdxkwM3EODqrs4pasq7O0iUxbcS9VtWMicG7f3+HAj0r1+NtKSw==}
     engines: {node: '>=16.14.0'}
     hasBin: true
@@ -7781,7 +7781,7 @@ packages:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      sass: 1.70.0
+      sass: 1.71.0
       styled-jsx: 5.1.1(@babel/core@7.23.9)(react@18.2.0)
       watchpack: 2.4.0
     optionalDependencies:
@@ -9010,7 +9010,7 @@ packages:
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sass-loader@12.6.0(sass@1.70.0)(webpack@5.90.2):
+  /sass-loader@12.6.0(sass@1.71.0)(webpack@5.90.2):
     resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
@@ -9031,12 +9031,12 @@ packages:
     dependencies:
       klona: 2.0.6
       neo-async: 2.6.2
-      sass: 1.70.0
+      sass: 1.71.0
       webpack: 5.90.2
     dev: false
 
-  /sass@1.70.0:
-    resolution: {integrity: sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==}
+  /sass@1.71.0:
+    resolution: {integrity: sha512-HKKIKf49Vkxlrav3F/w6qRuPcmImGVbIXJ2I3Kg0VMA+3Bav+8yE9G5XmP5lMj6nl4OlqbPftGAscNaNu28b8w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
