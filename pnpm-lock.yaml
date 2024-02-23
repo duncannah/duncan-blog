@@ -125,8 +125,8 @@ devDependencies:
     specifier: 20.11.20
     version: 20.11.20
   '@types/react':
-    specifier: 18.2.57
-    version: 18.2.57
+    specifier: 18.2.58
+    version: 18.2.58
   '@types/react-dom':
     specifier: 18.2.19
     version: 18.2.19
@@ -3222,17 +3222,17 @@ packages:
   /@types/react-dom@18.2.19:
     resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
     dependencies:
-      '@types/react': 18.2.57
+      '@types/react': 18.2.58
     dev: true
 
   /@types/react-transition-group@4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
     dependencies:
-      '@types/react': 18.2.57
+      '@types/react': 18.2.58
     dev: true
 
-  /@types/react@18.2.57:
-    resolution: {integrity: sha512-ZvQsktJgSYrQiMirAN60y4O/LRevIV8hUzSOSNB6gfR3/o3wCBFQx3sPwIYtuDMeiVgsSS3UzCV26tEzgnfvQw==}
+  /@types/react@18.2.58:
+    resolution: {integrity: sha512-TaGvMNhxvG2Q0K0aYxiKfNDS5m5ZsoIBBbtfUorxdH4NGSXIlYvZxLJI+9Dd3KjeB3780bciLyAb7ylO8pLhPw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -6363,7 +6363,7 @@ packages:
     peerDependencies:
       react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
-      '@types/react': 18.2.57
+      '@types/react': 18.2.58
       domhandler: 5.0.3
       html-dom-parser: 5.0.8
       react: 18.2.0
