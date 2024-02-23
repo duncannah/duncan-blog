@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@monaco-editor/react": "^4.4.6",
 		"@prisma/client": "5.10.2",
-		"@wooorm/starry-night": "^2.0.0",
+		"@wooorm/starry-night": "^3.0.0",
 		"axios": "1.6.7",
 		"core-js": "3.36.0",
 		"cuid": "3.0.0",
